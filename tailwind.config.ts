@@ -107,28 +107,37 @@ const config: Config = {
 			}
 		},
 		spacing: {
-			xs: '0.1875rem',
-			s: '0.375rem',
-			m: '0.75rem',
-			l: '1.5rem',
-			xl: '2rem',
-			'2xl': '3rem',
-			'3xl': '4rem',
-			'4xl': '6rem',
-			'5xl': '8rem'
+			3: '0.1875rem',
+			6: '0.375rem',
+			12: '0.75rem',
+			24: '1.5rem',
+			32: '2rem',
+			48: '3rem',
+			64: '4rem',
+			96: '6rem',
+			128: '8rem',
+			160: '10rem'
 		},
 		fontFamily: {
 			jetbrains: ['var(--font-jetbrains)', 'sans-serif'],
 			roundo: ['var(--font-roundo)', 'sans-serif']
 		},
+		fontSize: {
+			12: '0.75rem',
+			base: '1rem',
+			20: '1.25rem',
+			25: '1.56rem',
+			36: '2.25rem',
+			48: '3rem',
+			64: '4rem'
+		},
 		borderRadius: {
 			none: '0',
-			xs: '0.375rem',
-			s: '0.0.75rem',
-			m: '1.5rem',
-			l: '2rem',
-			xl: '1rem',
-			full: 'vmax'
+			6: '0.375rem',
+			12: '0.0.75rem',
+			24: '1.5rem',
+			32: '2rem',
+			full: '5.375rem'
 		},
 		extend: {
 			backgroundImage: {
