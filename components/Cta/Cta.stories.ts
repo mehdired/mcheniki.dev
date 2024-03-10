@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Cta } from '@/components/Cta/Cta';
+import { Cta } from './Cta';
 
 const meta: Meta<typeof Cta> = {
 	component: Cta
