@@ -1,4 +1,4 @@
-import { Cta } from '@/components/Cta';
+import { Cta } from '@/components/Cta/Cta';
 
 export default function Home() {
 	return (
