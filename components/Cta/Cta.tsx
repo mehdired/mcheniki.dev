@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 import type { PropsWithChildren } from 'react';
 
-const styles = cva('font-jetbrains px-25 py-12 text-center rounded-full min-w-160', {
+const styles = cva('font-jetbrains px-24 py-12 text-center rounded-full min-w-160', {
 	variants: {
 		indent: {
 			primary: [
@@ -22,11 +22,12 @@ const styles = cva('font-jetbrains px-25 py-12 text-center rounded-full min-w-16
 		}
 	}
 });
+export type CTAVariantProps = VariantProps<typeof styles>;
 
 type CtaProps = {
 	url: string;
 } & React.ButtonHTMLAttributes<HTMLButtonElement> &
-	VariantProps<typeof styles>;
+	Required<Pick<CTAVariantProps, 'indent'>>;
 
 export function Cta({ url, indent, children }: PropsWithChildren<CtaProps>) {
 	return (
