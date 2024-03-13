@@ -1,5 +1,4 @@
 import { cva, type VariantProps } from 'class-variance-authority'
-import type { PropsWithChildren } from 'react'
 
 const styles = cva(
     'font-jetbrains px-24 py-12 text-center rounded-full min-w-160',
