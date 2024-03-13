@@ -16,7 +16,7 @@ const preview: Preview = {
     decorators: [
         (Story) => {
             return React.createElement('div', {
-                className: `${jetbrains.variable} ${roundo.variable}`,
+                className: `${jetbrains.variable} ${roundo.className}`,
                 children: React.createElement(Story),
             })
         },
