@@ -1,4 +1,5 @@
 import type { StorybookConfig } from '@storybook/nextjs';
+import path from 'path';
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
 
 const config: StorybookConfig = {
@@ -9,10 +10,12 @@ const config: StorybookConfig = {
 		'@storybook/addon-onboarding',
 		'@storybook/addon-interactions'
 	],
-	staticDirs: ['../public'],
+	staticDirs: ['../public', { from: '../public/fonts', to: 'public/fonts' }],
 	framework: {
 		name: '@storybook/nextjs',
-		options: {}
+		options: {
+			nextConfigPath: path.resolve(__dirname, '../next.config.mjs')
+		}
 	},
 	webpackFinal: async (config) => {
 		if (config.resolve) {
