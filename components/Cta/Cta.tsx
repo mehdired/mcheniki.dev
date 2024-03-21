@@ -34,9 +34,9 @@ type CtaProps = {
     url: string
     children: React.ReactNode
 } & React.ButtonHTMLAttributes<HTMLButtonElement> &
-    Required<Pick<CTAVariantProps, 'indent'>>
+    Pick<CTAVariantProps, 'indent'>
 
-export function Cta({ url, indent, children }: CtaProps) {
+export function Cta({ url, indent = 'primary', children }: CtaProps) {
     return (
         <a href={url} className={styles({ indent })}>
             {children}
