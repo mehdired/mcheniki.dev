@@ -1,3 +1,5 @@
+import { ClassAttributes } from 'react'
+
 type ContainerProps = {
     customClass?: string
     children: React.ReactNode

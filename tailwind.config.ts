@@ -8,6 +8,7 @@ const config: Config = {
     ],
     theme: {
         colors: {
+            current: 'currentColor',
             transparent: 'transparent',
             secondary: {
                 900: '#1D3E3B',

@@ -3,19 +3,24 @@ import { Container } from '../Container'
 
 export function Header() {
     return (
-        <header className="flex items-center justify-between py-12">
-            <Container>
-                <div>Mehdi</div>
+        <header className="flex items-center justify-between px-24 py-12">
+            <Container customClass="flex justify-between items-center gap-24">
+                <p className="font-medium">Mehdi Cheniki</p>
+
                 <nav>
-                    <ul className="flex items-center gap-12">
+                    <ul className="flex items-center gap-32">
                         <li>
-                            <a href="#about">Project</a>
+                            <Cta url="/#about" indent="withIcon">
+                                project
+                            </Cta>
                         </li>
                         <li>
-                            <a href="#work">Resume</a>
+                            <Cta url="/#contact" indent="withIcon">
+                                resume
+                            </Cta>
                         </li>
                         <li>
-                            <Cta url="/#contact">Contact</Cta>
+                            <Cta url="/#contact">contact me</Cta>
                         </li>
                     </ul>
                 </nav>
