@@ -2,9 +2,9 @@ import { FormGroup } from '../FormGroup/FormGroup'
 import { Input } from '../Input/Input'
 import { Textarea } from '../Textarea/Textarea'
 
-export function Form() {
+export function Form({ ...rest }) {
     return (
-        <form method="post">
+        <form method="post" {...rest}>
             <div className="flex items-center gap-12">
                 <FormGroup name="name" className="flex-1">
                     <Input

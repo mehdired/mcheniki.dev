@@ -109,6 +109,7 @@ const config: Config = {
             },
         },
         spacing: {
+            0: '0',
             3: '0.1875rem',
             6: '0.375rem',
             12: '0.75rem',

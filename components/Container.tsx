@@ -1,10 +1,13 @@
 import { ClassAttributes } from 'react'
 
 type ContainerProps = {
-    customClass?: string
-    children: React.ReactNode
+    [key: string]: string | React.ReactNode
 }
 
-export function Container({ customClass, children }: ContainerProps) {
-    return <div className={`container ${customClass}`}>{children}</div>
+export function Container({ children, ...rest }: ContainerProps) {
+    return (
+        <div className={`container mx-auto px-24 ${rest.className}`}>
+            {children}
+        </div>
+    )
 }

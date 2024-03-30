@@ -3,8 +3,8 @@ import { Container } from '../Container'
 
 export function Header() {
     return (
-        <header className="flex items-center justify-between px-24 py-12">
-            <Container customClass="flex justify-between items-center gap-24">
+        <header className="flex items-center justify-between py-12">
+            <Container className="flex items-center justify-between">
                 <p className="font-medium">Mehdi Cheniki</p>
 
                 <nav>
