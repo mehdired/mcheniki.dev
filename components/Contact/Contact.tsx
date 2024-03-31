@@ -19,14 +19,14 @@ export function Contact() {
                         href="mailto:mehdi.cheniki@gmail.com"
                         className="mb-12 flex items-center gap-6"
                     >
-                        <Mail className="fill-current" />
+                        <Mail className="h-12 w-12 fill-current" />
                         mehdi.cheniki@gmail.com
                     </a>
                     <a
                         href="tel:16474919798"
                         className="flex items-center gap-6"
                     >
-                        <Phone className="fill-current" />
+                        <Phone className="h-12 w-12 fill-current" />
                         647.491.9798
                     </a>
                 </address>
