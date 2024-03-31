@@ -1,5 +1,6 @@
 import { Contact } from '@/components/Contact/Contact'
 import { Hero } from '@/components/Hero/Hero'
+import { StackSection } from '@/components/StackSection/StackSection'
 
 export default function Home() {
     return (
@@ -7,7 +8,9 @@ export default function Home() {
             <section className="mb-96">
                 <Hero />
             </section>
-
+            <section className="mb-96">
+                <StackSection />
+            </section>
             <section>
                 <Contact />
             </section>
