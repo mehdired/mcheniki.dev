@@ -126,6 +126,7 @@ const config: Config = {
             roundo: ['var(--font-roundo)', 'sans-serif'],
         },
         fontSize: {
+            'clamp-158': 'clamp(6.75rem, -0.0192rem + 10.5769vw, 9.5rem);',
             12: '0.75rem',
             base: '1rem',
             20: '1.25rem',
@@ -133,6 +134,8 @@ const config: Config = {
             36: '2.25rem',
             48: '3rem',
             64: '4rem',
+            96: '6rem',
+            152: '9.5rem',
         },
         borderRadius: {
             none: '0',

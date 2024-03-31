@@ -19,6 +19,12 @@
     }
 }
 
+@layer components {
+    .text-stroke {
+        -webkit-text-stroke: 1px theme(colors.primary.500);
+    }
+}
+
 @layer utilities {
     .text-balance {
         text-wrap: balance;
