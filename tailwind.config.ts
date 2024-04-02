@@ -137,6 +137,12 @@ const config: Config = {
             96: '6rem',
             152: '9.5rem',
         },
+        borderWidth: {
+            1: '1px',
+            3: '3px',
+            6: '6px',
+            12: '12px',
+        },
         borderRadius: {
             none: '0',
             6: '0.375rem',
