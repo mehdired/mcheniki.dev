@@ -138,6 +138,7 @@ const config: Config = {
             152: '9.5rem',
         },
         borderWidth: {
+            0: '0',
             1: '1px',
             3: '3px',
             6: '6px',

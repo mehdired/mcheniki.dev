@@ -5,7 +5,7 @@ export function Hero() {
     return (
         <Container className="flex flex-col items-center justify-between gap-32 lg:flex-row">
             <div>
-                <h1 className="md:text-clamp-158 mb-12 text-64 font-bold uppercase italic leading-[0.9]">
+                <h1 className="mb-12 text-64 font-bold uppercase italic leading-[0.9] md:text-clamp-158">
                     <span className="block text-primary-500">Mehdi</span>
                     <span className="text-stroke text-transparent">
                         Cheniki

@@ -16,7 +16,11 @@ export function StackSection() {
                 </p>
             </header>
 
-            <StackCard icon={IconWP} name="Wordpress" />
+            <StackCard
+                icon={IconWP}
+                name="Wordpress"
+                description="Augue sit habitant odio consectetur tempor. Senectus sit vel auctor dui. Bibendum lorem tortor est urna pharetra nunc praesent a. Praesent vitae ultrices ornare dignissim purus elit eget."
+            />
         </Container>
     )
 }
