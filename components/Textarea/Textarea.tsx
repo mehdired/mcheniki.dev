@@ -6,7 +6,7 @@ type TextareaProps = {
 export function Textarea({ id, name, ...rest }: TextareaProps) {
     return (
         <textarea
-            className="w-full resize-none rounded-12 border border-primary-500 bg-transparent p-12 font-medium"
+            className="w-full resize-none rounded-12 border-1 border-primary-500 bg-transparent p-12 font-medium"
             cols={50}
             rows={10}
             id={id}

@@ -29,4 +29,74 @@
     .text-balance {
         text-wrap: balance;
     }
+
+    .clip-bg,
+    .clip-bg span,
+    .clip-bg span:before,
+    .clip-bg span:after {
+        position: absolute;
+        inset: 0;
+        display: block;
+        height: 100%;
+        width: 100%;
+    }
+
+    .clip-bg span:before,
+    .clip-bg span:after {
+        content: '';
+    }
+
+    .clip-bg {
+        clip-path: circle(81% at 50% 0);
+        z-index: -1;
+    }
+    .clip-bg span {
+        clip-path: circle(75% at 50% 0);
+        z-index: 2;
+    }
+    .clip-bg span:before {
+        clip-path: circle(70% at 50% 0);
+        z-index: 3;
+    }
+    .clip-bg span:after {
+        clip-path: circle(65% at 50% 0);
+        z-index: 4;
+    }
+
+    .clip-bg-secondary {
+        background-color: theme(colors.secondary.500);
+    }
+    .clip-bg-secondary span {
+        background-color: theme(colors.secondary.400);
+    }
+    .clip-bg-secondary span:before {
+        background-color: theme(colors.secondary.300);
+    }
+    .clip-bg-secondary span:after {
+        background-color: theme(colors.secondary.200);
+    }
+    .clip-bg-primary {
+        background-color: theme(colors.primary.500);
+    }
+    .clip-bg-primary span {
+        background-color: theme(colors.primary.400);
+    }
+    .clip-bg-primary span:before {
+        background-color: theme(colors.primary.300);
+    }
+    .clip-bg-primary span:after {
+        background-color: theme(colors.primary.200);
+    }
+    .clip-bg-tertiary {
+        background-color: theme(colors.tertiary.500);
+    }
+    .clip-bg-tertiary span {
+        background-color: theme(colors.tertiary.400);
+    }
+    .clip-bg-tertiary span:before {
+        background-color: theme(colors.tertiary.300);
+    }
+    .clip-bg-tertiary span:after {
+        background-color: theme(colors.tertiary.200);
+    }
 }
