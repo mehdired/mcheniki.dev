@@ -1,4 +1,5 @@
 import { Container } from '../Container'
+import { Portal } from '../Portal/Portal'
 import Image from 'next/image'
 
 export function Hero() {
@@ -15,13 +16,8 @@ export function Hero() {
                     Expert Wordpress / Frontend Developer
                 </p>
             </div>
-            <div>
-                <Image
-                    src="/images/hero-img.png"
-                    alt="Mehdi Cheniki"
-                    width={480}
-                    height={740}
-                />
+            <div className="w-full max-w-[570px] flex-1 flex-grow-0 basis-[570px] lg:w-auto">
+                <Portal />
             </div>
         </Container>
     )

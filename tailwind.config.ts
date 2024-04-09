@@ -143,6 +143,7 @@ const config: Config = {
             3: '3px',
             6: '6px',
             12: '12px',
+            24: '24px',
         },
         borderRadius: {
             none: '0',
