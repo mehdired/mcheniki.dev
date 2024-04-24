@@ -1,4 +1,5 @@
 import { Container } from '../Container'
+import { NotInTouch } from '../NotInTouch'
 import { Portal } from '../Portal/Portal'
 import Image from 'next/image'
 
@@ -16,9 +17,11 @@ export function Hero() {
                     Expert Wordpress / Frontend Developer
                 </p>
             </div>
-            <div className="w-full max-w-[570px] flex-1 flex-grow-0 basis-[570px] lg:w-auto">
-                <Portal />
-            </div>
+            <NotInTouch>
+                <div className="w-full max-w-[570px] flex-1 flex-grow-0 basis-[570px] lg:w-auto">
+                    <Portal />
+                </div>
+            </NotInTouch>
         </Container>
     )
 }

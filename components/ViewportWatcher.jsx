@@ -21,7 +21,7 @@ export function ViewportWatcher({
 }) {
     useEffect(() => {
         if (!innerRef.current) {
-            return void 0
+            return
         }
 
         //stirng flag to only trigger callback once
@@ -51,8 +51,8 @@ export function ViewportWatcher({
 
         //on scroll check
         window.addEventListener('scroll', onScrollHandler)
-        ;() => window.removeEventListener('scroll', onScrollHandler)
-    }, [innerRef])
+        return () => window.removeEventListener('scroll', onScrollHandler)
+    }, [innerRef, onEnter, onExit, onScroll])
 
     return <>{children}</>
 }

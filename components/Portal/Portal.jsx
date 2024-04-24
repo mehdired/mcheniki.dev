@@ -16,7 +16,7 @@ export function Portal() {
 
     useEffect(() => {
         if (!play) {
-            return void 0
+            return
         }
         setTimeout(() => setActive(true), 400)
 
