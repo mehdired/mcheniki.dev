@@ -56,7 +56,7 @@ export function Portal() {
                 ref={container}
             >
                 <div
-                    className="portal-scene relative flex h-[741px] max-h-screen w-full items-center justify-center"
+                    className="portal-scene aspect-portal relative flex max-h-screen w-full items-center justify-center"
                     style={{
                         transform: `rotate3d(0, 1 ,0, ${rotate.y}deg) rotate3d(1, 0 , 0, ${rotate.x}deg)`,
                     }}
