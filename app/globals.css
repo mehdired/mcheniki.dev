@@ -324,13 +324,19 @@
     position: absolute;
 }
 .portal-stars[data-position='left'] {
-    transform: translate3d(-350%, 30%, -20px);
+    left: 25px;
+    transform: translate3d(0, 0, -20px);
+    /*transform: translate3d(-350%, 30%, -20px);*/
 }
 .portal-stars[data-position='bottom'] {
-    transform: translate3d(130%, 230%, -50px);
+    /* transform: translate3d(130%, 230%, -50px); */
+    transform: translate3d(0, 0, -50px);
+    right: 25px;
+    bottom: 25px;
 }
 .portal-stars[data-position='top'] {
-    transform: translate3d(10%, -419%, -90px);
+    transform: translate3d(0, 0, -90px);
+    top: 25px;
 }
 @keyframes glint {
     to {
