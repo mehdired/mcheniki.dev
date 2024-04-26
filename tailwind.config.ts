@@ -126,7 +126,8 @@ const config: Config = {
             roundo: ['var(--font-roundo)', 'sans-serif'],
         },
         fontSize: {
-            'clamp-158': 'clamp(6.75rem, -0.0192rem + 10.5769vw, 9.5rem);',
+            'clamp-h1': 'clamp(6.75rem, -0.0192rem + 10.5769vw, 9.5rem);',
+            'clamp-h2': 'clamp(4.75rem, 1.6731rem + 4.8077vw, 6rem);',
             12: '0.75rem',
             base: '1rem',
             20: '1.25rem',
@@ -143,6 +144,7 @@ const config: Config = {
             3: '3px',
             6: '6px',
             12: '12px',
+            24: '24px',
         },
         borderRadius: {
             none: '0',
@@ -151,6 +153,9 @@ const config: Config = {
             24: '1.5rem',
             32: '2rem',
             full: '5.375rem',
+        },
+        aspectRatio: {
+            portal: '53/74',
         },
         extend: {
             backgroundImage: {

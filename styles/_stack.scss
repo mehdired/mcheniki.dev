@@ -1,0 +1,33 @@
+.portal {
+    &-stack {
+        position: absolute;
+        fill: white;
+
+        $posMap: (
+            "wordpress": (20%, -330%, 10px),
+            "react": (50%, -120%, 10px),
+            "next": (180%, -200%, 10px),
+        );
+
+    @each $position, $coordinate in $posMap {
+        &[data-name=#{$position}] {
+            transform: translate3d($coordinate);
+
+            animation-name: float-stack-#{$position};
+            animation-duration: 3s;
+            animation-fill-mode: forwards;
+            animation-timing-function: cubic-bezier(.63, -0.01, .39, .99);
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-delay: random(3) + s;
+            transform-origin: 90% 20%;
+    
+            @keyframes float-stack-#{$position} {
+                to {
+                    transform: translate3d($coordinate) rotate3d(1, 1, 1, -20deg);
+                }
+            }
+        }
+    }
+}
+}
