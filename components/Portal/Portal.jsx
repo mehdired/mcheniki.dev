@@ -11,37 +11,39 @@ import Image from 'next/image'
 export function Portal() {
     const [play, setPlay] = useState(true)
     const [active, setActive] = useState(false)
-    const [rotate, setRotate] = useState({ x: 0, y: -20 })
+    const [rotate, setRotate] = useState({ x: 0, y: -5 })
     const container = useRef()
 
+    const onMouseMove = (e) => {
+        const normalizedY = normalize({
+            value: e.pageX,
+            from: [0, window.innerWidth],
+            to: [-20, 0],
+        })
+
+        const normalizedX = normalize({
+            value: e.pageY,
+            from: [0, window.innerHeight],
+            to: [-10, 10],
+        })
+
+        setRotate({
+            x: -1 * normalizedX,
+            y: normalizedY,
+        })
+    }
+
     useEffect(() => {
-        if (!play) {
+        if (!play && !window.matchMedia('(hover: none), (pointer: coarse)')) {
             return
         }
         setTimeout(() => setActive(true), 400)
 
-        const onMouseMove = (e) => {
-            //console.log(e);
-            const normalizedY = normalize({
-                value: e.pageX,
-                from: [0, window.innerWidth],
-                to: [-20, 0],
-            })
-
-            const normalizedX = normalize({
-                value: e.pageY,
-                from: [0, window.innerHeight],
-                to: [-10, 10],
-            })
-
-            setRotate({
-                x: -1 * normalizedX,
-                y: normalizedY,
-            })
-        }
-
         window.addEventListener('mousemove', onMouseMove)
-        return () => window.removeEventListener('mousemove', onMouseMove)
+
+        return () => {
+            window.removeEventListener('mousemove', onMouseMove)
+        }
     }, [play])
 
     return (
@@ -56,7 +58,7 @@ export function Portal() {
                 ref={container}
             >
                 <div
-                    className="portal-scene aspect-portal relative flex max-h-screen w-full items-center justify-center"
+                    className="portal-scene relative flex aspect-portal max-h-screen w-full items-center justify-center"
                     style={{
                         transform: `rotate3d(0, 1 ,0, ${rotate.y}deg) rotate3d(1, 0 , 0, ${rotate.x}deg)`,
                     }}

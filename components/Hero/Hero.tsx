@@ -7,7 +7,7 @@ export function Hero() {
     return (
         <Container className="flex flex-col items-center justify-between gap-32 lg:flex-row">
             <div>
-                <h1 className="mb-12 text-64 font-bold uppercase italic leading-[0.9] md:text-clamp-158">
+                <h1 className="md:text-clamp-h1 mb-12 text-64 font-bold uppercase italic leading-[0.9]">
                     <span className="block text-primary-500">Mehdi</span>
                     <span className="text-stroke text-transparent">
                         Cheniki
@@ -17,11 +17,9 @@ export function Hero() {
                     Expert Wordpress / Frontend Developer
                 </p>
             </div>
-            <NotInTouch>
-                <div className="w-full max-w-[570px] flex-1 flex-grow-0 basis-[570px] lg:w-auto">
-                    <Portal />
-                </div>
-            </NotInTouch>
+            <div className="w-full max-w-[570px] flex-1 flex-grow-0 lg:w-auto lg:basis-[570px]">
+                <Portal />
+            </div>
         </Container>
     )
 }

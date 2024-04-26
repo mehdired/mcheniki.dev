@@ -220,6 +220,7 @@
     --radius-l: 32px;
     --stroke-xs: 3px;
     --stroke-xl: 24px;
+    --pulse-z: 85px;
 }
 
 .demo-above-the-fold {
@@ -250,9 +251,6 @@
     transform-style: preserve-3d;
 }
 
-.portal-scene {
-    /* transform: rotateY(-40deg); */
-}
 .portal-scene:before {
     content: '';
     position: absolute;
@@ -297,11 +295,19 @@
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
-@keyframes pulse {
-    to {
-        transform: translateZ(85px);
+
+@media (hover: none) and (pointer: coarse) {
+    :root {
+        --pulse-z: 50px;
     }
 }
+
+@keyframes pulse {
+    to {
+        transform: translateZ(var(--pulse-z));
+    }
+}
+
 .portal-element-mehdinaut {
     position: absolute;
     width: 50%;
