@@ -71,6 +71,7 @@ export function Portal() {
                         <CirclePlanet
                             color="primary"
                             animated={true}
+                            version="portal"
                             {...active}
                         />
                     </div>
@@ -78,6 +79,7 @@ export function Portal() {
                         <CirclePlanet
                             color="secondary"
                             animated={true}
+                            version="portal"
                             {...active}
                         />
                     </div>

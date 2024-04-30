@@ -19,10 +19,13 @@ export function CirclePlanet({
     color = 'primary',
     animated = false,
     active = false,
+    version = '',
 }) {
+    const classVersion = version === 'portal' ? 'planet-portal' : ''
+
     return (
         <div
-            className={`circle-planet h-full w-full ${styles[color].main}`}
+            className={`${classVersion} h-full w-full ${styles[color].main}`}
             data-animated={animated}
             data-active={active}
         >
