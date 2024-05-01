@@ -94,7 +94,7 @@ export function Avatar({ mode = 'DESKTOP', state = 'DEFAULT' }) {
         <primitive
             object={scene}
             position={[0, -1, 0]}
-            scale={viewport.width / 7}
+            scale={viewport.width / 8}
         />
     )
 }

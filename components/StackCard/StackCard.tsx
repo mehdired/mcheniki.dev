@@ -10,7 +10,7 @@ export function StackCard({ name, icon, description }: StackCardProps) {
     const Icon = icon
 
     return (
-        <div className="h-[511px] w-[367px] overflow-hidden rounded-32 border-6 border-secondary-50">
+        <div className="h-[511px] w-full max-w-[367px] overflow-hidden rounded-32 border-6 border-secondary-50">
             <div className="relative h-1/2">
                 <div className="clip-bg-secondary clip-bg absolute left-0 top-0 -z-10 h-full w-full">
                     <span></span>

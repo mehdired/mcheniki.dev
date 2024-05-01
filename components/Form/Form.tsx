@@ -5,8 +5,8 @@ import { Textarea } from '../Textarea/Textarea'
 export function Form({ ...rest }) {
     return (
         <form method="post" {...rest}>
-            <div className="flex items-center gap-12">
-                <FormGroup name="name" className="flex-1">
+            <div className="flex items-center gap-12 max-md:flex-col">
+                <FormGroup name="name" className="w-full flex-1">
                     <Input
                         type="text"
                         id="name"
@@ -14,7 +14,7 @@ export function Form({ ...rest }) {
                         required="required"
                     />
                 </FormGroup>
-                <FormGroup name="email" className="flex-1">
+                <FormGroup name="email" className="w-full flex-1">
                     <Input
                         type="email"
                         id="email"

@@ -31,11 +31,11 @@ export function Scene() {
             onExit={() => setPlay(false)}
         >
             <div
-                className="relative  h-screen items-center justify-center"
+                className="relative h-[496px] items-center justify-center lg:h-[80dvh]"
                 data-active={init}
                 ref={container}
             >
-                <div className="absolute left-1/2 top-1/2 h-[446px] w-[446px] -translate-x-1/2 -translate-y-1/2 rounded-[50%] bg-secondary-500">
+                <div className="aspect-square absolute left-1/2 top-1/2 max-h-[446px] w-full max-w-[446px] -translate-x-1/2 -translate-y-1/2 rounded-[50%] bg-secondary-500">
                     <span className=" absolute left-1/2 top-1/2 z-[1] h-[80%] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] bg-secondary-400"></span>
                     <span className=" absolute left-1/2 top-1/2 z-[2] h-[60%] w-[60%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] bg-secondary-300"></span>
                     <span className=" absolute left-1/2 top-1/2 z-[3] h-[40%] w-[40%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] bg-secondary-200"></span>
@@ -43,7 +43,7 @@ export function Scene() {
                 <Canvas
                     camera={{ fov: 75, position: [-4, 3, 6] }}
                     frameloop={play ? 'always' : 'never'}
-                    className="mx-auto max-h-[900px] max-w-[580px]"
+                    className="mx-auto max-h-[900px] max-w-[380px] lg:max-w-[580px]"
                 >
                     <ambientLight intensity={4} color={'#FFF3F0'} />
                     <spotLight

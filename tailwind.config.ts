@@ -154,14 +154,14 @@ const config: Config = {
             32: '2rem',
             full: '5.375rem',
         },
-        aspectRatio: {
-            portal: '53/74',
-        },
         extend: {
             backgroundImage: {
                 'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
                 'gradient-conic':
                     'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+            },
+            aspectRatio: {
+                portal: '53/74',
             },
         },
         container: {

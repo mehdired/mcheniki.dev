@@ -7,7 +7,7 @@ export function Contact() {
     return (
         <Container className="md:flex md:gap-64">
             <div className="mb-32 md:mb-0 md:basis-4/12">
-                <h2 className="text-64 font-semibold uppercase italic text-primary-500">
+                <h2 className="mb-32 text-48 font-semibold uppercase italic text-primary-500 md:text-clamp-h2">
                     Contact
                 </h2>
                 <p className="mb-32">
@@ -21,13 +21,6 @@ export function Contact() {
                     >
                         <Mail className="h-12 w-12 fill-current" />
                         mehdi.cheniki@gmail.com
-                    </a>
-                    <a
-                        href="tel:16474919798"
-                        className="flex items-center gap-6"
-                    >
-                        <Phone className="h-12 w-12 fill-current" />
-                        647.491.9798
                     </a>
                 </address>
             </div>
