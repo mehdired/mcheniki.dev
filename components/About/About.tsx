@@ -11,14 +11,17 @@ export function About() {
                     </span>
                     web experiences
                 </h2>
-                <p className="">
-                    Facilisi venenatis adipiscing non eleifend ut ultrices
-                    scelerisque. Sit erat non augue erat turpis turpis lectus
-                    lorem. Feugiat diam tellus id quam imperdiet consectetur a.
-                    Pharetra mi arcu condimentum: Tempus velit vel urna nunc
-                    vulputate. In hendrerit et ullamcorper ullamcorper. Justo
-                    justo lorem laoreet elementum. Tristique id amet adipiscing
-                    leo aenean arcu tincidunt eget volutpat.
+                <p className="mb-12">
+                    Hello, I'm Mehdi, a developer for almost 10 years. Over the
+                    years, I've explored different work environments that have
+                    enabled me to be versatile in different technologies. It was
+                    through various projects that I became an expert in custom
+                    WordPress development.
+                </p>
+                <p>
+                    While continuing my work as a WordPress developer, I
+                    explored the world of JavaScript, where I've continued to
+                    grow over the past few years.
                 </p>
             </div>
             <div className="lg:flex-1">

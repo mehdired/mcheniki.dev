@@ -6,10 +6,10 @@ import { About } from '@/components/About/About'
 export default function Home() {
     return (
         <main className="min-h-screen">
-            <section>
+            <section className="lg:min-h-screen">
                 <Hero />
             </section>
-            <section className="mb-96">
+            <section className="mb-96 lg:min-h-screen">
                 <About />
             </section>
             <section className="mb-96">
