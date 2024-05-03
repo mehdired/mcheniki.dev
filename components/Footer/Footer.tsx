@@ -16,12 +16,6 @@ export function Footer() {
                     </li>
                     <li>
                         <a href="#" className="text-base-50">
-                            <IconPhone className="h-24 w-24 fill-current" />
-                            <span className="sr-only">Make a call</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" className="text-base-50">
                             <IconGithub className="h-24 w-24 fill-current" />
                             <span className="sr-only">Go to the Github</span>
                         </a>
