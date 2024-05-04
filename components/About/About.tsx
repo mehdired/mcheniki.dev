@@ -12,16 +12,19 @@ export function About() {
                     web experiences
                 </h2>
                 <p className="mb-12">
-                    Hello, I'm Mehdi, a developer for almost 10 years. Over the
-                    years, I've explored different work environments that have
-                    enabled me to be versatile in different technologies. It was
-                    through various projects that I became an expert in custom
-                    WordPress development.
+                    Hello. I'm Mehdi, a developer with over 10 years of
+                    extensive experience. Throughout my journey, I have explored
+                    various work environments, allowing me to become highly
+                    versatile and proficient in multiple technologies. The broad
+                    amount of projects I got to work on also made me an{' '}
+                    <strong>
+                        expert in tailor-made WordPress development.
+                    </strong>
                 </p>
                 <p>
-                    While continuing my work as a WordPress developer, I
-                    explored the world of JavaScript, where I've continued to
-                    grow over the past few years.
+                    I combine those sharp WordPress proficiencies with{' '}
+                    <strong>strong JavaScript skills</strong> to keep on
+                    providing optimized, fast, and up-to-date digital products.
                 </p>
             </div>
             <div className="lg:flex-1">
