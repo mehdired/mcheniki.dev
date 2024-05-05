@@ -20,7 +20,7 @@ export function Header() {
     }
 
     return (
-        <header className="flex items-center justify-between py-12">
+        <header className="absolute left-0 top-0 flex w-full items-center justify-between py-12">
             <Container className="flex items-center justify-between">
                 <p className="hidden font-medium md:block">Mehdi Cheniki</p>
 

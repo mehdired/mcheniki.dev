@@ -1,4 +1,5 @@
 import { Container } from '../Container'
+import { SmallCardStack } from '../StackCard/SmallStackCard'
 import { StackCard } from '../StackCard/StackCard'
 import IconWP from '@/svgs/wp.svg'
 
@@ -16,11 +17,7 @@ export function StackSection() {
                 </p>
             </header>
 
-            <StackCard
-                icon={IconWP}
-                name="Wordpress"
-                description="Augue sit habitant odio consectetur tempor. Senectus sit vel auctor dui. Bibendum lorem tortor est urna pharetra nunc praesent a. Praesent vitae ultrices ornare dignissim purus elit eget."
-            />
+            <SmallCardStack />
         </Container>
     )
 }
