@@ -154,6 +154,11 @@ const config: Config = {
             32: '2rem',
             full: '5.375rem',
         },
+        container: {
+            screens: {
+                xl: '1280px',
+            },
+        },
         extend: {
             backgroundImage: {
                 'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -163,10 +168,24 @@ const config: Config = {
             aspectRatio: {
                 portal: '53/74',
             },
-        },
-        container: {
-            screens: {
-                xl: '1280px',
+            animation: {
+                float: 'float 2s cubic-bezier(0.63, -0.01, 0.39, 0.99) infinite alternate',
+                'wp-float':
+                    'wp-float 5s cubic-bezier(0.63, -0.01, 0.39, 0.99) infinite alternate',
+            },
+            keyframes: {
+                float: {
+                    to: {
+                        transform:
+                            'translate3d(0, 10px, 0) rotate3d(0, 0, 1, -3deg)',
+                    },
+                },
+                'wp-float': {
+                    to: {
+                        transform:
+                            'translate3d(10%, -20%, 10px) rotate3d(1, 1, 1, -20deg)',
+                    },
+                },
             },
         },
     },

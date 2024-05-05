@@ -6,7 +6,7 @@ import { About } from '@/components/About/About'
 export default function Home() {
     return (
         <main className="min-h-screen">
-            <section className="">
+            <section className="flex min-h-screen items-center">
                 <Hero />
             </section>
             <section className="mb-96 flex items-center lg:min-h-screen">
