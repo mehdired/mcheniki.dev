@@ -1,28 +1,30 @@
+'use client'
+
 import { Resend } from 'resend'
 import { FormGroup } from '../FormGroup/FormGroup'
 import { Input } from '../Input/Input'
 import { Textarea } from '../Textarea/Textarea'
 import { EmailTemplate } from '../EmailTemplate'
 import { Cta } from '../Cta/Cta'
+import { type FormEvent } from 'react'
 
 export function Form({ ...rest }) {
-    async function send() {
-        'use server'
+    const send = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
 
-        const resend = new Resend(process.env.RESEND_API_KEY)
+        const formData = new FormData(event.currentTarget)
 
-        const { data } = await resend.emails.send({
-            from: 'Mehdi <contact@mcheniki.dev>',
-            to: ['mehdi.cheniki+test@gmail.com'],
-            subject: 'Hello World',
-            react: EmailTemplate({ firstname: 'Mehdi' }),
+        const response = await fetch('/api/send', {
+            method: 'POST',
+            body: formData,
         })
 
+        const data = await response.json()
         console.log(data)
     }
 
     return (
-        <form {...rest} action={send}>
+        <form {...rest} method="post" onSubmit={send}>
             <div className="flex items-center gap-12 max-md:flex-col">
                 <FormGroup name="name" className="w-full flex-1">
                     <Input
