@@ -7,12 +7,14 @@ export async function POST(request: Request) {
     try {
         const formData = await request.formData()
         const name = formData.get('name') as string
-        const email = formData.get('email')
+        const email = formData.get('email') as string
+        const message = formData.get('message') as string
+
         const data = await resend.emails.send({
-            from: 'Mehdi <contact@mcheniki.dev>',
-            to: ['mehdi.cheniki+test@gmail.com'],
-            subject: 'Hello World',
-            react: EmailTemplate({ firstname: name }),
+            from: 'Portfolio <noreply@mcheniki.dev>',
+            to: ['contact@mcheniki.dev'],
+            subject: 'Contact Form Portfolio',
+            react: EmailTemplate({ firstname: name, email, message }),
         })
 
         return Response.json({ status: 'success', name, email, data })

@@ -1,16 +1,21 @@
 'use client'
 
-import { Resend } from 'resend'
+import { useState, type FormEvent } from 'react'
+
 import { FormGroup } from '../FormGroup/FormGroup'
 import { Input } from '../Input/Input'
 import { Textarea } from '../Textarea/Textarea'
-import { EmailTemplate } from '../EmailTemplate'
 import { Cta } from '../Cta/Cta'
-import { type FormEvent } from 'react'
+
+import IconRocket from '@/svgs/rocket.svg'
 
 export function Form({ ...rest }) {
+    const [sending, setSending] = useState(false)
+
     const send = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+
+        setSending(true)
 
         const formData = new FormData(event.currentTarget)
 
@@ -20,6 +25,8 @@ export function Form({ ...rest }) {
         })
 
         const data = await response.json()
+        setSending(false)
+
         console.log(data)
     }
 
@@ -47,7 +54,14 @@ export function Form({ ...rest }) {
                 <Textarea id="message" required="required" />
             </FormGroup>
 
-            <button>send</button>
+            <div className="mt-24 flex justify-end">
+                <Cta disabled={sending}>
+                    <IconRocket
+                        className={`fill-current ${sending ? 'animate-shake' : ''}`}
+                    />
+                    send
+                </Cta>
+            </div>
         </form>
     )
 }
