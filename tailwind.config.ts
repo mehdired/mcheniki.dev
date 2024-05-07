@@ -128,6 +128,7 @@ const config: Config = {
         fontSize: {
             'clamp-h1': 'clamp(6.75rem, -0.0192rem + 10.5769vw, 9.5rem);',
             'clamp-h2': 'clamp(4.75rem, 1.6731rem + 4.8077vw, 6rem);',
+            10: '0.625rem',
             12: '0.75rem',
             base: '1rem',
             20: '1.25rem',
