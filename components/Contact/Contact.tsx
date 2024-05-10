@@ -20,7 +20,7 @@ export function Contact() {
                         className="mb-12 flex items-center gap-6"
                     >
                         <Mail className="h-12 w-12 fill-current" />
-                        mehdi.cheniki@gmail.com
+                        contact@mcheniki.dev
                     </a>
                 </address>
             </div>

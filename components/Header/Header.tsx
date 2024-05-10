@@ -4,6 +4,7 @@ import { Cta } from '@/components/Cta/Cta'
 import { Container } from '../Container'
 import Burger from '@/svgs/burger.svg'
 import { useState } from 'react'
+import ArrowRight from '@/svgs/arrow-right.svg'
 
 export function Header() {
     const [isOpen, setIsOpen] = useState(false)
@@ -31,11 +32,13 @@ export function Header() {
                         <li>
                             <Cta url="/#about" indent="withIcon">
                                 project
+                                <ArrowRight className="fill-current" />
                             </Cta>
                         </li>
                         <li>
                             <Cta url="/#contact" indent="withIcon">
                                 resume
+                                <ArrowRight className="fill-current" />
                             </Cta>
                         </li>
                         <li>

@@ -9,7 +9,10 @@ export function Footer() {
             <Container className="flex flex-col items-center justify-between gap-48 rounded-32 bg-base-600 px-64 py-24 text-base-600 md:flex-row">
                 <ul className="flex gap-24">
                     <li>
-                        <a href="#" className="text-base-50">
+                        <a
+                            href="mailto:contact@mcheniki.dev"
+                            className="text-base-50"
+                        >
                             <IconMail className="h-24 w-24 fill-current" />
                             <span className="sr-only">Send an email</span>
                         </a>
