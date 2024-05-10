@@ -40,7 +40,13 @@ export function Form({ ...rest }) {
     }
 
     return (
-        <form {...rest} method="post" onSubmit={send} noValidate>
+        <form
+            {...rest}
+            method="post"
+            onSubmit={send}
+            noValidate
+            autoComplete="off"
+        >
             <div className="flex items-center gap-12 max-md:flex-col">
                 <FormGroup name="name" className="w-full flex-1">
                     <Input
