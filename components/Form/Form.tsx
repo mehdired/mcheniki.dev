@@ -95,14 +95,3 @@ export function Form({ ...rest }) {
         </form>
     )
 }
-
-function InputError() {
-    if (!props.errors?.length) return null
-    return (
-        <div>
-            {props.errors.map((err) => (
-                <p>{err}</p>
-            ))}
-        </div>
-    )
-}
