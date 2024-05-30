@@ -131,6 +131,15 @@
     .clip-bg-tertiary span:after {
         background-color: theme(colors.tertiary.200);
     }
+
+    .radialParticule {
+        background: radial-gradient(
+            65.19% 74.91% at 50% 50%,
+            rgb(17 123 111) 0%,
+            rgb(17 123 111 / 11%) 52%,
+            rgba(0, 0, 0, 0) 66%
+        );
+    }
 }
 
 @charset "UTF-8";
