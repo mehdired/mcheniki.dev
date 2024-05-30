@@ -19,15 +19,13 @@ export async function POST(request: Request, response: Response) {
     let res: any
     const formData = `secret=${secretKey}&response=${gRecaptchaToken}`
     try {
-        res = await axios.post(
-            'https://www.google.com/recaptcha/api/siteverify',
-            formData,
-            {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-            }
-        )
+        res = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: formData,
+        })
     } catch (e) {
         console.log('recaptcha error:', e)
     }
