@@ -32,7 +32,7 @@ export function ParticulesBack() {
         console.log(container)
     }
 
-    const options: ISourceOptions = useMemo(
+    const options: any = useMemo(
         () => ({
             background: {
                 color: 'transparent',
