@@ -17,7 +17,8 @@ export function Scene() {
 
     useEffect(() => {
         const checkPosition = () =>
-            container.current?.getBoundingClientRect().top < 40 && setInit(true)
+            container.current?.getBoundingClientRect().top < 100 &&
+            setInit(true)
 
         window.addEventListener('scroll', checkPosition)
         checkPosition()
@@ -31,7 +32,7 @@ export function Scene() {
             onExit={() => setPlay(false)}
         >
             <div
-                className="relative h-[496px] items-center justify-center lg:h-[80dvh]"
+                className="relative h-[530px] items-center justify-center lg:h-[80dvh]"
                 data-active={init}
                 ref={container}
             >
@@ -43,7 +44,7 @@ export function Scene() {
                 <Canvas
                     camera={{ fov: 60, position: [-4, 3, 6] }}
                     frameloop={play ? 'always' : 'never'}
-                    className="mx-auto max-h-[900px] max-w-[380px] lg:max-w-[580px]"
+                    className="mx-auto"
                 >
                     <ambientLight intensity={4} color={'#FFF3F0'} />
                     <spotLight

@@ -27,7 +27,7 @@ export function About() {
                     providing optimized, fast, and up-to-date digital products.
                 </p>
             </div>
-            <div className="lg:flex-1">
+            <div className="max-lg:w-full max-lg:max-w-[464px] lg:flex-1">
                 <Scene />
             </div>
         </Container>
