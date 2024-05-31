@@ -11,7 +11,7 @@ export async function onRequest(context: {
     const { pathname, searchParams } = new URL(request.url)
     const { error } = Object.fromEntries(searchParams)
     const cookie = request.headers.get('cookie') || ''
-    const cookieKeyValue = await getCookieKeyValue(env.KV.get('CFP_PASSWORD'))
+    const cookieKeyValue = await getCookieKeyValue('Me7di')
 
     if (
         cookie.includes(cookieKeyValue) ||

@@ -9,14 +9,12 @@ export async function onRequestPost(context: {
     const body = await request.formData()
     const { password, redirect } = Object.fromEntries(body)
     const hashedPassword = await sha256(password.toString())
-    const hashedCfpPassword = await sha256(env.KV.get('CFP_PASSWORD'))
+    const hashedCfpPassword = await sha256('Me7di')
     const redirectPath = redirect.toString() || '/'
 
     if (hashedPassword === hashedCfpPassword) {
         // Valid password. Redirect to home page and set cookie with auth hash.
-        const cookieKeyValue = await getCookieKeyValue(
-            env.KV.get('CFP_PASSWORD')
-        )
+        const cookieKeyValue = await getCookieKeyValue('Me7di')
 
         return new Response('', {
             status: 302,
