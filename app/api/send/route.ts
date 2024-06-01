@@ -2,6 +2,8 @@ import { formSchema } from './../../../components/Form/validation'
 import { EmailTemplate } from '@/components/EmailTemplate'
 import { Resend } from 'resend'
 
+export const runtime = 'edge'
+
 const resend = new Resend(process.env.RESEND_API_KEY)
 const secretKey = process?.env?.RECAPTCHA_SECRET_KEY
 
@@ -29,6 +31,7 @@ export async function POST(request: Request) {
             }
         )
         const data = await responseRecaptcha.json()
+        console.log('data')
 
         if (data?.success && data?.score > 0.5) {
             const send = await sendEmail(formValues)
@@ -76,5 +79,3 @@ async function sendEmail(formValues: {
         return Response.json({ error })
     }
 }
-
-export const dynamic = 'force-static'

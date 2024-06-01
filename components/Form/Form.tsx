@@ -46,17 +46,21 @@ export function Form({ ...rest }) {
         const validate = formSchema.safeParse(formValues)
 
         if (validate.success) {
-            const sendResponse = await fetch('/api/send', {
-                method: 'POST',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formValues),
-            })
-            const sendData = await sendResponse.json()
-
-            setSuccess(true)
+            try {
+                const sendResponse = await fetch('/api/send', {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formValues),
+                })
+                console.log('FORM : ', sendResponse)
+                const sendData = await sendResponse.json()
+                setSuccess(true)
+            } catch (error) {
+                console.log('ERROR : ', error)
+            }
         } else {
             setErrorEmail(validate.error.format())
         }
