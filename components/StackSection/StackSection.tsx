@@ -1,7 +1,6 @@
 import { Container } from '../Container'
 import { ParticulesBack } from '../StackParticules/ParticulesBack'
 import { ParticulesFirst } from '../StackParticules/ParticulesFirst'
-import { ParticulesSecond } from '../StackParticules/ParticulesSecond'
 
 export function StackSection() {
     return (
@@ -21,16 +20,17 @@ export function StackSection() {
                         eros vivamus interdum orci viverra ultrices blandit.
                     </p>
                 </header>
+
+                <div className="relative aspect-square max-h-[753px] overflow-hidden rounded-32 border-1 border-base-50 md:aspect-video md:min-h-[350px]">
+                    <div className="absolute left-0 top-0 -z-10 h-full w-full">
+                        <ParticulesBack />
+                    </div>
+                    <div className="radialParticule absolute left-0 top-0 z-10 h-full w-full"></div>
+                    <div className="absolute left-1/2 top-1/2 z-20 h-[90%] w-1/2 -translate-x-1/2 -translate-y-1/2">
+                        <ParticulesFirst />
+                    </div>
+                </div>
             </Container>
-            <div className="relative aspect-video max-h-[753px] min-h-[350px] ">
-                <div className="absolute left-0 top-0 -z-10 h-full w-full">
-                    <ParticulesBack />
-                </div>
-                <div className="radialParticule absolute left-0 top-0 z-10 h-full w-full"></div>
-                <div className="absolute left-1/2 top-1/2 z-20 h-[90%] w-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <ParticulesFirst />
-                </div>
-            </div>
         </>
     )
 }

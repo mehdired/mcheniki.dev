@@ -74,6 +74,10 @@ export function ParticulesFirst() {
                     opacity: 0.15,
                     width: 1,
                 },
+                collisions: {
+                    enable: true,
+                    mode: 'bounce',
+                },
                 move: {
                     direction: MoveDirection.none,
                     enable: true,
@@ -81,7 +85,7 @@ export function ParticulesFirst() {
                         default: OutMode.bounce,
                     },
                     random: false,
-                    speed: 0.13,
+                    speed: 0.12,
                     straight: false,
                 },
                 number: {
