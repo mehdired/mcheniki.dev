@@ -174,6 +174,7 @@ const config: Config = {
                 'wp-float':
                     'wp-float 5s cubic-bezier(0.63, -0.01, 0.39, 0.99) infinite alternate',
                 shake: 'shake 0.82s cubic-bezier(.36,.07,.19,.97) infinite alternate',
+                marquee: 'marquee 20s linear infinite',
             },
             keyframes: {
                 float: {
@@ -200,6 +201,14 @@ const config: Config = {
                     },
                     '40%, 60%': {
                         transform: 'translate3d(3px, 0, 0)',
+                    },
+                },
+                marquee: {
+                    from: {
+                        transform: 'translateX(0)',
+                    },
+                    to: {
+                        transform: 'translateX(calc(-100% - 12px))',
                     },
                 },
             },

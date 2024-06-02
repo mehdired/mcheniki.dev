@@ -5,7 +5,7 @@ import { Container } from '../Container'
 
 export function Contact() {
     return (
-        <Container className="md:flex md:gap-64">
+        <Container className="mt-64 md:flex md:gap-64">
             <div className="mb-32 md:mb-0 md:basis-4/12">
                 <h2 className="mb-32 text-48 font-semibold uppercase italic text-primary-500 md:text-clamp-h2">
                     Contact

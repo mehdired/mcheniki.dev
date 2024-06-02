@@ -20,8 +20,12 @@
 }
 
 @layer components {
-    .text-stroke {
+    .text-stroke-primary {
         -webkit-text-stroke: 1px theme(colors.primary.500);
+    }
+
+    .text-stroke-secondary {
+        -webkit-text-stroke: 1px theme(colors.base.400);
     }
 
     .primary.planet-portal {
