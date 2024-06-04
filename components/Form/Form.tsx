@@ -71,7 +71,8 @@ export function Form({ ...rest }) {
     return (
         <>
             {success ? (
-                <p>SENDED</p>
+                <p>Thank you for your email!<br />
+                    I will get back to you soon.</p>
             ) : (
                 <form
                     {...rest}
