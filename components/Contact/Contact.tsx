@@ -1,6 +1,5 @@
 import { Form } from '@/components/Form/Form'
 import Mail from '@/svgs/mail.svg'
-import Phone from '@/svgs/phone.svg'
 import { Container } from '../Container'
 
 export function Contact() {

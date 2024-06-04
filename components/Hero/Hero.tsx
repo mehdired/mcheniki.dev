@@ -1,7 +1,5 @@
 import { Container } from '../Container'
-import { NotInTouch } from '../NotInTouch'
 import { Portal } from '../Portal/Portal'
-import Image from 'next/image'
 
 export function Hero() {
     return (

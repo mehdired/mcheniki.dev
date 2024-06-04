@@ -2,7 +2,6 @@
 
 import { Cta } from '@/components/Cta/Cta'
 import { Container } from '../Container'
-import Burger from '@/svgs/burger.svg'
 import { useState } from 'react'
 import ArrowRight from '@/svgs/arrow-right.svg'
 
@@ -28,13 +27,13 @@ export function Header() {
                 <nav
                     className={`fixed left-0 top-0 z-10 h-screen w-full bg-base-800 transition-transform duration-300 ease-out md:h-auto ${openClass} md:relative md:w-auto md:translate-x-0`}
                 >
-                    <ul className="flex flex-col gap-32 px-24 py-32 md:flex-row md:items-center md:px-0 md:py-0">
-                        <li>
+                    <ul className="flex flex-col gap-32 px-24 py-32  max-md:items-start md:flex-row md:items-center md:px-0 md:py-0">
+                        {/* <li>
                             <Cta url="/#about" indent="withIcon">
                                 project
                                 <ArrowRight className="fill-current" />
                             </Cta>
-                        </li>
+                        </li> */}
                         <li>
                             <Cta url="/#contact" indent="withIcon">
                                 resume
@@ -57,21 +56,18 @@ export function Header() {
                     </div>
                     <div
                         aria-hidden="true"
-                        className={`absolute top-0 h-[2px] w-full rounded-6 bg-base-0 transition duration-300 ease-out ${
-                            isOpen ? 'translate-y-[10px] rotate-45' : ''
-                        }`}
+                        className={`absolute top-0 h-[2px] w-full rounded-6 bg-base-0 transition duration-300 ease-out ${isOpen ? 'translate-y-[10px] rotate-45' : ''
+                            }`}
                     />
                     <div
                         aria-hidden="true"
-                        className={`absolute top-[calc(50%-1px)] h-[2px] w-full rounded-6 bg-base-0 transition duration-300 ease-out ${
-                            isOpen ? 'opacity-0' : 'opacity-100'
-                        }`}
+                        className={`absolute top-[calc(50%-1px)] h-[2px] w-full rounded-6 bg-base-0 transition duration-300 ease-out ${isOpen ? 'opacity-0' : 'opacity-100'
+                            }`}
                     />
                     <div
                         aria-hidden="true"
-                        className={`absolute bottom-0 h-[2px] w-full rounded-6 bg-base-0 transition duration-300 ease-out ${
-                            isOpen ? '-translate-y-[8px] -rotate-45' : ''
-                        }`}
+                        className={`absolute bottom-0 h-[2px] w-full rounded-6 bg-base-0 transition duration-300 ease-out ${isOpen ? '-translate-y-[8px] -rotate-45' : ''
+                            }`}
                     />
                 </button>
             </Container>

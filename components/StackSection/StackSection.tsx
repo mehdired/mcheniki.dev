@@ -11,7 +11,7 @@ export function StackSection() {
                         <span className="block text-primary-500">
                             Technical
                         </span>
-                        <span className="text-stroke text-transparent">
+                        <span className="text-stroke-primary text-transparent">
                             Stack
                         </span>
                     </h2>

@@ -1,5 +1,5 @@
 import { cva, type VariantProps } from 'class-variance-authority'
-import { ReactNode } from 'react'
+import { MouseEvent, useEffect } from 'react'
 
 const styles = cva(
     'font-jetbrains text-base-50 font-bold flex items-center gap-6 justify-center disabled:opacity-75 disabled:pointer-events-none',
@@ -52,10 +52,28 @@ type CtaProps = {
     Pick<CTAVariantProps, 'indent'>
 
 export function Cta({ url, indent = 'primary', ...rest }: CtaProps) {
+    const onClickLink = (event: MouseEvent<HTMLAnchorElement>) => {
+        const target = event.target as HTMLAnchorElement
+        const isAnchor = target.href.includes('#')
+
+        if (!isAnchor) return
+
+        event.preventDefault()
+
+        const idTarget = target.href.split('#')[1]
+        const top = document.getElementById(idTarget)?.getBoundingClientRect().top
+
+        window.scroll({
+            top: top,
+            left: 0,
+            behavior: 'smooth'
+        });
+    }
+
     return (
         <>
             {url ? (
-                <a href={url} className={styles({ indent })}>
+                <a href={url} className={styles({ indent })} onClick={onClickLink}>
                     {rest.children}
                 </a>
             ) : (

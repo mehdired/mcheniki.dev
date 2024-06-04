@@ -19,7 +19,7 @@ export function Footer() {
                             </a>
                         </li>
                         <li>
-                            <a href="#" className="text-base-50">
+                            <a href="#" className="text-base-50" target='_blank'>
                                 <IconGithub className="h-24 w-24 fill-current" />
                                 <span className="sr-only">
                                     Go to the Github
@@ -37,8 +37,8 @@ export function Footer() {
                     <nav>
                         <ul>
                             <li>
-                                <a href="#" className="text-12 text-base-0">
-                                    Storybook
+                                <a href="#" className="text-12 text-base-0" target='_blank'>
+                                    Resume
                                 </a>
                             </li>
                         </ul>

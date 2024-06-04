@@ -7,7 +7,7 @@ import { Marquee } from '@/components/Marquee/Marquee'
 
 export default function Home() {
     return (
-        <main className="min-h-screen">
+        <main className="min-h-screen pt-48">
             <section className="flex min-h-screen items-center">
                 <Hero />
             </section>
@@ -17,7 +17,7 @@ export default function Home() {
             <section className="mb-96">
                 <StackSection />
             </section>
-            <section className="overflow-hidden pt-64">
+            <section className="overflow-hidden pt-64" id='contact'>
                 <Marquee>
                     <p className="text-64 font-semibold italic text-base-400">
                         <span className="text-stroke-secondary text-transparent">
