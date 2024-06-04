@@ -10,8 +10,7 @@ export function Contact() {
                     Contact
                 </h2>
                 <p className="mb-32">
-                    Tortor malesuada aliquam odio accumsan maecenas. Sed
-                    ullamcorper aliquam vehicula egestas ligula egestas varius.
+                    Feel free to use the form if you'd like to work with me.
                 </p>
                 <address>
                     <a

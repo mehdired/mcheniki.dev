@@ -37,14 +37,14 @@ export function Footer() {
                     <nav>
                         <ul>
                             <li>
-                                <a href="#" className="text-12 text-base-0" target='_blank'>
+                                <a href="/resume_mehdi_cheniki_dev.pdf" className="text-12 text-base-0" target='_blank'>
                                     Resume
                                 </a>
                             </li>
                         </ul>
                     </nav>
                 </div>
-                <p className="flex items-center justify-center gap-6 py-24 text-12 text-base-100">
+                <p className="flex max-md:flex-col items-center justify-center gap-6 py-24 text-12 text-base-100">
                     Developed by{' '}
                     <span className="underline">Mehdi Cheniki</span>
                     <IconStar className="fill-current" />

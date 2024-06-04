@@ -48,6 +48,7 @@ export type CTAVariantProps = VariantProps<typeof styles>
 
 type CtaProps = {
     url?: string
+    target?: '_blank' | 'self'
 } & React.ButtonHTMLAttributes<HTMLButtonElement> &
     Pick<CTAVariantProps, 'indent'>
 
@@ -73,7 +74,7 @@ export function Cta({ url, indent = 'primary', ...rest }: CtaProps) {
     return (
         <>
             {url ? (
-                <a href={url} className={styles({ indent })} onClick={onClickLink}>
+                <a href={url} className={styles({ indent })} target={rest.target} onClick={onClickLink}>
                     {rest.children}
                 </a>
             ) : (

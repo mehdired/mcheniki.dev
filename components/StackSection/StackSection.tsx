@@ -15,10 +15,10 @@ export function StackSection() {
                             Stack
                         </span>
                     </h2>
-                    <p className="text-25 text-base-100">
+                    {/* <p className="text-25 text-base-100">
                         Faucibus cras ornare tristique adipiscing. Non morbi
                         eros vivamus interdum orci viverra ultrices blandit.
-                    </p>
+                    </p> */}
                 </header>
 
                 <div className="relative aspect-square max-h-[753px] overflow-hidden rounded-32 border-1 border-base-50 md:aspect-video md:min-h-[350px]">

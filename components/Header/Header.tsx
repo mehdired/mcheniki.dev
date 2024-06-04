@@ -35,7 +35,7 @@ export function Header() {
                             </Cta>
                         </li> */}
                         <li>
-                            <Cta url="/#contact" indent="withIcon">
+                            <Cta url="/resume_mehdi_cheniki_dev.pdf" indent="withIcon" target="_blank">
                                 resume
                                 <ArrowRight className="fill-current" />
                             </Cta>
