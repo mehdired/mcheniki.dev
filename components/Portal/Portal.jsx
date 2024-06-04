@@ -34,7 +34,7 @@ export function Portal() {
     }
 
     useEffect(() => {
-        if (!play && !window.matchMedia('(hover: none), (pointer: coarse)')) {
+        if (!play || !window.matchMedia('(hover: none), (pointer: coarse)')) {
             return
         }
         setTimeout(() => setActive(true), 400)

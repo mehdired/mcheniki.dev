@@ -10,7 +10,8 @@ export function Contact() {
                     Contact
                 </h2>
                 <p className="mb-32">
-                    Feel free to use the form if you'd like to work with me.
+                    Want to work with me? Want to say hi?<br />
+                    Feel free to use the form.
                 </p>
                 <address>
                     <a

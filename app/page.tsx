@@ -11,7 +11,7 @@ export default function Home() {
             <section className="flex min-h-screen items-center">
                 <Hero />
             </section>
-            <section className="mb-96 flex items-center lg:min-h-screen">
+            <section className="mb-96 flex items-center">
                 <About />
             </section>
             <section className="mb-96">
