@@ -61,7 +61,7 @@ export function ParticulesBack() {
                 opacity: {
                     animation: {
                         enable: true,
-                        speed: 0.3,
+                        speed: 1.3,
                         sync: false,
                         count: 1500,
                     },
@@ -70,8 +70,8 @@ export function ParticulesBack() {
                         minimumValue: 0.05,
                     },
                     value: {
-                        min: 0.1,
-                        max: 0.8,
+                        min: 0.2,
+                        max: 0.9,
                     },
                 },
                 shape: {

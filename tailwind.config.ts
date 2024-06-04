@@ -170,25 +170,12 @@ const config: Config = {
                 portal: '53/74',
             },
             animation: {
-                float: 'float 2s cubic-bezier(0.63, -0.01, 0.39, 0.99) infinite alternate',
-                'wp-float':
-                    'wp-float 5s cubic-bezier(0.63, -0.01, 0.39, 0.99) infinite alternate',
                 shake: 'shake 0.82s cubic-bezier(.36,.07,.19,.97) infinite alternate',
                 marquee: 'marquee 20s linear infinite',
+                'mini-mehdi-x': 'mini-mehdi-x 30s linear infinite',
+                float: 'float 2s ease-in-out infinite alternate',
             },
             keyframes: {
-                float: {
-                    to: {
-                        transform:
-                            'translate3d(0, 10px, 0) rotate3d(0, 0, 1, -3deg)',
-                    },
-                },
-                'wp-float': {
-                    to: {
-                        transform:
-                            'translate3d(10%, -20%, 10px) rotate3d(1, 1, 1, -20deg)',
-                    },
-                },
                 shake: {
                     '10%, 90%': {
                         transform: 'translate3d(-1px, 0, 0)',
@@ -211,6 +198,22 @@ const config: Config = {
                         transform: 'translateX(calc(-100% - 12px))',
                     },
                 },
+                'mini-mehdi-x': {
+                    from: {
+                        transform: 'translate3d(-79px, 0 , 0)',
+                    },
+                    to: {
+                        transform: 'translate3d(calc(100% + 77px), 10px , 0)',
+                    },
+                },
+                float: {
+                    from: {
+                        transform: 'translate3d(0, 0 , 0)',
+                    },
+                    to: {
+                        transform: 'translate3d(0, 50px , 0)',
+                    },
+                }
             },
         },
     },

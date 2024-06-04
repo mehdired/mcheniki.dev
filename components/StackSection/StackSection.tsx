@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { Container } from '../Container'
 import { ParticulesBack } from '../StackParticules/ParticulesBack'
 import { ParticulesFirst } from '../StackParticules/ParticulesFirst'
@@ -25,7 +26,11 @@ export function StackSection() {
                     <div className="absolute left-0 top-0 -z-10 h-full w-full">
                         <ParticulesBack />
                     </div>
-                    <div className="radialParticule absolute left-0 top-0 z-10 h-full w-full"></div>
+                    <div className="radialParticule absolute left-0 top-0 z-10 h-full w-full">
+                        <div className='absolute left-0 top-1/2 animate-mini-mehdi-x w-full'>
+                            <Image src="/images/mini-mehdi.webp" alt='Floated mehdi' width={77} height={86} className='animate-float' />
+                        </div>
+                    </div>
                     <div className="absolute left-1/2 top-1/2 z-20 h-[90%] w-1/2 -translate-x-1/2 -translate-y-1/2">
                         <ParticulesFirst />
                     </div>

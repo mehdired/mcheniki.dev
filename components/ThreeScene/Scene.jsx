@@ -22,7 +22,8 @@ export function Scene() {
 
         window.addEventListener('scroll', checkPosition)
         checkPosition()
-        ;() => window.removeEventListener('scroll', checkPosition)
+
+        return () => window.removeEventListener('scroll', checkPosition)
     }, [])
 
     return (
