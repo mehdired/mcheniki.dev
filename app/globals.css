@@ -236,6 +236,10 @@
     --pulse-z: 85px;
 }
 
+.grecaptcha-badge {
+    display: none !important;
+}
+
 .demo-above-the-fold {
     display: flex;
     flex-direction: row;
