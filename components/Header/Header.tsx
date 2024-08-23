@@ -33,15 +33,19 @@ export function Header() {
                                 project
                                 <ArrowRight className="fill-current" />
                             </Cta>
-                        </li> */}
-                        <li>
-                            <Cta url="/resume_mehdi_cheniki_dev.pdf" indent="withIcon" target="_blank">
-                                resume
-                                <ArrowRight className="fill-current" />
-                            </Cta>
                         </li>
                         <li>
-                            <Cta url="/#contact">contact me</Cta>
+                            <Cta
+                                url="/resume_mehdi_cheniki_dev.pdf"
+                                indent="withIcon"
+                                target="_blank"
+                            >
+                                CV
+                                <ArrowRight className="fill-current" />
+                            </Cta>
+                        </li>*/}
+                        <li>
+                            <Cta url="/#contact">Me contacter</Cta>
                         </li>
                     </ul>
                 </nav>
@@ -52,22 +56,25 @@ export function Header() {
                     }}
                 >
                     <div className="sr-only">
-                        {isOpen ? 'Close menu' : 'Open menu'}
+                        {isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
                     </div>
                     <div
                         aria-hidden="true"
-                        className={`absolute top-0 h-[2px] w-full rounded-6 bg-base-0 transition duration-300 ease-out ${isOpen ? 'translate-y-[10px] rotate-45' : ''
-                            }`}
+                        className={`absolute top-0 h-[2px] w-full rounded-6 bg-base-0 transition duration-300 ease-out ${
+                            isOpen ? 'translate-y-[10px] rotate-45' : ''
+                        }`}
                     />
                     <div
                         aria-hidden="true"
-                        className={`absolute top-[calc(50%-1px)] h-[2px] w-full rounded-6 bg-base-0 transition duration-300 ease-out ${isOpen ? 'opacity-0' : 'opacity-100'
-                            }`}
+                        className={`absolute top-[calc(50%-1px)] h-[2px] w-full rounded-6 bg-base-0 transition duration-300 ease-out ${
+                            isOpen ? 'opacity-0' : 'opacity-100'
+                        }`}
                     />
                     <div
                         aria-hidden="true"
-                        className={`absolute bottom-0 h-[2px] w-full rounded-6 bg-base-0 transition duration-300 ease-out ${isOpen ? '-translate-y-[8px] -rotate-45' : ''
-                            }`}
+                        className={`absolute bottom-0 h-[2px] w-full rounded-6 bg-base-0 transition duration-300 ease-out ${
+                            isOpen ? '-translate-y-[8px] -rotate-45' : ''
+                        }`}
                     />
                 </button>
             </Container>

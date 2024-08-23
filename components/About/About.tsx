@@ -7,24 +7,26 @@ export function About() {
             <div className="max-lg:w-full lg:flex-1">
                 <h2 className="mb-12 text-36 text-base-50">
                     <span className="mr-[10px] inline-block bg-primary-500 px-[10px]">
-                        Extensive
+                        10 ans
                     </span>
-                    web experiences
+                    d'expertise web
                 </h2>
-                <p className="mb-12">
-                    Hello. I'm Mehdi, a developer with over 10 years of
-                    extensive experience. Throughout my journey, I have explored
-                    various work environments, allowing me to become highly
-                    versatile and proficient in multiple technologies. The broad
-                    amount of projects I got to work on also made me an{' '}
-                    <strong>
-                        expert in tailor-made WordPress development.
-                    </strong>
+                <p className="mb-12 leading-6">
+                    Salut, moi c'est Mehdi,
+                    <br />
+                    Développeur web spécialisé en WordPress avec plus de 10 ans
+                    d'expérience. Mon expertise réside dans la création de{' '}
+                    <strong>sites WordPress sur mesure</strong>, conçus from
+                    scratch. Ma polyvalence technique, acquise à travers divers
+                    projets et environnements, me permet de fournir des
+                    solutions WordPress optimisées et parfaitement adaptées aux
+                    besoins de chaque client.
                 </p>
-                <p>
-                    I combine those sharp WordPress proficiencies with{' '}
-                    <strong>strong JavaScript skills</strong> to keep on
-                    providing optimized, fast, and up-to-date digital products.
+                <p className="leading-6">
+                    Je combine mes compétences approfondies en WordPress avec
+                    une <strong>maîtrise avancée de JavaScript</strong> pour
+                    créer des sites web performants, évolutifs et faciles à
+                    maintenir
                 </p>
             </div>
             <div className="max-lg:w-full max-lg:max-w-[464px] lg:flex-1">

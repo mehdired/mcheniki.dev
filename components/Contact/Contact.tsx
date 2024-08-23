@@ -10,8 +10,8 @@ export function Contact() {
                     Contact
                 </h2>
                 <p className="mb-32">
-                    Want to work with me? Want to say hi?<br />
-                    Feel free to use the form.
+                    Tu veux qu'on bosse ensemble ? Où peut-être juste dire bonjour ?
+                    Utilise le formulaire !
                 </p>
                 <address>
                     <a
@@ -19,7 +19,7 @@ export function Contact() {
                         className="mb-12 flex items-center gap-6"
                     >
                         <Mail className="h-12 w-12 fill-current" />
-                        contact@mcheniki.dev
+                        hello@mcheniki.dev
                     </a>
                 </address>
             </div>

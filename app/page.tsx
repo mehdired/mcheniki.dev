@@ -17,13 +17,13 @@ export default function Home() {
             <section className="mb-96">
                 <StackSection />
             </section>
-            <section className="overflow-hidden pt-64" id='contact'>
+            <section className="overflow-hidden pt-64" id="contact">
                 <Marquee>
                     <p className="text-64 font-semibold italic text-base-400">
+                        ÉCHANGEONS{' '}
                         <span className="text-stroke-secondary text-transparent">
-                            LET'S GET
-                        </span>{' '}
-                        IN TOUCH
+                            ENSEMBLE
+                        </span>
                     </p>
                 </Marquee>
                 <RecaptchaWrapper>

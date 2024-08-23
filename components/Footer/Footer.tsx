@@ -11,18 +11,24 @@ export function Footer() {
                     <ul className="flex gap-24">
                         <li>
                             <a
-                                href="mailto:contact@mcheniki.dev"
+                                href="mailto:hello@mcheniki.dev"
                                 className="text-base-50"
                             >
                                 <IconMail className="h-24 w-24 fill-current" />
-                                <span className="sr-only">Send an email</span>
+                                <span className="sr-only">
+                                    Envoyer un e-mail
+                                </span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" className="text-base-50" target='_blank'>
+                            <a
+                                href="#"
+                                className="text-base-50"
+                                target="_blank"
+                            >
                                 <IconGithub className="h-24 w-24 fill-current" />
                                 <span className="sr-only">
-                                    Go to the Github
+                                    Aller sur Github
                                 </span>
                             </a>
                         </li>
@@ -30,25 +36,27 @@ export function Footer() {
                     <p className="text-center text-base-50">
                         Mehdi Cheniki
                         <br />
-                        <span className="text-base-200">
-                            Front-end developer
-                        </span>
+                        <span className="text-base-200">Expert Wordpress</span>
                     </p>
-                    <nav>
+                    {/*  <nav>
                         <ul>
                             <li>
-                                <a href="/resume_mehdi_cheniki_dev.pdf" className="text-12 text-base-0" target='_blank'>
-                                    Resume
+                                <a
+                                    href="/resume_mehdi_cheniki_dev.pdf"
+                                    className="text-12 text-base-0"
+                                    target="_blank"
+                                >
+                                    CV
                                 </a>
                             </li>
                         </ul>
-                    </nav>
+                    </nav> */}
                 </div>
-                <p className="flex max-md:flex-col items-center justify-center gap-6 py-24 text-12 text-base-100">
-                    Developed by{' '}
+                <p className="flex items-center justify-center gap-6 py-24 text-12 text-base-100 max-md:flex-col">
+                    Développé par{' '}
                     <span className="underline">Mehdi Cheniki</span>
                     <IconStar className="fill-current" />
-                    Designed by{' '}
+                    Designé par{' '}
                     <a
                         href="https://elkhantour.com"
                         target="_blank"

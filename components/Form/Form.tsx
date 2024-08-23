@@ -71,8 +71,18 @@ export function Form({ ...rest }) {
     return (
         <>
             {success ? (
-                <p>Thank you for your email!<br />
-                    I will get back to you soon.</p>
+                <p className="flex-1 self-center text-center font-jetbrains">
+                    <span className="text-36 font-bold text-primary-500">
+                        Merci pour ton message!
+                    </span>
+                    <br />
+                    <span className="text-25 font-semibold">
+                        Je reviens vers toi dès que j'ai fini mon café! <br />
+                    </span>
+                    <span aria-hidden="true" className="text-48">
+                        &#9749;
+                    </span>
+                </p>
             ) : (
                 <form
                     {...rest}
@@ -82,7 +92,7 @@ export function Form({ ...rest }) {
                     autoComplete="off"
                 >
                     <div className="flex items-center gap-12 max-md:flex-col">
-                        <FormGroup name="name" className="w-full flex-1">
+                        <FormGroup name="nom" className="w-full flex-1">
                             <Input
                                 type="text"
                                 id="name"
@@ -95,7 +105,7 @@ export function Form({ ...rest }) {
                                 </span>
                             )}
                         </FormGroup>
-                        <FormGroup name="email" className="w-full flex-1">
+                        <FormGroup name="e-mail" className="w-full flex-1">
                             <Input
                                 type="email"
                                 id="email"
@@ -123,7 +133,7 @@ export function Form({ ...rest }) {
                             <IconRocket
                                 className={`fill-current ${sending ? 'animate-shake' : ''}`}
                             />
-                            send
+                            Envoyer
                         </Cta>
                     </div>
                 </form>
