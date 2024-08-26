@@ -29,7 +29,6 @@ export function ViewportWatcher({
 
         const onScrollHandler = (e) => {
             const { top, bottom } = innerRef.current?.getBoundingClientRect()
-            console.log('top: ', top)
 
             onScroll &&
                 onScroll({ ...e, innerRef: innerRef.current, top, bottom })

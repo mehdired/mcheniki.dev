@@ -5,10 +5,10 @@ import { Resend } from 'resend'
 export const runtime = 'edge'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
-const secretKey = process?.env?.RECAPTCHA_SECRET_KEY
+const secretKey = process.env.HCAPTCHA_SECRET_KEY!
 
 export async function POST(request: Request) {
-    const { name, email, message, gRecaptchaToken } = await request.json()
+    const { name, email, message, HCaptchaToken } = await request.json()
 
     const formValues = {
         name,
@@ -16,34 +16,24 @@ export async function POST(request: Request) {
         message,
     }
 
-    const formDataReCaptcha = `secret=${secretKey}&response=${gRecaptchaToken}`
-
     let responseRecaptcha: any
     try {
-        responseRecaptcha = await fetch(
-            'https://www.google.com/recaptcha/api/siteverify',
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: formDataReCaptcha,
-            }
-        )
-        const data = await responseRecaptcha.json()
-        console.log('data')
+        console.log('responseRecaptcha: ', await request.json())
+        /* const token = responseRecaptcha.get('captcha')?.toString() || null
 
-        if (data?.success && data?.score > 0.5) {
-            const send = await sendEmail(formValues)
-
-            return Response.json(send)
-        } else {
-            console.log('fail: res.data?.score:', responseRecaptcha.data?.score)
-            return Response.json({
-                success: false,
-                score: responseRecaptcha.data?.score,
-            })
+        if (!token) {
+            return { message: 'Invalid captcha', success: false }
         }
+
+        const { success } = await verify(secretKey, token)
+
+        if (!success) {
+            return { message: 'Invalid captcha', success: false }
+        }
+
+        const send = await sendEmail(formValues)
+
+        return Response.json(send) */
     } catch (error) {
         return Response.json({ error })
     }

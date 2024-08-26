@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, type FormEvent } from 'react'
-import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
+import { useRef, useState, type FormEvent } from 'react'
+import HCaptcha from '@hcaptcha/react-hcaptcha'
 
 import { FormGroup } from '../FormGroup/FormGroup'
 import { Input } from '../Input/Input'
@@ -11,28 +11,36 @@ import { Cta } from '../Cta/Cta'
 import IconRocket from '@/svgs/rocket.svg'
 import { formSchema, type FormattedErrors } from './validation'
 
+const siteKey = process.env.PUBLIC_HCAPTCHA_SITE_KEY!
+if (!siteKey) {
+    console.error('NEXT_PUBLIC_HCAPTCHA_SITE_KEY is not defined')
+    console.log(process.env)
+    // Vous pouvez aussi afficher un message d'erreur à l'utilisateur ici
+}
+
 export function Form({ ...rest }) {
     const [sending, setSending] = useState(false)
     const [errorEmail, setErrorEmail] = useState<FormattedErrors>()
     const [success, setSuccess] = useState(false)
-    const { executeRecaptcha } = useGoogleReCaptcha()
+    const captchaRef = useRef<HCaptcha | null>(null)
+    const [captchaToken, setCaptchaToken] = useState<string | null>(null)
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const onVerify = (token: string) => setCaptchaToken(token)
+
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
-        if (!executeRecaptcha) {
+        if (!captchaToken) {
             console.log('Execute recaptcha not available yet')
             return
         }
+        console.log('captchaToken: ', captchaToken)
 
         const target = event.currentTarget
-
-        executeRecaptcha('enquiryFormSubmit').then((gReCaptchaToken) => {
-            send(target, gReCaptchaToken)
-        })
+        send(target)
     }
 
-    const send = async (target: HTMLFormElement, gReCaptchaToken: string) => {
+    const send = async (target: HTMLFormElement) => {
         setSending(true)
 
         const formData = new FormData(target)
@@ -41,7 +49,7 @@ export function Form({ ...rest }) {
             name: formData.get('name'),
             email: formData.get('email'),
             message: formData.get('message'),
-            gRecaptchaToken: gReCaptchaToken,
+            HCaptchaToken: captchaToken,
         }
         const validate = formSchema.safeParse(formValues)
 
@@ -127,9 +135,14 @@ export function Form({ ...rest }) {
                             </span>
                         )}
                     </FormGroup>
+                    <HCaptcha
+                        sitekey={siteKey}
+                        ref={captchaRef}
+                        onVerify={onVerify}
+                    />
 
                     <div className="mt-24 flex justify-end">
-                        <Cta disabled={sending}>
+                        <Cta disabled={sending || captchaToken === null}>
                             <IconRocket
                                 className={`fill-current ${sending ? 'animate-shake' : ''}`}
                             />

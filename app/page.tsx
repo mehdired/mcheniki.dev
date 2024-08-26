@@ -2,7 +2,6 @@ import { Contact } from '@/components/Contact/Contact'
 import { Hero } from '@/components/Hero/Hero'
 import { StackSection } from '@/components/StackSection/StackSection'
 import { About } from '@/components/About/About'
-import RecaptchaWrapper from '@/components/RecaptchaWrapper'
 import { Marquee } from '@/components/Marquee/Marquee'
 
 export default function Home() {
@@ -26,9 +25,7 @@ export default function Home() {
                         </span>
                     </p>
                 </Marquee>
-                <RecaptchaWrapper>
-                    <Contact />
-                </RecaptchaWrapper>
+                <Contact />
             </section>
         </main>
     )

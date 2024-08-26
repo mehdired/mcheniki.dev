@@ -4,6 +4,9 @@ const nextConfig = {
     images: {
         unoptimized: true,
     },
+    env: {
+        PUBLIC_HCAPTCHA_SITE_KEY: process.env.PUBLIC_HCAPTCHA_SITE_KEY,
+    },
     transpilePackages: ['three'],
     webpack(config) {
         // Grab the existing rule that handles SVG imports
