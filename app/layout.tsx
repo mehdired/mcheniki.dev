@@ -29,7 +29,7 @@ export const metadata: Metadata = {
         locale: 'fr_FR',
         title: 'Mehdi Cheniki | Expert WordPress',
         description:
-            'Je développe des sites web WordPress sur mesure, performants et uniques',
+            'Développement WordPress sur mesure pour des sites web performants et uniques',
         images: [
             {
                 url: 'https://mcheniki.dev/images/og.webp',
