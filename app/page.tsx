@@ -6,7 +6,7 @@ import { Marquee } from '@/components/Marquee/Marquee'
 
 export default function Home() {
     return (
-        <main className="min-h-screen pt-48">
+        <main className="min-h-screen pt-96 lg:pt-48">
             <section className="flex min-h-screen items-center">
                 <Hero />
             </section>
