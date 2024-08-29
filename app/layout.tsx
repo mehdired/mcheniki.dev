@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     },
     title: 'Mehdi Cheniki | Expert WordPress',
     description:
-        'Développement de sites WordPress sur mesure pour des sites web performants et uniques',
+        'Je développe des sites web WordPress sur mesure, performants et uniques',
     keywords: [
         'Expert WordPress',
         'Développeur frontend',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
         locale: 'fr_FR',
         title: 'Mehdi Cheniki | Expert WordPress',
         description:
-            'Développement de sites WordPress sur mesure pour des sites web performants et uniques',
+            'Développement WordPress sur mesure pour des sites web performants et uniques',
         images: [
             {
                 url: 'https://mcheniki.dev/images/og.webp',
