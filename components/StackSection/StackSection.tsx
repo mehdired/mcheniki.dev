@@ -14,7 +14,7 @@ export function StackSection() {
                             Technique
                         </span>
                     </h2>
-                    <p className="text-25 text-base-100">
+                    <p className="text-base text-base-100 md:text-25">
                         Des technologies modernes et éprouvées, combinant
                         performance et facilité d'utilisation. Notre stack
                         WordPress, PHP et JavaScript offre puissance et

@@ -4,6 +4,7 @@ import { Cta } from '@/components/Cta/Cta'
 import { Container } from '../Container'
 import { useState } from 'react'
 import ArrowRight from '@/svgs/arrow-right.svg'
+import Image from 'next/image'
 
 export function Header() {
     const [isOpen, setIsOpen] = useState(false)
@@ -20,9 +21,16 @@ export function Header() {
     }
 
     return (
-        <header className="absolute left-0 top-0 flex w-full items-center justify-between py-12">
+        <header className="absolute left-0 top-0 flex w-full items-center justify-between py-24">
             <Container className="flex items-center justify-between">
-                <p className="hidden font-medium md:block">Mehdi Cheniki</p>
+                <div>
+                    <Image
+                        src="/images/avatar-face.webp"
+                        alt="Tête de l'avatar de Mehdi Cheniki"
+                        width={40}
+                        height={40}
+                    />
+                </div>
 
                 <nav
                     className={`fixed left-0 top-0 z-10 h-screen w-full bg-base-800 transition-transform duration-300 ease-out md:h-auto ${openClass} md:relative md:w-auto md:translate-x-0`}
