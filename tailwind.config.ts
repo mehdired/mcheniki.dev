@@ -161,6 +161,9 @@ const config: Config = {
             },
         },
         extend: {
+            tracking: {
+                tighter: '-0.375rem',
+            },
             backgroundImage: {
                 'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
                 'gradient-conic':
@@ -213,7 +216,7 @@ const config: Config = {
                     to: {
                         transform: 'translate3d(0, 50px , 0)',
                     },
-                }
+                },
             },
         },
     },

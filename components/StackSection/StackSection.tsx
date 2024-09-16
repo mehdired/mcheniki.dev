@@ -8,7 +8,7 @@ export function StackSection() {
         <>
             <Container>
                 <header className="mb-32 lg:flex lg:justify-between lg:gap-48">
-                    <h2 className="mb-32 text-48 font-semibold uppercase italic leading-[0.9] md:text-clamp-h2 lg:mb-0">
+                    <h2 className="mb-32 text-48 font-semibold uppercase italic leading-[0.9] tracking-tighter md:text-clamp-h2 lg:mb-0">
                         <span className="block text-primary-500">Stack</span>
                         <span className="text-stroke-primary text-transparent">
                             Technique
