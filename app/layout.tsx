@@ -3,6 +3,7 @@ import { jetbrains, roundo } from '../app/fonts'
 import './globals.css'
 import { Header } from '@/components/Header/Header'
 import { Footer } from '@/components/Footer/Footer'
+import Script from 'next/script'
 
 export const viewport: Viewport = {
     width: 'device-width',
@@ -48,6 +49,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="fr" className={`${jetbrains.variable} ${roundo.variable}`}>
+            <Script src="https://scripts.simpleanalyticscdn.com/latest.js"></Script>
             <body className="bg-base-800 font-roundo text-base-50">
                 <Header />
                 {children}
