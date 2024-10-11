@@ -1,7 +1,8 @@
 import Image from 'next/image'
 import { Container } from '../Container'
 import { ParticulesBack } from '../StackParticules/ParticulesBack'
-import { ParticulesFirst } from '../StackParticules/ParticulesFirst'
+import CardStack from './CardStack'
+import IconWP from '@/svgs/wp.svg'
 
 export function StackSection() {
     return (
@@ -40,7 +41,19 @@ export function StackSection() {
                     </div>
                 </div>
                 <div className="absolute left-[10%] top-1/2 z-10 h-full max-h-[556px] -translate-y-1/2 py-32">
-                    <div className="aspect-[447/556] h-full bg-stack-frame bg-cover bg-no-repeat p-12"></div>
+                    <div className="aspect-[447/556] h-full bg-stack-frame bg-cover bg-no-repeat p-12">
+                        <CardStack
+                            title="WordPress"
+                            description="WordPress est un système de gestion de contenu (CMS) open source qui permet de gérer facilement votre site web. Il est conçu pour être intuitif et facile à utiliser, avec une interface utilisateur moderne et intuitive."
+                            icon={
+                                <IconWP
+                                    className="block fill-base-50"
+                                    width="80"
+                                    height="80"
+                                />
+                            }
+                        />
+                    </div>
                 </div>
             </div>
         </>

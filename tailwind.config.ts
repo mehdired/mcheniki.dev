@@ -7,6 +7,9 @@ const config: Config = {
         './app/**/*.{js,ts,jsx,tsx,mdx}',
     ],
     theme: {
+        clipPath: {
+            'ellipse-stack': 'ellipse(93% 87% at 50% 6%)',
+        },
         colors: {
             current: 'currentColor',
             transparent: 'transparent',
@@ -161,6 +164,9 @@ const config: Config = {
             },
         },
         extend: {
+            leading: {
+                22: '1.375rem',
+            },
             tracking: {
                 tighter: '-0.375rem',
             },
@@ -221,7 +227,7 @@ const config: Config = {
             },
         },
     },
-    plugins: [],
+    plugins: [require('tailwind-clip-path')],
 }
 
 export default config
