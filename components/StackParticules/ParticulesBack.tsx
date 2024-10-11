@@ -2,12 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react'
 import Particles, { initParticlesEngine } from '@tsparticles/react'
-import {
-    type Container,
-    type ISourceOptions,
-    MoveDirection,
-    OutMode,
-} from '@tsparticles/engine'
+import { type Container } from '@tsparticles/engine'
 import { loadSlim } from '@tsparticles/slim'
 
 export function ParticulesBack() {
