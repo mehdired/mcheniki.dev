@@ -1,8 +1,11 @@
+'use client'
+
 import Image from 'next/image'
 import { Container } from '../Container'
 import { ParticulesBack } from '../StackParticules/ParticulesBack'
 import CardStack from './CardStack'
 import IconWP from '@/svgs/wp.svg'
+import TechConstellation from './StackConstellation'
 
 export function StackSection() {
     return (
@@ -29,7 +32,8 @@ export function StackSection() {
                 <div className="absolute left-0 top-0 -z-10 h-full w-full">
                     <ParticulesBack />
                 </div>
-                <div className="radialParticule absolute left-0 top-0 z-10 h-full w-full">
+                <TechConstellation />
+                {/* <div className="radialParticule absolute left-0 top-0 z-10 h-full w-full">
                     <div className="absolute left-0 top-1/2 w-full animate-mini-mehdi-x">
                         <Image
                             src="/images/mini-mehdi.webp"
@@ -40,21 +44,26 @@ export function StackSection() {
                         />
                     </div>
                 </div>
-                <div className="absolute left-[10%] top-1/2 z-10 h-full max-h-[556px] -translate-y-1/2 py-32">
-                    <div className="aspect-[447/556] h-full bg-stack-frame bg-cover bg-no-repeat p-12">
-                        <CardStack
-                            title="WordPress"
-                            description="WordPress est un système de gestion de contenu (CMS) open source qui permet de gérer facilement votre site web. Il est conçu pour être intuitif et facile à utiliser, avec une interface utilisateur moderne et intuitive."
-                            icon={
-                                <IconWP
-                                    className="block fill-base-50"
-                                    width="80"
-                                    height="80"
-                                />
-                            }
-                        />
+                <div className="flex">
+                    <div className="absolute left-[10%] top-1/2 z-10 h-full max-h-[556px] -translate-y-1/2 py-32">
+                        <div className="aspect-[447/556] h-full bg-stack-frame bg-cover bg-no-repeat p-12">
+                            <CardStack
+                                title="WordPress"
+                                description="WordPress est un système de gestion de contenu (CMS) open source qui permet de gérer facilement votre site web. Il est conçu pour être intuitif et facile à utiliser, avec une interface utilisateur moderne et intuitive."
+                                icon={
+                                    <IconWP
+                                        className="block fill-base-50"
+                                        width="80"
+                                        height="80"
+                                    />
+                                }
+                            />
+                        </div>
                     </div>
-                </div>
+                    <div className="relative h-full w-1/2 flex-1 basis-1/2">
+
+                    </div>
+                </div> */}
             </div>
         </>
     )
