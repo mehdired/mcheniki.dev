@@ -1,97 +1,257 @@
-import React, { useState, useEffect } from 'react'
-import { useSpring, animated, to } from '@react-spring/web'
-import { useDrag } from '@use-gesture/react'
+import React, { useState, useEffect, useRef } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 import IconReact from '@/svgs/next.svg'
 import IconJS from '@/svgs/next.svg'
 import IconWP from '@/svgs/wp.svg'
 import IconPHP from '@/svgs/next.svg'
 
-const technologies = [
+type SVGComponent = React.ComponentType<React.SVGProps<SVGSVGElement>>
+
+// Types pour les animations
+type AnimationConfig = {
+    y: {
+        duration: number
+        repeat: number
+        repeatType: 'reverse' | 'loop' | 'mirror'
+        ease: string
+        delay: number
+        amount: number
+    }
+    hover: {
+        scale: number
+        transition: {
+            type: string
+            stiffness: number
+            damping: number
+        }
+    }
+}
+
+// Type pour une technologie
+type Technology = {
+    id: number
+    name: string
+    Icon: SVGComponent
+    description: string
+    connections: number[]
+    animation: AnimationConfig
+}
+
+// Type pour les positions
+type Position = {
+    x: number
+    y: number
+}
+
+type Dimensions = {
+    width: number
+    height: number
+}
+
+// Type pour les animations des technologies
+type TechAnimations = Record<number, number>
+
+// Types pour les props des composants
+type ConstellationProps = {
+    positions: Record<number, Position>
+    technologies: Technology[]
+    hoveredTech: Technology | null
+    techAnimations: TechAnimations
+}
+
+type TechBubbleProps = {
+    tech: Technology
+    position: Position
+    isHovered: boolean
+    onHover: () => void
+    onLeave: () => void
+    onAnimationUpdate: (value: number) => void
+    techAnimations: TechAnimations
+}
+
+type InfoCardProps = {
+    tech: Technology
+}
+
+const technologies: Technology[] = [
     {
         id: 1,
         name: 'React',
-        Icon: IconReact,
+        Icon: IconReact as SVGComponent,
         description: 'A JavaScript library for building user interfaces',
         connections: [2, 3],
+        animation: {
+            y: {
+                duration: 3,
+                repeat: Infinity,
+                repeatType: 'reverse',
+                ease: 'easeInOut',
+                delay: 0,
+                amount: 10,
+            },
+            hover: {
+                scale: 1.2,
+                transition: {
+                    type: 'spring',
+                    stiffness: 300,
+                    damping: 10,
+                },
+            },
+        },
     },
     {
         id: 2,
         name: 'JavaScript',
-        Icon: IconJS,
+        Icon: IconJS as SVGComponent,
         description: 'High-level, interpreted programming language',
-        connections: [1, 3, 4, 5],
+        connections: [1],
+        animation: {
+            y: {
+                duration: 4,
+                repeat: Infinity,
+                repeatType: 'reverse',
+                ease: 'easeInOut',
+                delay: 0.5,
+                amount: 15,
+            },
+            hover: {
+                scale: 1.2,
+                transition: {
+                    type: 'spring',
+                    stiffness: 400,
+                    damping: 8,
+                },
+            },
+        },
+    },
+    {
+        id: 3,
+        name: 'WordPress',
+        Icon: IconWP as SVGComponent,
+        description: 'Open-source content management system',
+        connections: [2, 4],
+        animation: {
+            y: {
+                duration: 3.5,
+                repeat: Infinity,
+                repeatType: 'reverse',
+                ease: 'easeInOut',
+                delay: 1,
+                amount: 12,
+            },
+            hover: {
+                scale: 1.2,
+                transition: {
+                    type: 'spring',
+                    stiffness: 350,
+                    damping: 12,
+                },
+            },
+        },
     },
     {
         id: 4,
-        name: 'WordPress',
-        Icon: IconWP,
-        description: 'Open-source content management system',
-        connections: [1, 2],
-    },
-    {
-        id: 5,
         name: 'PHP',
-        Icon: IconPHP,
+        Icon: IconPHP as SVGComponent,
         description: 'General-purpose scripting language for web development',
-        connections: [2, 5],
+        connections: [3],
+        animation: {
+            y: {
+                duration: 3.2,
+                repeat: Infinity,
+                repeatType: 'reverse',
+                ease: 'easeInOut',
+                delay: 1.5,
+                amount: 8,
+            },
+            hover: {
+                scale: 1.2,
+                transition: {
+                    type: 'spring',
+                    stiffness: 450,
+                    damping: 15,
+                },
+            },
+        },
     },
 ]
 
-const TechConstellation = () => {
-    const [hoveredTech, setHoveredTech] = useState(null)
-    const [positions, setPositions] = useState({})
-    const [isLoading, setIsLoading] = useState(true)
+const TechConstellation: React.FC = () => {
+    const [hoveredTech, setHoveredTech] = useState<Technology | null>(null)
+    const containerRef = useRef<HTMLDivElement>(null)
+    const [dimensions, setDimensions] = useState<Dimensions>({
+        width: 0,
+        height: 0,
+    })
+    const [techAnimations, setTechAnimations] = useState<TechAnimations>({})
 
     useEffect(() => {
-        const calculatePositions = () => {
-            const newPositions = {}
-            const containerWidth = window.innerWidth
-            const containerHeight = 600 // Ajustez selon vos besoins
-            const radius = Math.min(containerWidth, containerHeight) * 0.3
-
-            technologies.forEach((tech, index) => {
-                const angle = (index / technologies.length) * 2 * Math.PI
-                newPositions[tech.id] = {
-                    x: containerWidth / 2 + Math.cos(angle) * radius,
-                    y: containerHeight / 2 + Math.sin(angle) * radius,
-                }
-            })
-            setPositions(newPositions)
-            setIsLoading(false)
+        const updateDimensions = () => {
+            if (containerRef.current) {
+                const rect = containerRef.current.getBoundingClientRect()
+                setDimensions({ width: rect.width, height: rect.height })
+            }
         }
 
-        calculatePositions()
-        window.addEventListener('resize', calculatePositions)
-        return () => window.removeEventListener('resize', calculatePositions)
+        updateDimensions()
+        window.addEventListener('resize', updateDimensions)
+        return () => window.removeEventListener('resize', updateDimensions)
     }, [])
 
-    if (isLoading) {
-        return <div>Loading...</div>
+    const updateTechAnimation = (techId: number, value: number) => {
+        setTechAnimations((prev) => ({
+            ...prev,
+            [techId]: value,
+        }))
     }
+
+    const positions = technologies.reduce<Record<number, Position>>(
+        (acc, tech, index) => {
+            const radius = Math.min(dimensions.width, dimensions.height) * 0.3
+            const centerX = dimensions.width / 2
+            const centerY = dimensions.height / 2
+            const angle = (index / technologies.length) * 2 * Math.PI
+
+            acc[tech.id] = {
+                x: centerX + Math.cos(angle) * radius,
+                y: centerY + Math.sin(angle) * radius,
+            }
+            return acc
+        },
+        {}
+    )
 
     return (
         <div
+            ref={containerRef}
             className="constellation-container"
             style={{
                 position: 'relative',
                 width: '100%',
-                height: '600px',
-                background: '#0a0a2a',
+                height: '100%',
+                background: 'transparent',
                 overflow: 'hidden',
             }}
         >
-            <SVGConstellation
+            <Constellation
                 positions={positions}
                 technologies={technologies}
+                hoveredTech={hoveredTech}
+                techAnimations={techAnimations}
             />
             {technologies.map((tech) => (
                 <TechBubble
                     key={tech.id}
                     tech={tech}
                     position={positions[tech.id]}
+                    isHovered={hoveredTech?.id === tech.id}
                     onHover={() => setHoveredTech(tech)}
                     onLeave={() => setHoveredTech(null)}
+                    onAnimationUpdate={(value) =>
+                        updateTechAnimation(tech.id, value)
+                    }
+                    techAnimations={techAnimations}
                 />
             ))}
             {hoveredTech && <InfoCard tech={hoveredTech} />}
@@ -99,112 +259,129 @@ const TechConstellation = () => {
     )
 }
 
-const TechBubble = ({ tech, position, onHover, onLeave }) => {
-    const [{ x, y }, api] = useSpring(() => ({
-        x: position?.x || 0,
-        y: position?.y || 0,
-        config: { mass: 1, tension: 350, friction: 40 },
-    }))
-
-    const bind = useDrag(({ offset: [ox, oy] }) => {
-        api.start({ x: ox, y: oy })
-    })
-
-    useEffect(() => {
-        if (position) {
-            api.start({ x: position.x, y: position.y })
-        }
-    }, [position, api])
-
-    const floatingAnimation = useSpring({
-        from: { translateY: 0 },
-        to: { translateY: 10 },
-        config: { duration: 2000, tension: 300, friction: 10 },
-        loop: { reverse: true },
-    })
-
-    if (!position) return null
-
+const Constellation: React.FC<ConstellationProps> = ({
+    positions,
+    technologies,
+    hoveredTech,
+    techAnimations,
+}) => {
     return (
-        <animated.div
-            {...bind()}
+        <motion.svg
             style={{
-                x,
-                y,
                 position: 'absolute',
-                transform: to(
-                    [x, y, floatingAnimation.translateY],
-                    (x, y, ty) =>
-                        `translate(${x}px, ${y + ty}px) translate(-50%, -50%)`
-                ),
-                cursor: 'grab',
-                userSelect: 'none',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '60px',
-                height: '60px',
-            }}
-            onMouseEnter={onHover}
-            onMouseLeave={onLeave}
-        >
-            <tech.Icon width="100%" height="100%" />
-        </animated.div>
-    )
-}
-
-const InfoCard = ({ tech }) => {
-    const springProps = useSpring({
-        opacity: 1,
-        transform: 'translateY(0)',
-        from: { opacity: 0, transform: 'translateY(50px)' },
-        config: { tension: 300, friction: 10 },
-    })
-
-    return (
-        <animated.div
-            style={{
-                ...springProps,
-                position: 'absolute',
-                left: '20px',
-                top: '20px',
-                background: 'rgba(255, 255, 255, 0.9)',
-                padding: '20px',
-                borderRadius: '10px',
-                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-                maxWidth: '300px',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                zIndex: 1,
+                pointerEvents: 'none',
             }}
         >
-            <h3>{tech.name}</h3>
-            <p>{tech.description}</p>
-        </animated.div>
-    )
-}
-
-const SVGConstellation = ({ positions, technologies }) => {
-    return (
-        <svg style={{ position: 'absolute', width: '100%', height: '100%' }}>
             {technologies.map((tech) =>
                 tech.connections.map((connectedTechId) => {
                     const startPos = positions[tech.id]
                     const endPos = positions[connectedTechId]
+
                     if (startPos && endPos) {
+                        const isConnectedToHovered =
+                            hoveredTech?.id === tech.id ||
+                            hoveredTech?.id === connectedTechId
+
+                        const startOffset = techAnimations[tech.id] || 0
+                        const endOffset = techAnimations[connectedTechId] || 0
+
                         return (
-                            <line
+                            <motion.line
                                 key={`${tech.id}-${connectedTechId}`}
                                 x1={startPos.x}
-                                y1={startPos.y}
+                                y1={startPos.y + startOffset}
                                 x2={endPos.x}
-                                y2={endPos.y}
-                                stroke="rgba(255, 165, 0, 0.2)"
-                                strokeWidth="1"
+                                y2={endPos.y + endOffset}
+                                stroke="rgb(255 255 255 / 0.3)"
+                                strokeWidth={isConnectedToHovered ? 2 : 1}
                             />
                         )
                     }
                     return null
                 })
             )}
-        </svg>
+        </motion.svg>
+    )
+}
+
+const TechBubble: React.FC<TechBubbleProps> = ({
+    tech,
+    position,
+    isHovered,
+    onHover,
+    onLeave,
+    onAnimationUpdate,
+    techAnimations,
+}) => {
+    useEffect(() => {
+        let yPos = 0
+        const interval = setInterval(() => {
+            const time = (Date.now() + tech.animation.y.delay * 1000) / 1000
+            yPos =
+                Math.sin((time * Math.PI) / tech.animation.y.duration) *
+                tech.animation.y.amount
+            onAnimationUpdate(yPos)
+        }, 16)
+
+        return () => clearInterval(interval)
+    }, [tech.animation.y, onAnimationUpdate])
+
+    return (
+        <motion.div
+            style={{
+                position: 'absolute',
+                left: position.x - 30,
+                top: position.y - 30,
+                transform: 'translate(-50%, -50%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '60px',
+                height: '60px',
+                cursor: 'pointer',
+                zIndex: 2,
+            }}
+            animate={{
+                y: techAnimations[tech.id] || 0,
+            }}
+            whileHover={tech.animation.hover}
+            onHoverStart={onHover}
+            onHoverEnd={onLeave}
+        >
+            <tech.Icon width="100%" height="100%" fill="#fff" />
+        </motion.div>
+    )
+}
+
+const InfoCard: React.FC<InfoCardProps> = ({ tech }) => {
+    return (
+        <AnimatePresence>
+            <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 50 }}
+                transition={{ duration: 0.3 }}
+                style={{
+                    position: 'absolute',
+                    left: '20px',
+                    top: '20px',
+                    background: 'rgba(255, 255, 255, 0.9)',
+                    padding: '20px',
+                    borderRadius: '10px',
+                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                    maxWidth: '300px',
+                    zIndex: 3,
+                }}
+            >
+                <h3>{tech.name}</h3>
+                <p>{tech.description}</p>
+            </motion.div>
+        </AnimatePresence>
     )
 }
 
