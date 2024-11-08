@@ -5,8 +5,9 @@ import IconReact from '@/svgs/next.svg'
 import IconJS from '@/svgs/next.svg'
 import IconWP from '@/svgs/wp.svg'
 import IconPHP from '@/svgs/next.svg'
+import CardStack from './CardStack'
 
-type SVGComponent = React.ComponentType<React.SVGProps<SVGSVGElement>>
+export type SVGComponent = React.ComponentType<React.SVGProps<SVGSVGElement>>
 
 // Types pour les animations
 type AnimationConfig = {
@@ -225,36 +226,37 @@ const TechConstellation: React.FC = () => {
     return (
         <div
             ref={containerRef}
-            className="constellation-container"
-            style={{
-                position: 'relative',
-                width: '100%',
-                height: '100%',
-                background: 'transparent',
-                overflow: 'hidden',
-            }}
+            className="constellation-container relative h-full w-full"
         >
-            <Constellation
-                positions={positions}
-                technologies={technologies}
-                hoveredTech={hoveredTech}
-                techAnimations={techAnimations}
-            />
-            {technologies.map((tech) => (
-                <TechBubble
-                    key={tech.id}
-                    tech={tech}
-                    position={positions[tech.id]}
-                    isHovered={hoveredTech?.id === tech.id}
-                    onHover={() => setHoveredTech(tech)}
-                    onLeave={() => setHoveredTech(null)}
-                    onAnimationUpdate={(value) =>
-                        updateTechAnimation(tech.id, value)
-                    }
-                    techAnimations={techAnimations}
-                />
-            ))}
-            {hoveredTech && <InfoCard tech={hoveredTech} />}
+            <div className="absolute left-0 top-0 flex h-full w-full">
+                <div className="left-[10%] top-1/2 z-10 h-full max-h-[556px] py-32">
+                    <div className="aspect-[447/556] h-full bg-stack-frame bg-cover bg-no-repeat p-12">
+                        {hoveredTech && <InfoCard tech={hoveredTech} />}
+                    </div>
+                </div>
+                <div className="relative h-full w-1/2 flex-1  basis-1/2">
+                    <Constellation
+                        positions={positions}
+                        technologies={technologies}
+                        hoveredTech={hoveredTech}
+                        techAnimations={techAnimations}
+                    />
+                    {technologies.map((tech) => (
+                        <TechBubble
+                            key={tech.id}
+                            tech={tech}
+                            position={positions[tech.id]}
+                            isHovered={hoveredTech?.id === tech.id}
+                            onHover={() => setHoveredTech(tech)}
+                            onLeave={() => setHoveredTech(null)}
+                            onAnimationUpdate={(value) =>
+                                updateTechAnimation(tech.id, value)
+                            }
+                            techAnimations={techAnimations}
+                        />
+                    ))}
+                </div>
+            </div>
         </div>
     )
 }
@@ -362,24 +364,16 @@ const InfoCard: React.FC<InfoCardProps> = ({ tech }) => {
     return (
         <AnimatePresence>
             <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                style={{
-                    position: 'absolute',
-                    left: '20px',
-                    top: '20px',
-                    background: 'rgba(255, 255, 255, 0.9)',
-                    padding: '20px',
-                    borderRadius: '10px',
-                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-                    maxWidth: '300px',
-                    zIndex: 3,
-                }}
             >
-                <h3>{tech.name}</h3>
-                <p>{tech.description}</p>
+                <CardStack
+                    title={tech.name}
+                    description={tech.description}
+                    Icon={tech.Icon}
+                />
             </motion.div>
         </AnimatePresence>
     )

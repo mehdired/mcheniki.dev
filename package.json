@@ -11,6 +11,7 @@
         "build-storybook": "storybook build"
     },
     "dependencies": {
+        "@hcaptcha/react-hcaptcha": "^1.11.0",
         "@react-three/fiber": "^8.15.19",
         "@react-three/postprocessing": "^2.16.2",
         "@tsparticles/engine": "^3.4.0",
