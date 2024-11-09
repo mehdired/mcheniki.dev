@@ -30,18 +30,16 @@ export function StackSection() {
                 <div className="absolute left-0 top-0 -z-10 h-full w-full">
                     <ParticulesBack />
                 </div>
-                <div className="radialParticule absolute left-0 top-0 h-full w-full">
-                    <div className="absolute left-0 top-1/2 w-full animate-mini-mehdi-x">
+                <div className="radialParticule absolute left-0 top-0 h-full w-full"></div>
+                <div className="h-full  w-full p-24">
+                    <div className="absolute right-48 top-[calc(50%-200px)] animate-float">
                         <Image
                             src="/images/mini-mehdi.webp"
                             alt="Floated mehdi"
                             width={77}
                             height={86}
-                            className="animate-float"
                         />
                     </div>
-                </div>
-                <div className="h-full  w-full p-24">
                     <TechConstellation />
                 </div>
             </div>

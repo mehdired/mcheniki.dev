@@ -20,7 +20,6 @@ type AnimationConfig = {
         amount: number
     }
     hover: {
-        scale: number
         transition: {
             type: string
             stiffness: number
@@ -92,7 +91,6 @@ const technologies: Technology[] = [
                 amount: 10,
             },
             hover: {
-                scale: 1.2,
                 transition: {
                     type: 'spring',
                     stiffness: 300,
@@ -117,7 +115,6 @@ const technologies: Technology[] = [
                 amount: 15,
             },
             hover: {
-                scale: 1.2,
                 transition: {
                     type: 'spring',
                     stiffness: 400,
@@ -142,7 +139,6 @@ const technologies: Technology[] = [
                 amount: 12,
             },
             hover: {
-                scale: 1.2,
                 transition: {
                     type: 'spring',
                     stiffness: 350,
@@ -167,7 +163,6 @@ const technologies: Technology[] = [
                 amount: 8,
             },
             hover: {
-                scale: 1.2,
                 transition: {
                     type: 'spring',
                     stiffness: 450,
@@ -177,7 +172,11 @@ const technologies: Technology[] = [
         },
     },
 ]
+const random = Math.floor(Math.random() * (10 - 1) + 1)
 
+const coeffRandom = random % 4 === 0 ? random + 1 : random
+
+console.log(coeffRandom)
 const TechConstellation: React.FC = () => {
     const [hoveredTech, setHoveredTech] = useState<Technology | null>(null)
     const containerRef = useRef<HTMLDivElement>(null)
@@ -212,7 +211,8 @@ const TechConstellation: React.FC = () => {
             const radius = Math.min(dimensions.width, dimensions.height) * 0.3
             const centerX = dimensions.width / 2
             const centerY = dimensions.height / 2
-            const angle = (index / technologies.length) * 2 * Math.PI
+
+            const angle = (index / technologies.length) * coeffRandom * Math.PI
 
             acc[tech.id] = {
                 x: centerX + Math.cos(angle) * radius,
@@ -224,17 +224,21 @@ const TechConstellation: React.FC = () => {
     )
 
     return (
-        <div
-            ref={containerRef}
-            className="constellation-container relative h-full w-full"
-        >
+        <div className="constellation-container relative h-full w-full">
             <div className="absolute left-0 top-0 flex h-full w-full">
                 <div className="left-[10%] top-1/2 z-10 h-full max-h-[556px] py-32">
-                    <div className="aspect-[447/556] h-full bg-stack-frame bg-cover bg-no-repeat p-12">
-                        {hoveredTech && <InfoCard tech={hoveredTech} />}
+                    <div className="relative aspect-[447/556] h-full bg-stack-frame bg-cover bg-no-repeat p-12">
+                        {hoveredTech && (
+                            <div className="relative h-full">
+                                <InfoCard tech={hoveredTech} />
+                            </div>
+                        )}
                     </div>
                 </div>
-                <div className="relative h-full w-1/2 flex-1  basis-1/2">
+                <div
+                    ref={containerRef}
+                    className="relative h-full w-1/2 flex-1  basis-1/2"
+                >
                     <Constellation
                         positions={positions}
                         technologies={technologies}
@@ -336,18 +340,10 @@ const TechBubble: React.FC<TechBubbleProps> = ({
     return (
         <motion.div
             style={{
-                position: 'absolute',
                 left: position.x - 30,
                 top: position.y - 30,
-                transform: 'translate(-50%, -50%)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '60px',
-                height: '60px',
-                cursor: 'pointer',
-                zIndex: 2,
             }}
+            className="absolute z-[2] h-[60px] w-[60px] -translate-x-1/2 -translate-y-1/2 cursor-pointer rounded-full bg-base-800"
             animate={{
                 y: techAnimations[tech.id] || 0,
             }}
@@ -355,7 +351,11 @@ const TechBubble: React.FC<TechBubbleProps> = ({
             onHoverStart={onHover}
             onHoverEnd={onLeave}
         >
-            <tech.Icon width="100%" height="100%" fill="#fff" />
+            <tech.Icon
+                width="100%"
+                height="100%"
+                className="fill-primary-500 hover:fill-base-0"
+            />
         </motion.div>
     )
 }

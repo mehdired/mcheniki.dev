@@ -182,7 +182,6 @@ const config: Config = {
             animation: {
                 shake: 'shake 0.82s cubic-bezier(.36,.07,.19,.97) infinite alternate',
                 marquee: 'marquee 20s linear infinite',
-                'mini-mehdi-x': 'mini-mehdi-x 30s linear infinite',
                 float: 'float 2s ease-in-out infinite alternate',
             },
             keyframes: {

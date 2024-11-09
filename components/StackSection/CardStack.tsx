@@ -12,7 +12,7 @@ export default function CardStack({
     Icon,
 }: CardStackProps) {
     return (
-        <div className="relative h-full overflow-hidden rounded-32 bg-base-700 p-[40px]">
+        <div className="absolute left-0 top-0 h-full w-full overflow-hidden rounded-32 bg-base-700 p-[40px]">
             <div className="absolute left-0 top-0 h-1/2 w-full bg-base-600 clip-path-ellipse-stack"></div>
             <div className="relative mb-[40px] flex flex-col items-center gap-6 pb-[23px]">
                 <Icon width="80px" height="80px" fill="#fff" />
