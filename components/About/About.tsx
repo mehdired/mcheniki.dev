@@ -5,7 +5,7 @@ export function About() {
     return (
         <Container className="flex flex-col items-center justify-between gap-32 lg:flex-row-reverse">
             <div className="max-lg:w-full lg:flex-1">
-                <h2 className="mb-12 text-36 text-base-50">
+                <h2 className="mb-12 text-36 tracking-tighter text-base-50">
                     <span className="mr-[10px] inline-block bg-primary-500 px-[10px]">
                         10 ans
                     </span>

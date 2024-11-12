@@ -12,11 +12,6 @@ import IconRocket from '@/svgs/rocket.svg'
 import { formSchema, type FormattedErrors } from './validation'
 
 const siteKey = process.env.PUBLIC_HCAPTCHA_SITE_KEY!
-if (!siteKey) {
-    console.error('NEXT_PUBLIC_HCAPTCHA_SITE_KEY is not defined')
-    console.log(process.env)
-    // Vous pouvez aussi afficher un message d'erreur à l'utilisateur ici
-}
 
 export function Form({ ...rest }) {
     const [sending, setSending] = useState(false)
@@ -139,9 +134,10 @@ export function Form({ ...rest }) {
                         sitekey={siteKey}
                         ref={captchaRef}
                         onVerify={onVerify}
+                        theme="dark"
                     />
 
-                    <div className="mt-24 flex justify-end">
+                    <div className="mt-24 flex">
                         <Cta disabled={sending || captchaToken === null}>
                             <IconRocket
                                 className={`fill-current ${sending ? 'animate-shake' : ''}`}

@@ -7,6 +7,9 @@ const config: Config = {
         './app/**/*.{js,ts,jsx,tsx,mdx}',
     ],
     theme: {
+        clipPath: {
+            'ellipse-stack': 'ellipse(93% 87% at 50% 6%)',
+        },
         colors: {
             current: 'currentColor',
             transparent: 'transparent',
@@ -161,10 +164,17 @@ const config: Config = {
             },
         },
         extend: {
+            leading: {
+                22: '1.375rem',
+            },
+            tracking: {
+                tighter: '-0.375rem',
+            },
             backgroundImage: {
                 'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
                 'gradient-conic':
                     'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+                'stack-frame': 'url("/images/stack-frame.webp")',
             },
             aspectRatio: {
                 portal: '53/74',
@@ -172,7 +182,6 @@ const config: Config = {
             animation: {
                 shake: 'shake 0.82s cubic-bezier(.36,.07,.19,.97) infinite alternate',
                 marquee: 'marquee 20s linear infinite',
-                'mini-mehdi-x': 'mini-mehdi-x 30s linear infinite',
                 float: 'float 2s ease-in-out infinite alternate',
             },
             keyframes: {
@@ -213,11 +222,11 @@ const config: Config = {
                     to: {
                         transform: 'translate3d(0, 50px , 0)',
                     },
-                }
+                },
             },
         },
     },
-    plugins: [],
+    plugins: [require('tailwind-clip-path')],
 }
 
 export default config
