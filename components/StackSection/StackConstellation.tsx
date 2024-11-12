@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-import IconReact from '@/svgs/next.svg'
-import IconJS from '@/svgs/next.svg'
+import IconReact from '@/svgs/react.svg'
+import IconJS from '@/svgs/js.svg'
 import IconWP from '@/svgs/wp.svg'
-import IconPHP from '@/svgs/next.svg'
+import IconPHP from '@/svgs/php.svg'
 import CardStack from './CardStack'
 
 export type SVGComponent = React.ComponentType<React.SVGProps<SVGSVGElement>>
@@ -176,7 +176,6 @@ const random = Math.floor(Math.random() * (10 - 1) + 1)
 
 const coeffRandom = random % 4 === 0 ? random + 1 : random
 
-console.log(coeffRandom)
 const TechConstellation: React.FC = () => {
     const [hoveredTech, setHoveredTech] = useState<Technology | null>(null)
     const containerRef = useRef<HTMLDivElement>(null)
@@ -225,19 +224,23 @@ const TechConstellation: React.FC = () => {
 
     return (
         <div className="constellation-container relative h-full w-full">
-            <div className="absolute left-0 top-0 flex h-full w-full">
-                <div className="left-[10%] top-1/2 z-10 h-full max-h-[556px] py-32">
+            <div className="absolute left-0 top-0 flex h-full w-full items-center justify-center">
+                <div className="left-[10%] top-1/2 z-10 flex h-full max-h-[556px] flex-1 basis-1/3 justify-center py-32">
                     <div className="relative aspect-[447/556] h-full bg-stack-frame bg-cover bg-no-repeat p-12">
-                        {hoveredTech && (
-                            <div className="relative h-full">
+                        <div className="relative flex h-full items-center justify-center">
+                            {hoveredTech ? (
                                 <InfoCard tech={hoveredTech} />
-                            </div>
-                        )}
+                            ) : (
+                                <p className="text-center text-[0.875rem] font-bold tracking-[1.3px] text-primary-500">
+                                    Survol une des icones
+                                </p>
+                            )}
+                        </div>
                     </div>
                 </div>
                 <div
                     ref={containerRef}
-                    className="relative h-full w-1/2 flex-1  basis-1/2"
+                    className="relative h-full flex-1 basis-2/3"
                 >
                     <Constellation
                         positions={positions}
@@ -289,10 +292,6 @@ const Constellation: React.FC<ConstellationProps> = ({
                     const endPos = positions[connectedTechId]
 
                     if (startPos && endPos) {
-                        const isConnectedToHovered =
-                            hoveredTech?.id === tech.id ||
-                            hoveredTech?.id === connectedTechId
-
                         const startOffset = techAnimations[tech.id] || 0
                         const endOffset = techAnimations[connectedTechId] || 0
 
@@ -303,8 +302,7 @@ const Constellation: React.FC<ConstellationProps> = ({
                                 y1={startPos.y + startOffset}
                                 x2={endPos.x}
                                 y2={endPos.y + endOffset}
-                                stroke="rgb(255 255 255 / 0.3)"
-                                strokeWidth={isConnectedToHovered ? 2 : 1}
+                                stroke="hsl(20 100% 51%)"
                             />
                         )
                     }
@@ -352,8 +350,8 @@ const TechBubble: React.FC<TechBubbleProps> = ({
             onHoverEnd={onLeave}
         >
             <tech.Icon
-                width="100%"
-                height="100%"
+                width="60"
+                height="60"
                 className="fill-primary-500 hover:fill-base-0"
             />
         </motion.div>

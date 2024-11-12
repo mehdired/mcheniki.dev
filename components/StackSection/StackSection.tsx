@@ -18,10 +18,9 @@ export function StackSection() {
                     </h2>
                     <p className="text-base text-base-100 md:text-25">
                         Des technologies modernes et éprouvées, combinant
-                        performance et facilité d'utilisation. Notre stack
-                        WordPress, PHP et JavaScript offre puissance et
-                        flexibilité pour des sites web sur mesure, adaptés à vos
-                        besoins spécifiques.
+                        performance et facilité d'utilisation. WordPress, PHP et
+                        JavaScript offre puissance et flexibilité pour des sites
+                        web sur mesure, adaptés à vos besoins spécifiques.
                     </p>
                 </header>
             </Container>
