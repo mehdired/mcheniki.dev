@@ -36,6 +36,11 @@ const styles = cva(
                     'duration-300',
                 ],
                 disabled: [
+                    'rounded-full',
+                    'min-w-160',
+                    'w-fit',
+                    'px-24',
+                    'py-12',
                     'bg-base-400',
                     'text-base-200',
                     'cursor-not-allowed',
@@ -85,7 +90,12 @@ export function Cta({ url, indent = 'primary', ...rest }: CtaProps) {
                     {rest.children}
                 </a>
             ) : (
-                <button className={styles({ indent })} disabled={rest.disabled}>
+                <button
+                    className={styles({
+                        indent: rest.disabled ? 'disabled' : indent,
+                    })}
+                    disabled={rest.disabled}
+                >
                     {rest.children}
                 </button>
             )}

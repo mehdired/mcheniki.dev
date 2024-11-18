@@ -139,6 +139,7 @@ const config: Config = {
             36: '2.25rem',
             48: '3rem',
             64: '4rem',
+            74: '4.625rem',
             96: '6rem',
             152: '9.5rem',
         },
@@ -161,6 +162,7 @@ const config: Config = {
         container: {
             screens: {
                 xl: '1280px',
+                '2xl': '1440px',
             },
         },
         extend: {
