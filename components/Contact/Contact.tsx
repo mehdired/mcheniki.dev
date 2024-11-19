@@ -6,7 +6,7 @@ export function Contact() {
     return (
         <Container className="mt-64 md:flex md:gap-64">
             <div className="mb-32 md:mb-0 md:basis-4/12">
-                <h2 className="mb-32 text-48 font-semibold uppercase italic tracking-tighter text-primary-500 md:text-clamp-h2">
+                <h2 className="2xl:text-74 text-48 font-semibold uppercase italic tracking-tighter text-primary-500 md:text-64">
                     Contact
                 </h2>
                 <p className="mb-32">

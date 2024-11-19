@@ -16,7 +16,7 @@ export default function Home() {
             <section className="mb-96">
                 <StackSection />
             </section>
-            <section className="overflow-hidden pt-64" id="contact">
+            <section>
                 <Marquee>
                     <p className="text-48 font-semibold italic text-base-400 md:text-64">
                         ÉCHANGEONS{' '}
@@ -25,6 +25,8 @@ export default function Home() {
                         </span>
                     </p>
                 </Marquee>
+            </section>
+            <section className="mt-96 overflow-hidden" id="contact">
                 <Contact />
             </section>
         </main>
