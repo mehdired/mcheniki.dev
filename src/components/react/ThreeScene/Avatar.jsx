@@ -35,15 +35,11 @@ export function Avatar({ mode = 'DESKTOP', state = 'DEFAULT' }) {
     useEffect(() => {
         let head;
         const onMouseMove = ({ clientX, clientY }) => {
-            console.log('Mouse move detected');
             const { innerWidth, innerHeight } = window;
             //put epicenter to 1/4 of screen width to be centered with canvas
             let xPos =
                 (-1 * (innerWidth / (mode === 'MOBILE' ? 2 : 4) - clientX)) / innerWidth - 0.3;
             let yPos = (-1 * (innerHeight / 2 - clientY)) / innerHeight + 0.2;
-
-            console.log('Calculated positions:', { xPos, yPos });
-            console.log('Current head rotation:', head?.rotation);
 
             //need to put Tween within set timeout else Chrome issue
             setTimeout(() => {

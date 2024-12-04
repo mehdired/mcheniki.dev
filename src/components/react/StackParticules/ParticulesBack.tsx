@@ -1,31 +1,32 @@
-'use client'
+'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react'
-import Particles, { initParticlesEngine } from '@tsparticles/react'
-import { type Container } from '@tsparticles/engine'
-import { loadSlim } from '@tsparticles/slim'
+import { useEffect, useMemo, useRef, useState } from 'react';
+import Particles, { initParticlesEngine } from '@tsparticles/react';
+import { type Container } from '@tsparticles/engine';
+import { loadSlim } from '@tsparticles/slim';
 
 export function ParticulesBack() {
-    const [init, setInit] = useState(false)
+    const [init, setInit] = useState(false);
 
     // this should be run only once per application lifetime
     useEffect(() => {
+        console.log('haha');
         initParticlesEngine(async (engine) => {
             // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
             // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
             // starting from v2 you can add only the features you need reducing the bundle size
             //await loadAll(engine);
             //await loadFull(engine);
-            await loadSlim(engine)
+            await loadSlim(engine);
             //await loadBasic(engine);
         }).then(() => {
-            setInit(true)
-        })
-    }, [])
+            setInit(true);
+        });
+    }, []);
 
     const particlesLoaded = async (container?: Container): Promise<void> => {
-        console.log(container)
-    }
+        console.log(container);
+    };
 
     const options: any = useMemo(
         () => ({
@@ -77,8 +78,8 @@ export function ParticulesBack() {
                 },
             },
         }),
-        []
-    )
+        [],
+    );
 
     return (
         <Particles
@@ -87,5 +88,5 @@ export function ParticulesBack() {
             particlesLoaded={particlesLoaded}
             options={options}
         />
-    )
+    );
 }

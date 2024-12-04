@@ -1,14 +1,12 @@
 ---
-import Container from "./Container.astro";
-import { Portal } from "./react/Portal/Portal";
+import Container from './Container.astro';
+import { Portal } from './react/Portal/Portal';
 ---
 
-<Container
-    customClass="flex flex-col items-center justify-between gap-32 lg:flex-row"
->
+<Container customClass="flex flex-col items-center justify-between gap-32 lg:flex-row">
     <div class="flex-1 flex-grow-0 lg:basis-[50%]">
         <h1
-            class="mb-12 text-64 font-bold uppercase italic leading-[0.9] tracking-[-0.9rem] md:text-clamp-h1"
+            class="mb-12 text-64 font-bold uppercase italic leading-[0.9] tracking-[-0.12em] md:text-clamp-h1"
         >
             <span class="block text-primary-500">Mehdi</span>
             <span class="text-stroke-primary text-transparent"> Cheniki </span>
@@ -17,13 +15,10 @@ import { Portal } from "./react/Portal/Portal";
             Expert WordPress / Développeur front-end
         </p>
         <p class="text-20 leading-8">
-            Développement WordPress sur mesure pour des sites web performants et
-            uniques
+            Développement WordPress sur mesure pour des sites web performants et uniques
         </p>
     </div>
-    <div
-        class="w-full max-w-[570px] flex-1 flex-grow-0 lg:w-auto lg:basis-[570px]"
-    >
+    <div class="w-full max-w-[570px] flex-1 flex-grow-0 lg:w-auto lg:basis-[570px]">
         <Portal client:visible />
     </div>
 </Container>
