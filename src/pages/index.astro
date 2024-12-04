@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '@components/Hero.astro';
+import About from '@components/About.astro';
+import StackSection from '@components/StackSection.astro';
+import Contact from '@components/Contact.astro';
+---
+
+<Layout
+    title="Mehdi Cheniki | Expert WordPress"
+    description="Je développe des sites web WordPress sur mesure, performants et uniques"
+>
+    <main class="min-h-screen pt-128 lg:pt-48">
+        <section class="mb-96 flex min-h-screen items-center md:mb-0">
+            <Hero />
+        </section>
+        <section class="mb-96 flex items-center">
+            <About />
+        </section>
+        <section class="mb-96">
+            <StackSection />
+        </section>
+        <section class="mt-96 overflow-hidden" id="contact">
+            <Contact />
+        </section>
+    </main>
+</Layout>
