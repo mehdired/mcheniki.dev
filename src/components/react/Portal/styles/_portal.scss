@@ -4,7 +4,7 @@
         padding: 25px;
         box-sizing: border-box;
         perspective: 100vw;
-        transform: scale3d(0.9, 0.9, 0.9);
+        /* transform: scale3d(0.9, 0.9, 0.9); */
 
         & * {
             transform-style: preserve-3d;
