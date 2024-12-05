@@ -13,6 +13,7 @@
         "@astrojs/check": "^0.9.4",
         "@astrojs/cloudflare": "^11.2.0",
         "@astrojs/react": "^3.6.3",
+        "@astrojs/sitemap": "^3.2.1",
         "@hcaptcha/react-hcaptcha": "^1.11.0",
         "@react-three/fiber": "^8.17.10",
         "@react-three/postprocessing": "^2.16.3",
@@ -43,6 +44,7 @@
         "prettier-plugin-tailwindcss": "^0.6.9",
         "tailwind-clip-path": "^1.0.0",
         "tailwindcss": "^3.4.15",
+        "vite": "^6.0.2",
         "vite-plugin-svgr": "4"
     }
 }

@@ -1,7 +1,7 @@
 ---
-import Container from "@components/Container.astro";
-import { ParticulesBack } from "@components/react/StackParticules/ParticulesBack";
-import TechConstellation from "@components/react/StackSection/StackConstellation";
+import Container from '@components/Container.astro';
+import { ParticulesBack } from '@components/react/StackParticules/ParticulesBack';
+import TechConstellation from '@components/react/StackSection/StackConstellation';
 ---
 
 <Container>
@@ -10,21 +10,18 @@ import TechConstellation from "@components/react/StackSection/StackConstellation
             class="mb-32 text-48 font-semibold uppercase italic leading-[0.9] tracking-tighter md:text-clamp-h2 lg:mb-0"
         >
             <span class="block text-primary-500">Stack</span>
-            <span class="text-stroke-primary text-transparent">
-                Technique
-            </span>
+            <span class="text-stroke-primary text-transparent">Technique</span>
         </h2>
         <p class="text-base text-base-100 md:text-25">
-            Des technologies modernes et éprouvées, combinant performance et
-            facilité d'utilisation. WordPress, PHP et JavaScript offre puissance
-            et flexibilité pour des sites web sur mesure, adaptés à vos besoins
-            spécifiques.
+            Des technologies modernes et éprouvées, combinant performance et facilité d'utilisation.
+            WordPress, PHP et JavaScript offre puissance et flexibilité pour des sites web sur
+            mesure, adaptés à vos besoins spécifiques.
         </p>
     </header>
 </Container>
 
 <div
-    class="relative aspect-square max-h-[753px] w-full overflow-hidden rounded-32 md:aspect-video md:min-h-[350px]"
+    class="relative aspect-square max-h-[753px] w-full overflow-hidden rounded-32 md:aspect-video md:min-h-[350px] max-lg:hidden"
 >
     <div class="absolute left-0 top-0 -z-10 h-full w-full">
         <ParticulesBack client:visible />
@@ -32,12 +29,7 @@ import TechConstellation from "@components/react/StackSection/StackConstellation
     <div class="radialParticule absolute left-0 top-0 h-full w-full"></div>
     <div class="h-full w-full p-24">
         <div class="absolute right-48 top-[calc(50%-200px)] animate-float">
-            <img
-                src="/images/mini-mehdi.webp"
-                alt="Floated mehdi"
-                width={77}
-                height={86}
-            />
+            <img src="/images/mini-mehdi.webp" alt="Floated mehdi" width={77} height={86} />
         </div>
         <TechConstellation client:visible />
     </div>
