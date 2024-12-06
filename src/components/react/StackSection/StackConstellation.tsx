@@ -74,7 +74,7 @@ type InfoCardProps = {
     tech: Technology
 }
 
-const technologies: Technology[] = [
+export const technologies: Technology[] = [
     {
         id: 1,
         name: 'React',
