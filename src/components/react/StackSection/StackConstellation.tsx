@@ -1,85 +1,86 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
-import IconReact from '@svgs/react.svg?react'
-import IconJS from '@svgs/js.svg?react'
-import IconWP from '@svgs/wp.svg?react'
-import IconPHP from '@svgs/php.svg?react'
-import CardStack from './CardStack'
+import IconReact from '@svgs/react.svg?react';
+import IconJS from '@svgs/js.svg?react';
+import IconWP from '@svgs/wp.svg?react';
+import IconPHP from '@svgs/php.svg?react';
+import CardStack from './CardStack';
 
-export type SVGComponent = React.ComponentType<React.SVGProps<SVGSVGElement>>
+export type SVGComponent = React.ComponentType<React.SVGProps<SVGSVGElement>>;
 
 // Types pour les animations
 type AnimationConfig = {
     y: {
-        duration: number
-        repeat: number
-        repeatType: 'reverse' | 'loop' | 'mirror'
-        ease: string
-        delay: number
-        amount: number
-    }
+        duration: number;
+        repeat: number;
+        repeatType: 'reverse' | 'loop' | 'mirror';
+        ease: string;
+        delay: number;
+        amount: number;
+    };
     hover: {
         transition: {
-            type: string
-            stiffness: number
-            damping: number
-        }
-    }
-}
+            type: string;
+            stiffness: number;
+            damping: number;
+        };
+    };
+};
 
 // Type pour une technologie
 type Technology = {
-    id: number
-    name: string
-    Icon: SVGComponent
-    description: string
-    connections: number[]
-    animation: AnimationConfig
-}
+    id: number;
+    name: string;
+    Icon: SVGComponent;
+    description: string;
+    connections: number[];
+    animation: AnimationConfig;
+};
 
 // Type pour les positions
 type Position = {
-    x: number
-    y: number
-}
+    x: number;
+    y: number;
+};
 
 type Dimensions = {
-    width: number
-    height: number
-}
+    width: number;
+    height: number;
+};
 
 // Type pour les animations des technologies
-type TechAnimations = Record<number, number>
+type TechAnimations = Record<number, number>;
 
 // Types pour les props des composants
 type ConstellationProps = {
-    positions: Record<number, Position>
-    technologies: Technology[]
-    hoveredTech: Technology | null
-    techAnimations: TechAnimations
-}
+    positions: Record<number, Position>;
+    technologies: Technology[];
+    hoveredTech: Technology | null;
+    techAnimations: TechAnimations;
+};
 
 type TechBubbleProps = {
-    tech: Technology
-    position: Position
-    isHovered: boolean
-    onHover: () => void
-    onLeave: () => void
-    onAnimationUpdate: (value: number) => void
-    techAnimations: TechAnimations
-}
+    tech: Technology;
+    position: Position;
+    isHovered: boolean;
+    onHover: () => void;
+    onLeave: () => void;
+    onAnimationUpdate: (value: number) => void;
+    techAnimations: TechAnimations;
+};
 
 type InfoCardProps = {
-    tech: Technology
-}
+    tech: Technology;
+};
 
 export const technologies: Technology[] = [
     {
         id: 1,
         name: 'React',
         Icon: IconReact as SVGComponent,
-        description: 'A JavaScript library for building user interfaces',
+        description:
+            "Le framework JavaScript que j'ai choisi pour reéaliser des interfaces utilisateur de qualité et performante.",
         connections: [2, 3],
         animation: {
             y: {
@@ -103,7 +104,8 @@ export const technologies: Technology[] = [
         id: 2,
         name: 'JavaScript',
         Icon: IconJS as SVGComponent,
-        description: 'High-level, interpreted programming language',
+        description:
+            "Le language que j'utilise pour amélioré l'experience utilisateur au travers d'interactions et d'animations.",
         connections: [1],
         animation: {
             y: {
@@ -127,7 +129,8 @@ export const technologies: Technology[] = [
         id: 3,
         name: 'WordPress',
         Icon: IconWP as SVGComponent,
-        description: 'Open-source content management system',
+        description:
+            "Avec 10 ans d'experience sur WordPress, c'est le CMS que je propose à mes clients pour la gestion de leur contenu.",
         connections: [2, 4],
         animation: {
             y: {
@@ -151,7 +154,8 @@ export const technologies: Technology[] = [
         id: 4,
         name: 'PHP',
         Icon: IconPHP as SVGComponent,
-        description: 'General-purpose scripting language for web development',
+        description:
+            'Je développe des fonctionnalités WordPress sur mesure en PHP pour créer des expériences uniques et personnalisées',
         connections: [3],
         animation: {
             y: {
@@ -171,56 +175,53 @@ export const technologies: Technology[] = [
             },
         },
     },
-]
-const random = Math.floor(Math.random() * (10 - 1) + 1)
+];
+const random = Math.floor(Math.random() * (10 - 1) + 1);
 
-const coeffRandom = random % 4 === 0 ? random + 1 : random
+const coeffRandom = random % 4 === 0 ? random + 1 : random;
 
 const TechConstellation: React.FC = () => {
-    const [hoveredTech, setHoveredTech] = useState<Technology | null>(null)
-    const containerRef = useRef<HTMLDivElement>(null)
+    const [hoveredTech, setHoveredTech] = useState<Technology | null>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
     const [dimensions, setDimensions] = useState<Dimensions>({
         width: 0,
         height: 0,
-    })
-    const [techAnimations, setTechAnimations] = useState<TechAnimations>({})
+    });
+    const [techAnimations, setTechAnimations] = useState<TechAnimations>({});
 
     useEffect(() => {
         const updateDimensions = () => {
             if (containerRef.current) {
-                const rect = containerRef.current.getBoundingClientRect()
-                setDimensions({ width: rect.width, height: rect.height })
+                const rect = containerRef.current.getBoundingClientRect();
+                setDimensions({ width: rect.width, height: rect.height });
             }
-        }
+        };
 
-        updateDimensions()
-        window.addEventListener('resize', updateDimensions)
-        return () => window.removeEventListener('resize', updateDimensions)
-    }, [])
+        updateDimensions();
+        window.addEventListener('resize', updateDimensions);
+        return () => window.removeEventListener('resize', updateDimensions);
+    }, []);
 
     const updateTechAnimation = (techId: number, value: number) => {
         setTechAnimations((prev) => ({
             ...prev,
             [techId]: value,
-        }))
-    }
+        }));
+    };
 
-    const positions = technologies.reduce<Record<number, Position>>(
-        (acc, tech, index) => {
-            const radius = Math.min(dimensions.width, dimensions.height) * 0.3
-            const centerX = dimensions.width / 2
-            const centerY = dimensions.height / 2
+    const positions = technologies.reduce<Record<number, Position>>((acc, tech, index) => {
+        const radius = Math.min(dimensions.width, dimensions.height) * 0.3;
+        const centerX = dimensions.width / 2;
+        const centerY = dimensions.height / 2;
 
-            const angle = (index / technologies.length) * coeffRandom * Math.PI
+        const angle = (index / technologies.length) * coeffRandom * Math.PI;
 
-            acc[tech.id] = {
-                x: centerX + Math.cos(angle) * radius,
-                y: centerY + Math.sin(angle) * radius,
-            }
-            return acc
-        },
-        {}
-    )
+        acc[tech.id] = {
+            x: centerX + Math.cos(angle) * radius,
+            y: centerY + Math.sin(angle) * radius,
+        };
+        return acc;
+    }, {});
 
     return (
         <div className="constellation-container relative h-full w-full">
@@ -238,10 +239,7 @@ const TechConstellation: React.FC = () => {
                         </div>
                     </div>
                 </div>
-                <div
-                    ref={containerRef}
-                    className="relative h-full flex-1"
-                >
+                <div ref={containerRef} className="relative h-full flex-1">
                     <Constellation
                         positions={positions}
                         technologies={technologies}
@@ -256,17 +254,15 @@ const TechConstellation: React.FC = () => {
                             isHovered={hoveredTech?.id === tech.id}
                             onHover={() => setHoveredTech(tech)}
                             onLeave={() => setHoveredTech(null)}
-                            onAnimationUpdate={(value) =>
-                                updateTechAnimation(tech.id, value)
-                            }
+                            onAnimationUpdate={(value) => updateTechAnimation(tech.id, value)}
                             techAnimations={techAnimations}
                         />
                     ))}
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 const Constellation: React.FC<ConstellationProps> = ({
     positions,
@@ -288,12 +284,12 @@ const Constellation: React.FC<ConstellationProps> = ({
         >
             {technologies.map((tech) =>
                 tech.connections.map((connectedTechId) => {
-                    const startPos = positions[tech.id]
-                    const endPos = positions[connectedTechId]
+                    const startPos = positions[tech.id];
+                    const endPos = positions[connectedTechId];
 
                     if (startPos && endPos) {
-                        const startOffset = techAnimations[tech.id] || 0
-                        const endOffset = techAnimations[connectedTechId] || 0
+                        const startOffset = techAnimations[tech.id] || 0;
+                        const endOffset = techAnimations[connectedTechId] || 0;
 
                         return (
                             <motion.line
@@ -304,14 +300,14 @@ const Constellation: React.FC<ConstellationProps> = ({
                                 y2={endPos.y + endOffset}
                                 stroke="hsl(20 100% 51%)"
                             />
-                        )
+                        );
                     }
-                    return null
-                })
+                    return null;
+                }),
             )}
         </motion.svg>
-    )
-}
+    );
+};
 
 const TechBubble: React.FC<TechBubbleProps> = ({
     tech,
@@ -323,17 +319,15 @@ const TechBubble: React.FC<TechBubbleProps> = ({
     techAnimations,
 }) => {
     useEffect(() => {
-        let yPos = 0
+        let yPos = 0;
         const interval = setInterval(() => {
-            const time = (Date.now() + tech.animation.y.delay * 1000) / 1000
-            yPos =
-                Math.sin((time * Math.PI) / tech.animation.y.duration) *
-                tech.animation.y.amount
-            onAnimationUpdate(yPos)
-        }, 16)
+            const time = (Date.now() + tech.animation.y.delay * 1000) / 1000;
+            yPos = Math.sin((time * Math.PI) / tech.animation.y.duration) * tech.animation.y.amount;
+            onAnimationUpdate(yPos);
+        }, 16);
 
-        return () => clearInterval(interval)
-    }, [tech.animation.y, onAnimationUpdate])
+        return () => clearInterval(interval);
+    }, [tech.animation.y, onAnimationUpdate]);
 
     return (
         <motion.div
@@ -349,14 +343,10 @@ const TechBubble: React.FC<TechBubbleProps> = ({
             onHoverStart={onHover}
             onHoverEnd={onLeave}
         >
-            <tech.Icon
-                width="60"
-                height="60"
-                className="fill-primary-500 hover:fill-base-0"
-            />
+            <tech.Icon width="60" height="60" className="fill-primary-500 hover:fill-base-0" />
         </motion.div>
-    )
-}
+    );
+};
 
 const InfoCard: React.FC<InfoCardProps> = ({ tech }) => {
     return (
@@ -367,14 +357,10 @@ const InfoCard: React.FC<InfoCardProps> = ({ tech }) => {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
             >
-                <CardStack
-                    title={tech.name}
-                    description={tech.description}
-                    Icon={tech.Icon}
-                />
+                <CardStack title={tech.name} description={tech.description} Icon={tech.Icon} />
             </motion.div>
         </AnimatePresence>
-    )
-}
+    );
+};
 
-export default TechConstellation
+export default TechConstellation;
