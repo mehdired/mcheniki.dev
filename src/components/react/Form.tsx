@@ -1,3 +1,5 @@
+import { actions } from 'astro:actions';
+
 import { useRef, useState, type FormEvent } from 'react';
 import HCaptcha from '@hcaptcha/react-hcaptcha';
 
@@ -27,7 +29,6 @@ export function Form({ ...rest }) {
             console.log('Execute recaptcha not available yet');
             return;
         }
-        console.log('captchaToken: ', captchaToken);
 
         const target = event.currentTarget;
         send(target);
@@ -37,36 +38,31 @@ export function Form({ ...rest }) {
         setSending(true);
 
         const formData = new FormData(target);
+        formData.append('hcaptchaToken', captchaToken!);
 
         const formValues = {
             name: formData.get('name'),
             email: formData.get('email'),
             message: formData.get('message'),
-            HCaptchaToken: captchaToken,
-        };
-        const validate = formSchema.safeParse(formValues);
+        }
+       const validate = formSchema.safeParse(formValues);
 
         if (validate.success) {
             try {
-                const sendResponse = await fetch('/api/contact', {
-                    method: 'POST',
-                    headers: {
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formValues),
-                });
+                const sendResponse = await actions.sendForm(formData);
 
-                if (sendResponse.ok) {
-                    const sendData = await sendResponse.json();
-                    setSuccess(true);
+                if (!sendResponse.error) {
+                    const sendData = await sendResponse.data;
+                    console.log('sendData: ', JSON.parse(sendData));
+
+                    //setSuccess(JSON.parse(sendData).success);
                 } else {
-                    console.error("Erreur lors de l'envoi du formulaire");
+                    console.error("Erreur lors de l'envoi du formulaire", sendResponse.error);
                 }
             } catch (error) {
                 console.error('ERROR : ', error);
             }
-        } else {
+        }  else {
             setErrorEmail(validate.error.format());
         }
 
