@@ -1,0 +1,63 @@
+---
+import Container from '@components/Container.astro';
+import { ParticulesBack } from '@components/react/StackParticules/ParticulesBack';
+import TechConstellation from '@components/react/StackSection/StackConstellation';
+
+import IconJS from '@svgs/js.svg?raw';
+import IconWP from '@svgs/wp.svg?raw';
+import IconPHP from '@svgs/php.svg?raw';
+
+import { technologies } from '@components/react/StackSection/StackConstellation';
+---
+
+<Container>
+    <header class="mb-32 lg:flex lg:justify-between lg:gap-48">
+        <h2
+            class="mb-32 text-48 font-semibold uppercase italic leading-[0.9] tracking-tighter md:text-clamp-h2 lg:mb-0"
+        >
+            <span class="block text-primary-500">Stack</span>
+            <span class="text-stroke-primary text-transparent">Technique</span>
+        </h2>
+        <p class="text-base text-base-100 md:text-25">
+            Des technologies modernes et éprouvées, combinant performance et facilité d'utilisation.
+            WordPress, PHP et JavaScript offre puissance et flexibilité pour des sites web sur
+            mesure, adaptés à vos besoins spécifiques.
+        </p>
+    </header>
+</Container>
+
+<div
+    class="relative max-lg:py-32 max-h-[753px] w-full overflow-hidden rounded-32 md:aspect-video md:min-h-[350px] max-lg:flex max-lg:items-center radialParticule"
+>
+    <div class="absolute left-0 top-0 -z-10 h-full w-full">
+        <ParticulesBack client:visible />
+    </div>
+    <div class="max-lg:hidden h-full">
+        <div class="absolute left-0 top-0 h-full w-full"></div>
+        <div class="h-full w-full p-24">
+            <div class="absolute right-48 top-[calc(50%-200px)] animate-float">
+                <img src="/images/mini-mehdi.webp" alt="Floated mehdi" width={77} height={86} />
+            </div>
+            <TechConstellation client:visible />
+        </div>
+    </div>
+    <ul class="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-24 lg:hidden w-full">
+        {
+            technologies.map((tech) => (
+                <li class="mb-16 flex flex-col items-center gap-6">
+                    <tech.Icon
+                        width="48"
+                        height="48"
+                        className="mr-16 fill-primary-500 hover:fill-base-0"
+                    />
+                    <div class="flex-1 text-center">
+                        <h3 class="mb-6 text-20 font-semibold leading-tight tracking-tighter">
+                            {tech.name}
+                        </h3>
+                        <p class="text-base text-base-100">{tech.description}</p>
+                    </div>
+                </li>
+            ))
+        }
+    </ul>
+</div>

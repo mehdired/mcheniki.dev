@@ -1,0 +1,29 @@
+---
+import { Form } from '@components/react/Form';
+import IconMail from '@svgs/mail.svg?raw';
+import Container from '@components/Container.astro';
+---
+
+<Container customClass="mt-64 md:flex md:gap-64">
+    <div class="mb-32 md:mb-0 md:basis-4/12">
+        <h2
+            class="2xl:text-74 text-48 font-semibold uppercase italic tracking-tighter text-primary-500 md:text-64"
+        >
+            Contact
+        </h2>
+        <p class="mb-32">
+            Tu veux qu'on bosse ensemble ? Où peut-être juste dire bonjour ? Utilise le formulaire !
+        </p>
+        <address>
+            <a href="mailto:mehdi.cheniki@gmail.com" class="mb-12 flex items-center gap-6">
+                <span class="h-12 w-12 fill-current">
+                    <Fragment set:html={IconMail} />
+                </span>
+                hello@mcheniki.dev
+            </a>
+        </address>
+    </div>
+    <div class="md:basis-3/5">
+        <Form client:visible />
+    </div>
+</Container>

@@ -1,0 +1,65 @@
+---
+import Container from '@components/Container.astro';
+import IconGithub from '@svgs/github.svg?raw';
+import IconMail from '@svgs/mail.svg?raw';
+import IconStar from '@svgs/star.svg?raw';
+---
+
+<footer class="mt-96">
+    <Container>
+        <div
+            class="flex flex-col items-center justify-between gap-48 rounded-32 bg-base-600 px-64 py-24 text-base-600 md:flex-row"
+        >
+            <ul class="flex gap-24">
+                <li>
+                    <a href="mailto:hello@mcheniki.dev" class="text-base-50 block w-24 h-24">
+                        <span class="fill-current">
+                            <Fragment set:html={IconMail} />
+                        </span>
+                        <span class="sr-only"> Envoyer un e-mail </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="text-base-50 block w-24 h-24" target="_blank">
+                        <span class="fill-current">
+                            <Fragment set:html={IconGithub} />
+                        </span>
+                        <span class="sr-only"> Aller sur Github </span>
+                    </a>
+                </li>
+            </ul>
+            <p class="text-center text-base-50">
+                Mehdi Cheniki
+                <br />
+                <span class="text-base-200">Expert Wordpress</span>
+            </p>
+
+            <!-- <nav>
+                        <ul>
+                            <li>
+                                <a
+                                    href="/resume_mehdi_cheniki_dev.pdf"
+                                    class="text-12 text-base-0"
+                                    target="_blank"
+                                >
+                                    CV
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>  -->
+        </div>
+        <p
+            class="flex items-center justify-center gap-6 py-24 text-12 text-base-100 max-md:flex-col"
+        >
+            Développé par{' '}
+            <span class="underline">Mehdi Cheniki</span>
+            <span class="fill-current w-12 h-12 block">
+                <Fragment set:html={IconStar} />
+            </span>
+            Designé par{' '}
+            <a href="https://elkhantour.com" target="_blank" class="underline">
+                Nassim El Khantour
+            </a>
+        </p>
+    </Container>
+</footer>
