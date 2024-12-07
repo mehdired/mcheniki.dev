@@ -55,7 +55,7 @@ export function Form({ ...rest }) {
                     const sendData = await sendResponse.data;
                     console.log('sendData: ', JSON.parse(sendData));
 
-                    //setSuccess(JSON.parse(sendData).success);
+                    setSuccess(JSON.parse(sendData).success);
                 } else {
                     console.error("Erreur lors de l'envoi du formulaire", sendResponse.error);
                 }
