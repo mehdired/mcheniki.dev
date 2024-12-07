@@ -7,9 +7,9 @@ const { PUBLIC_URL_WEBSITE } = loadEnv(process.env.NODE_ENV, process.cwd(), '');
 
 import react from '@astrojs/react';
 
-import cloudflare from '@astrojs/cloudflare';
-
 import sitemap from '@astrojs/sitemap';
+
+import node from '@astrojs/node';
 
 export default defineConfig({
     site: PUBLIC_URL_WEBSITE ?? 'http://localhost:4321',
@@ -24,7 +24,9 @@ export default defineConfig({
     ],
 
     output: 'hybrid',
-    adapter: cloudflare(),
+    adapter: node({
+      mode: 'standalone',
+    }),
     vite: {
         plugins: [
             svgr({
