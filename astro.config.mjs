@@ -22,10 +22,8 @@ export default defineConfig({
         }),
         sitemap(),
     ],
-
-    output: 'hybrid',
     adapter: node({
-      mode: 'standalone',
+        mode: 'standalone',
     }),
     vite: {
         plugins: [
