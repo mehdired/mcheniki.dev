@@ -124,6 +124,7 @@ export default {
 			roundo: ['Roundo', 'sans-serif'],
 		},
 		fontSize: {
+			'clamp-stack': 'clamp(1.6875rem, -0.0048rem + 2.6442vw, 2.375rem);',
 			'clamp-ten': 'clamp(26.25rem, -4.5192rem + 48.0769vw, 38.75rem)',
 			'clamp-h1': 'clamp(6.75rem, -0.0192rem + 10.5769vw, 9.5rem)',
 			'clamp-h2': 'clamp(4.75rem, 1.6731rem + 4.8077vw, 6rem)',
@@ -174,6 +175,8 @@ export default {
 				tighter: '-0.375rem',
 			},
 			backgroundImage: {
+				'linear-gradient-stack':
+					'linear-gradient(360deg, rgba(24, 26, 35, 1) 0%, rgba(24, 26, 35, 1) 20%, rgba(24, 26, 35, 0) 100%)',
 				'gradient-ten':
 					'linear-gradient(360deg, rgba(24, 26, 35, 1) 0%, rgba(24, 26, 35, 1) 20%, rgba(24, 26, 35, 0) 100%)',
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
