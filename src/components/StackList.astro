@@ -3,15 +3,22 @@ import StackCard from './StackCard.astro';
 
 import { type TechType } from './StackCard.astro';
 
-type Props = { techList: TechType[] };
+type Props = {
+	techList: TechType[];
+	ariaHidden?: boolean;
+	hideMobile?: boolean;
+};
 
-const { techList } = Astro.props;
+const { techList, ariaHidden = false, hideMobile = false } = Astro.props;
 ---
 
-<ul class="flex flex-col gap-24">
+<ul
+	class={`flex lg:flex-col gap-24${hideMobile === true ? ' max-lg:hidden' : ''}`}
+	aria-hidden={ariaHidden}
+>
 	{
-		techList.reverse().map((tech) => (
-			<li>
+		techList.map((tech) => (
+			<li class="flex-1">
 				<StackCard tech={tech} />
 			</li>
 		))
