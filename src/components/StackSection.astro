@@ -1,63 +1,86 @@
 ---
 import Container from '@components/Container.astro';
-import { ParticulesBack } from '@components/react/StackParticules/ParticulesBack';
-import TechConstellation from '@components/react/StackSection/StackConstellation';
+import StackList from './StackList.astro';
+import StackCard, { type TechType } from './StackCard.astro';
 
-import IconJS from '@svgs/js.svg?raw';
-import IconWP from '@svgs/wp.svg?raw';
-import IconPHP from '@svgs/php.svg?raw';
+import ShapeH2 from '@svgs/shape-h2.svg';
+import IconPHP from '@svgs/php.svg';
+import IconWP from '@svgs/wp.svg';
+import IconJS from '@svgs/js.svg';
+import IconReact from '@svgs/react.svg';
 
-import { technologies } from '@components/react/StackSection/StackConstellation';
+const techs: TechType[] = [
+	{
+		name: 'WordPress',
+		icon: IconWP,
+		color: 'primary',
+	},
+	{
+		name: 'PHP',
+		icon: IconPHP,
+		color: 'secondary',
+	},
+	{
+		name: 'JavaScript',
+		icon: IconJS,
+		color: 'primary',
+	},
+	{
+		name: 'React',
+		icon: IconReact,
+		color: 'secondary',
+	},
+];
 ---
 
 <Container>
-    <header class="mb-32 lg:flex lg:justify-between lg:gap-48">
-        <h2
-            class="mb-32 text-48 font-semibold uppercase italic leading-[0.9] tracking-tighter md:text-clamp-h2 lg:mb-0"
-        >
-            <span class="block text-primary-500">Stack</span>
-            <span class="text-stroke-primary text-transparent">Technique</span>
-        </h2>
-        <p class="text-base text-base-100 md:text-25">
-            Des technologies modernes et éprouvées, combinant performance et facilité d'utilisation.
-            WordPress, PHP et JavaScript offre puissance et flexibilité pour des sites web sur
-            mesure, adaptés à vos besoins spécifiques.
-        </p>
-    </header>
+	<div class="flex max-lg:flex-col gap-24 lg:items-center">
+		<div class="flex-1">
+			<header class="mb-32">
+				<h2
+					class="text-14 text-primary-600 uppercase tracking-[0.15em] font-medium flex items-center gap-6"
+				>
+					<ShapeH2 fill="currentColor" width="14" height="14" />
+					Technique
+				</h2>
+				<h3
+					class="mb-24 text-64 leading-[1.3em] tracking-tighter text-base-50 font-extralight -tracking-tighter]"
+				>
+					Une stack complète et adaptée
+				</h3>
+			</header>
+			<p class="text-base text-base-0 lead">
+				Des technologies modernes et éprouvées, combinant performance et facilité
+				d'utilisation. WordPress, PHP et JavaScript offre puissance et flexibilité pour des
+				sites web sur mesure, adaptés à vos besoins spécifiques.
+			</p>
+		</div>
+		<div
+			class="flex-1 flex gap-24 h-[53vw] mx-h-[772px] overflow-hidden relative stack-container max-lg:py-[18px] lg:pt-[18px]"
+		>
+			<div class="flex lg:flex-col gap-24 lg:mt-64 flex-1 lg:-translate-y-[104%]">
+				{
+					Array.from({ length: 3 }).map((_, i) => (
+						<ul
+							class="flex lg:flex-col gap-24 max-lg:animate-marquee max-lg:items-center max-lg:text-nowrap"
+							aria-hidden={i > 0}
+						>
+							{techs.map((tech) => (
+								<li class="flex-1">
+									<StackCard tech={tech} />
+								</li>
+							))}
+						</ul>
+					))
+				}
+			</div>
+			<div class="flex lg:flex-col gap-24 flex-1 max-lg:hidden">
+				{
+					Array.from({ length: 2 }).map((_, i) => (
+						<StackList techList={techs.reverse()} ariaHidden={true} />
+					))
+				}
+			</div>
+		</div>
+	</div>
 </Container>
-
-<div
-    class="relative max-lg:py-32 max-h-[753px] w-full overflow-hidden rounded-32 md:aspect-video md:min-h-[350px] max-lg:flex max-lg:items-center radialParticule"
->
-    <div class="absolute left-0 top-0 -z-10 h-full w-full">
-        <ParticulesBack client:visible />
-    </div>
-    <div class="max-lg:hidden h-full">
-        <div class="absolute left-0 top-0 h-full w-full"></div>
-        <div class="h-full w-full p-24">
-            <div class="absolute right-48 top-[calc(50%-200px)] animate-float">
-                <img src="/images/mini-mehdi.webp" alt="Floated mehdi" width={77} height={86} />
-            </div>
-            <TechConstellation client:visible />
-        </div>
-    </div>
-    <ul class="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-24 lg:hidden w-full">
-        {
-            technologies.map((tech) => (
-                <li class="mb-16 flex flex-col items-center gap-6">
-                    <tech.Icon
-                        width="48"
-                        height="48"
-                        className="mr-16 fill-primary-500 hover:fill-base-0"
-                    />
-                    <div class="flex-1 text-center">
-                        <h3 class="mb-6 text-20 font-semibold leading-tight tracking-tighter">
-                            {tech.name}
-                        </h3>
-                        <p class="text-base text-base-100">{tech.description}</p>
-                    </div>
-                </li>
-            ))
-        }
-    </ul>
-</div>
