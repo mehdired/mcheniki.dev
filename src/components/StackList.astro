@@ -1,0 +1,19 @@
+---
+import StackCard from './StackCard.astro';
+
+import { type TechType } from './StackCard.astro';
+
+type Props = { techList: TechType[] };
+
+const { techList } = Astro.props;
+---
+
+<ul class="flex flex-col gap-24">
+	{
+		techList.reverse().map((tech) => (
+			<li>
+				<StackCard tech={tech} />
+			</li>
+		))
+	}
+</ul>

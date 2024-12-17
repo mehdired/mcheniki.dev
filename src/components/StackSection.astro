@@ -1,5 +1,7 @@
 ---
 import Container from '@components/Container.astro';
+import StackList from './StackList.astro';
+import { type TechType } from './StackCard.astro';
 
 import ShapeH2 from '@svgs/shape-h2.svg';
 import IconPHP from '@svgs/php.svg';
@@ -7,7 +9,7 @@ import IconWP from '@svgs/wp.svg';
 import IconJS from '@svgs/js.svg';
 import IconReact from '@svgs/react.svg';
 
-const techs = [
+const techs: TechType[] = [
 	{
 		name: 'WordPress',
 		icon: IconWP,
@@ -57,40 +59,10 @@ const techs = [
 			class="flex-1 flex gap-24 h-[53vw] mx-h-[772px] overflow-hidden relative stack-container pt-[18px]"
 		>
 			<div class="flex flex-col gap-24 mt-64 flex-1">
-				{
-					Array.from({ length: 3 }).map((_, i) => (
-						<ul class="flex flex-col gap-24 flex-1 -translate-y-[104%]">
-							{techs.map((tech) => (
-								<li
-									class={`${tech.color === 'primary' ? 'text-primary-500 border-primary-500' : 'text-secondary-500 border-secondary-500'} border-1  rounded-32 p-32 flex flex-col items-center justify-center gap-12 aspect-square`}
-								>
-									<tech.icon width="50%" height="50%" fill="currentColor" />
-									<p class="text-current text-clamp-stack text-center">
-										{tech.name}
-									</p>
-								</li>
-							))}
-						</ul>
-					))
-				}
+				{Array.from({ length: 3 }).map((_, i) => <StackList techList={techs} />)}
 			</div>
 			<div class="flex flex-col gap-24 flex-1">
-				{
-					Array.from({ length: 2 }).map((_, i) => (
-						<ul class="flex flex-col gap-24">
-							{techs.reverse().map((tech) => (
-								<li
-									class={`${tech.color === 'primary' ? 'text-primary-500 border-primary-500' : 'text-secondary-500 border-secondary-500'} border-1  rounded-32 p-32 flex flex-col items-center justify-center gap-12 aspect-square`}
-								>
-									<tech.icon width="50%" height="50%" fill="currentColor" />
-									<p class="text-current text-clamp-stack text-center">
-										{tech.name}
-									</p>
-								</li>
-							))}
-						</ul>
-					))
-				}
+				{Array.from({ length: 2 }).map((_, i) => <StackList techList={techs} />)}
 			</div>
 		</div>
 	</div>
