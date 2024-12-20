@@ -12,36 +12,39 @@ import sitemap from '@astrojs/sitemap';
 import node from '@astrojs/node';
 
 export default defineConfig({
-    site: PUBLIC_URL_WEBSITE ?? 'http://localhost:4321',
-    integrations: [
-        tailwind({
-            applyBaseStyles: false,
-        }),
-        react({
-            include: ['**/react/*'],
-        }),
-        sitemap(),
-    ],
-    adapter: node({
-        mode: 'standalone',
-    }),
-    vite: {
-        plugins: [
-            svgr({
-                include: '**/*.svg?react',
-                svgrOptions: {
-                    plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx'],
-                    svgoConfig: {
-                        plugins: [
-                            'preset-default',
-                            'removeTitle',
-                            'removeDesc',
-                            'removeDoctype',
-                            'cleanupIds',
-                        ],
-                    },
-                },
-            }),
-        ],
-    },
+	experimental: {
+		svg: true,
+	},
+	site: PUBLIC_URL_WEBSITE ?? 'http://localhost:4321',
+	integrations: [
+		tailwind({
+			applyBaseStyles: false,
+		}),
+		react({
+			include: ['**/react/*'],
+		}),
+		sitemap(),
+	],
+	adapter: node({
+		mode: 'standalone',
+	}),
+	vite: {
+		plugins: [
+			svgr({
+				include: '**/*.svg?react',
+				svgrOptions: {
+					plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx'],
+					svgoConfig: {
+						plugins: [
+							'preset-default',
+							'removeTitle',
+							'removeDesc',
+							'removeDoctype',
+							'cleanupIds',
+						],
+					},
+				},
+			}),
+		],
+	},
 });

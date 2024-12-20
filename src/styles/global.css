@@ -9,9 +9,15 @@
 
 @layer base {
 	h1,
-	h2,
 	h3 {
 		font-family: theme(fontFamily.jetbrains);
+	}
+
+	h1,
+	h2,
+	h3,
+	h4 {
+		text-wrap: balance;
 	}
 }
 
@@ -25,35 +31,67 @@
 	}
 
 	.primary.planet-portal {
-		clip-path: circle(65% at 0 100%);
+		clip-path: circle(72% at 1% 130%);
 	}
 
 	.primary.planet-portal span:first-child {
-		clip-path: circle(55% at 0 100%);
+		clip-path: circle(64% at 1% 130%);
 	}
 
 	.primary.planet-portal span:nth-child(2) {
-		clip-path: circle(45% at 0 100%);
+		clip-path: circle(56% at 1% 130%);
 	}
 
 	.primary.planet-portal span:last-child {
-		clip-path: circle(35% at 0 100%);
+		clip-path: circle(48% at 1% 130%);
 	}
 
 	.secondary.planet-portal {
-		clip-path: circle(65% at 100% 0);
+		clip-path: circle(69% at 100% 0);
 	}
 
 	.secondary.planet-portal span:first-child {
-		clip-path: circle(55% at 100% 0);
+		clip-path: circle(61% at 100% 0);
 	}
 
 	.secondary.planet-portal span:nth-child(2) {
-		clip-path: circle(45% at 100% 0);
+		clip-path: circle(54% at 100% 0);
 	}
 
 	.secondary.planet-portal span:last-child {
-		clip-path: circle(35% at 100% 0);
+		clip-path: circle(47% at 100% 0);
+	}
+
+	.stack-container::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 40%;
+		background-image: linear-gradient(
+			180deg,
+			rgb(24 26 35 / 1) 0%,
+			rgb(24 26 35 / 0.5) 22%,
+			transparent 62%
+		);
+		z-index: 2;
+	}
+
+	.stack-container::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		height: 40%;
+		background-image: linear-gradient(
+			360deg,
+			rgb(24 26 35 / 1) 0%,
+			rgb(24 26 35 / 0.5) 22%,
+			transparent 62%
+		);
+		z-index: 2;
 	}
 }
 
@@ -279,26 +317,19 @@
 	transform-style: preserve-3d;
 }
 
+.portal-scene {
+	border-radius: var(--radius-l);
+}
+
 .portal-scene:before {
 	content: '';
 	position: absolute;
 	width: 100%;
 	height: 100%;
 	display: block;
+	border-radius: theme(borderRadius.32);
+	overflow: hidden;
 	background: linear-gradient(315deg, var(--secondary-500) -150%, transparent 70%);
-	border-radius: var(--radius-l);
-}
-
-.portal-element-white-border {
-	position: absolute;
-	box-sizing: border-box;
-	width: 100%;
-	height: 100%;
-	display: block;
-	border-radius: var(--radius-l);
-	border: solid theme(borderWidth.12) var(--primary-50);
-	transform: translateZ(0);
-	z-index: 1;
 }
 
 .portal-element-orange-stroke {
@@ -307,8 +338,32 @@
 	width: 90%;
 	height: 90.5%;
 	display: block;
-	border-radius: var(--radius-m);
-	border: solid var(--stroke-xs) var(--primary-500);
+
+	border: 1px solid theme(colors.primary.500);
+	border-radius: theme(borderRadius.32);
+
+	clip-path: polygon(
+		0 0,
+		15% 0,
+		14% 1px,
+		85% 1px,
+		85% 0,
+		100% 0,
+		100% 15%,
+		calc(100% - 1px) 15%,
+		calc(100% - 1px) 85%,
+		100% 85%,
+		100% 100%,
+		85% 100%,
+		85% 0,
+		15% calc(100% - 1px),
+		15% 100%,
+		0 100%,
+		0 85%,
+		1px 85%,
+		1px 15%,
+		0 15%
+	);
 	transform: translateZ(25px);
 	z-index: 2;
 	animation-name: pulse;
