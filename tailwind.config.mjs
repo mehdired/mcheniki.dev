@@ -183,6 +183,7 @@ export default {
 				'gradient-conic':
 					'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
 				'stack-frame': 'url("/images/stack-frame.webp")',
+				'about-10': 'url("/images/10.webp")',
 			},
 			aspectRatio: {
 				portal: '53/74',
