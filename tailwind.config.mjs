@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
@@ -162,8 +163,12 @@ export default {
 				xl: '1280px',
 				'2xl': '1440px',
 			},
+			center: true,
 		},
 		extend: {
+			screens: {
+				'2xl': '1440px',
+			},
 			fontFamily: {
 				jetbrains: ['JetBrains Mono', 'monospace'],
 				roundo: ['Roundo', 'sans-serif'],
@@ -183,7 +188,6 @@ export default {
 				'gradient-conic':
 					'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
 				'stack-frame': 'url("/images/stack-frame.webp")',
-				'about-10': 'url("/images/10.webp")',
 			},
 			aspectRatio: {
 				portal: '53/74',
