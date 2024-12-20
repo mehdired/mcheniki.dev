@@ -7,7 +7,7 @@ import ShapeH2 from '@svgs/shape-h2.svg';
 ---
 
 <Container
-	customClass="flex flex-col items-center justify-between gap-32 lg:gap-[10%] lg:flex-row-reverse"
+	customClass="flex flex-col items-center justify-between gap-32 lg:gap-[10%] lg:flex-row-reverse bg-gradient-ten"
 >
 	<div class="max-lg:w-full lg:flex-1">
 		<h2
@@ -38,11 +38,11 @@ import ShapeH2 from '@svgs/shape-h2.svg';
 	<div class="max-lg:w-full max-lg:max-w-[464px] lg:flex-1">
 		<div class="relative h-[530px] items-center justify-center lg:h-[80dvh]" data-active="true">
 			<p
-				class="font-jetbrains text-clamp-ten text-stroke-primary text-transparent absolute left-0 font-bold -tracking-[60px] xl:-indent-[38px]"
+				class="font-jetbrains text-clamp-ten text-stroke-primary text-transparent absolute -z-[1] left-0 font-bold -tracking-[60px] xl:-indent-[38px]"
 			>
 				10
 			</p>
-			<div class="bg-gradient-ten bg-no-repeat relative">
+			<div class="bg-no-repeat relative">
 				<Scene client:visible />
 			</div>
 		</div>
