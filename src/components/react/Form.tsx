@@ -88,7 +88,7 @@ export function Form({ ...rest }) {
 				</p>
 			) : (
 				<form {...rest} method="post" onSubmit={handleSubmit} noValidate autoComplete="off">
-					<div className="flex items-center gap-12 max-md:flex-col">
+					<div className="flex items-center gap-24 md:gap-12 max-md:flex-col">
 						<FormGroup name="nom" className="w-full flex-1">
 							<Input type="text" id="name" name="name" required="required" />
 							{errorEmail && (
@@ -106,7 +106,7 @@ export function Form({ ...rest }) {
 							)}
 						</FormGroup>
 					</div>
-					<FormGroup name="message" className="mt-32">
+					<FormGroup name="message" className="mt-24">
 						<Textarea id="message" required="required" />
 						{errorEmail && (
 							<span className="absolute left-0 top-full text-12 font-bold text-error-500">

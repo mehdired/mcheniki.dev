@@ -13,6 +13,29 @@ const techs: TechType[] = [
 	{
 		name: 'WordPress',
 		icon: IconWP,
+		color: 'secondary',
+	},
+	{
+		name: 'PHP',
+		icon: IconPHP,
+		color: 'primary',
+	},
+	{
+		name: 'React',
+		icon: IconReact,
+		color: 'secondary',
+	},
+	{
+		name: 'JavaScript',
+		icon: IconJS,
+		color: 'primary',
+	},
+];
+
+const techs2: TechType[] = [
+	{
+		name: 'WordPress',
+		icon: IconWP,
 		color: 'primary',
 	},
 	{
@@ -21,20 +44,20 @@ const techs: TechType[] = [
 		color: 'secondary',
 	},
 	{
-		name: 'JavaScript',
-		icon: IconJS,
+		name: 'React',
+		icon: IconReact,
 		color: 'primary',
 	},
 	{
-		name: 'React',
-		icon: IconReact,
+		name: 'JavaScript',
+		icon: IconJS,
 		color: 'secondary',
 	},
 ];
 ---
 
 <Container>
-	<div class="flex max-lg:flex-col gap-24 lg:items-center">
+	<div class="flex max-lg:flex-col gap-24 lg:gap-[10%] lg:items-center">
 		<div class="flex-1">
 			<header class="mb-32">
 				<h2
@@ -56,11 +79,13 @@ const techs: TechType[] = [
 			</p>
 		</div>
 		<div
-			class="flex-1 flex gap-24 h-[53vw] mx-h-[772px] overflow-hidden relative stack-container max-lg:py-[18px] lg:pt-[18px]"
+			class="flex-1 flex gap-24 h-[calc(100vw*772/1440)] max-h-[674px] 2xl:max-h-[772px] overflow-hidden relative stack-container max-lg:py-[18px] lg:pt-[18px]"
 		>
-			<div class="flex lg:flex-col gap-24 lg:mt-64 flex-1 lg:-translate-y-[104%]">
+			<div
+				class="flex lg:flex-col gap-24 flex-1 lg:-translate-y-[79%] 2xl:-translate-y-[74%]"
+			>
 				{
-					Array.from({ length: 3 }).map((_, i) => (
+					Array.from({ length: 2 }).map((_, i) => (
 						<ul
 							class="flex lg:flex-col gap-24 max-lg:animate-marquee max-lg:items-center max-lg:text-nowrap"
 							aria-hidden={i > 0}
@@ -77,7 +102,7 @@ const techs: TechType[] = [
 			<div class="flex lg:flex-col gap-24 flex-1 max-lg:hidden">
 				{
 					Array.from({ length: 2 }).map((_, i) => (
-						<StackList techList={techs.reverse()} ariaHidden={true} />
+						<StackList techList={techs2.reverse()} ariaHidden={true} />
 					))
 				}
 			</div>

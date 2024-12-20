@@ -12,6 +12,13 @@
 	h3 {
 		font-family: theme(fontFamily.jetbrains);
 	}
+
+	h1,
+	h2,
+	h3,
+	h4 {
+		text-wrap: balance;
+	}
 }
 
 @layer components {

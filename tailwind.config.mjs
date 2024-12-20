@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
@@ -124,7 +125,7 @@ export default {
 			roundo: ['Roundo', 'sans-serif'],
 		},
 		fontSize: {
-			'clamp-stack': 'clamp(1.6875rem, -0.0048rem + 2.6442vw, 2.375rem);',
+			'clamp-stack': 'clamp(1.6875rem, 0.9183rem + 1.2019vw, 2rem)',
 			'clamp-ten': 'clamp(26.25rem, -4.5192rem + 48.0769vw, 38.75rem)',
 			'clamp-h1': 'clamp(6.75rem, -0.0192rem + 10.5769vw, 9.5rem)',
 			'clamp-h2': 'clamp(4.75rem, 1.6731rem + 4.8077vw, 6rem)',
@@ -162,8 +163,12 @@ export default {
 				xl: '1280px',
 				'2xl': '1440px',
 			},
+			center: true,
 		},
 		extend: {
+			screens: {
+				'2xl': '1440px',
+			},
 			fontFamily: {
 				jetbrains: ['JetBrains Mono', 'monospace'],
 				roundo: ['Roundo', 'sans-serif'],
