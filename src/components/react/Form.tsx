@@ -112,7 +112,12 @@ export function Form({ ...rest }) {
 							</span>
 						)}
 					</FormGroup>
-					<Turnstile sitekey={siteKey} onVerify={onVerify} theme="dark" />
+					<Turnstile
+						sitekey={siteKey}
+						onVerify={onVerify}
+						theme="dark"
+						className="mt-24"
+					/>
 
 					<div className="mt-24 flex">
 						<CtaReact disabled={sending || turnstileToken === null}>
