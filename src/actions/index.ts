@@ -1,15 +1,13 @@
+import { experimental_AstroContainer } from 'astro/container';
 import { defineAction } from 'astro:actions';
 import { z } from 'astro:schema';
-import { experimental_AstroContainer } from 'astro/container';
-
-import { verify } from 'hcaptcha';
 
 import { Resend } from 'resend';
 
 import EmailTemplate from '@components/EmailTemplate.astro';
 
 const resend = new Resend(import.meta.env.SECRET_RESEND_API_KEY!);
-const secretKey = import.meta.env.SECRET_HCAPTCHA_KEY!;
+const secretKey = import.meta.env.SECRET_TURNSTILE_KEY!;
 
 export const server = {
 	sendForm: defineAction({
@@ -18,11 +16,25 @@ export const server = {
 			name: z.string(),
 			email: z.string().email(),
 			message: z.string(),
-			hcaptchaToken: z.string(),
+			turnstileToken: z.string(),
 		}),
-		handler: async ({ name, email, message, hcaptchaToken }) => {
+		handler: async ({ name, email, message, turnstileToken }) => {
 			try {
-				const dataVerify = await verify(secretKey, hcaptchaToken);
+				const response = await fetch(
+					'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+					{
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify({
+							secret: secretKey,
+							response: turnstileToken,
+						}),
+					},
+				);
+
+				const dataVerify = await response.json();
 
 				if (!dataVerify.success) {
 					return JSON.stringify({ error: dataVerify, success: false });

@@ -1,9 +1,9 @@
 ---
-import { Form } from '@components/react/Form';
 import Container from '@components/Container.astro';
+import { Form } from '@components/react/Form';
 
-import ShapeH2 from '@svgs/shape-h2.svg';
 import IconMail from '@svgs/mail.svg';
+import ShapeH2 from '@svgs/shape-h2.svg';
 ---
 
 <Container customClass="mt-64">
@@ -35,7 +35,7 @@ import IconMail from '@svgs/mail.svg';
 			</a>
 		</address>
 		<div class="basis-full md:basis-2/3">
-			<Form client:visible />
+			<Form client:only />
 		</div>
 	</div>
 </Container>
