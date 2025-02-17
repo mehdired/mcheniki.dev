@@ -1,32 +1,32 @@
 import { actions } from 'astro:actions';
 
-import { useRef, useState, type FormEvent } from 'react';
-import HCaptcha from '@hcaptcha/react-hcaptcha';
+import { useState, type FormEvent } from 'react';
 
+import Turnstile from 'react-turnstile';
+
+import { CtaReact } from './CtaReact';
 import { FormGroup } from './FormGroup';
 import { Input } from './Input';
 import { Textarea } from './Textarea';
-import { CtaReact } from './CtaReact';
 
 import IconRocket from '@svgs/rocket.svg?react';
 import { formSchema, type FormattedErrors } from './validation';
 
-const siteKey = import.meta.env.PUBLIC_HCAPTCHA_SITE_KEY!;
+const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY!;
 
 export function Form({ ...rest }) {
 	const [sending, setSending] = useState(false);
 	const [errorEmail, setErrorEmail] = useState<FormattedErrors>();
 	const [success, setSuccess] = useState(false);
-	const captchaRef = useRef<HCaptcha | null>(null);
-	const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+	const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
-	const onVerify = (token: string) => setCaptchaToken(token);
+	const onVerify = (token: string) => setTurnstileToken(token);
 
 	const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
-		if (!captchaToken) {
-			console.log('Execute recaptcha not available yet');
+		if (!turnstileToken) {
+			console.log('Turnstile verification not completed yet');
 			return;
 		}
 
@@ -38,7 +38,7 @@ export function Form({ ...rest }) {
 		setSending(true);
 
 		const formData = new FormData(target);
-		formData.append('hcaptchaToken', captchaToken!);
+		formData.append('turnstileToken', turnstileToken!);
 
 		const formValues = {
 			name: formData.get('name'),
@@ -66,9 +66,7 @@ export function Form({ ...rest }) {
 		}
 
 		setSending(false);
-
-		captchaRef.current?.resetCaptcha();
-		setCaptchaToken(null);
+		setTurnstileToken(null);
 	};
 
 	return (
@@ -114,10 +112,10 @@ export function Form({ ...rest }) {
 							</span>
 						)}
 					</FormGroup>
-					<HCaptcha sitekey={siteKey} ref={captchaRef} onVerify={onVerify} theme="dark" />
+					<Turnstile sitekey={siteKey} onVerify={onVerify} theme="dark" />
 
 					<div className="mt-24 flex">
-						<CtaReact disabled={sending || captchaToken === null}>
+						<CtaReact disabled={sending || turnstileToken === null}>
 							<IconRocket
 								className={`fill-current ${sending ? 'animate-shake' : ''}`}
 							/>
