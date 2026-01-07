@@ -4,12 +4,13 @@ import { useFrame, useLoader, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import { useEffect, useRef } from 'react';
 import { clamp } from './utils';
-import TWEEN from '@tweenjs/tween.js';
+import { Group as TweenGroup, Tween, Easing } from '@tweenjs/tween.js';
 
 export function Avatar({ mode = 'DESKTOP', state = 'DEFAULT' }) {
 	const { scene, animations } = useLoader(GLTFLoader, './avatar/mehdinaut.gltf');
 
 	const mixerRef = useRef(null);
+	const tweenGroupRef = useRef(new TweenGroup());
 	const { viewport } = useThree();
 
 	useEffect(() => {
@@ -25,11 +26,11 @@ export function Avatar({ mode = 'DESKTOP', state = 'DEFAULT' }) {
 		};
 	}, [scene, animations]);
 
-	useFrame((state, delta) => {
+	useFrame((_, delta) => {
 		if (mixerRef.current) {
 			mixerRef.current.update(delta);
 		}
-		TWEEN.update();
+		tweenGroupRef.current.update();
 	});
 
 	useEffect(() => {
@@ -48,7 +49,7 @@ export function Avatar({ mode = 'DESKTOP', state = 'DEFAULT' }) {
 					return;
 				}
 
-				new TWEEN.Tween(head.rotation)
+				const tween = new Tween(head.rotation)
 					.to(
 						{
 							y: clamp(-0.8, 0.8)(xPos),
@@ -57,8 +58,9 @@ export function Avatar({ mode = 'DESKTOP', state = 'DEFAULT' }) {
 						},
 						300,
 					)
-					.easing(TWEEN.Easing.Quintic.Out)
+					.easing(Easing.Quintic.Out)
 					.start();
+				tweenGroupRef.current.add(tween);
 			}, 10);
 		};
 
@@ -75,19 +77,21 @@ export function Avatar({ mode = 'DESKTOP', state = 'DEFAULT' }) {
 
 		startAnimation();
 
-		new TWEEN.Tween(scene.scale)
+		const scaleTween = new Tween(scene.scale)
 			.to({ x: 1, y: 1, z: 1 }, 1500)
-			.easing(TWEEN.Easing.Quintic.Out)
+			.easing(Easing.Quintic.Out)
 			.start();
+		tweenGroupRef.current.add(scaleTween);
 
-		new TWEEN.Tween(scene.rotation)
+		const rotationTween = new Tween(scene.rotation)
 			.to({ x: 0, y: 0, z: 0 }, 1500)
-			.easing(TWEEN.Easing.Quintic.Out)
+			.easing(Easing.Quintic.Out)
 			.start();
+		tweenGroupRef.current.add(rotationTween);
 
 		return () => {
 			window.removeEventListener('mousemove', onMouseMove);
-			newMixer.stopAllAction();
+			mixerRef.current?.stopAllAction();
 		};
 	}, [scene, mode, state]);
 

@@ -21,7 +21,7 @@ type AnimationConfig = {
     };
     hover: {
         transition: {
-            type: string;
+            type: 'spring';
             stiffness: number;
             damping: number;
         };
@@ -267,7 +267,6 @@ const TechConstellation: React.FC = () => {
 const Constellation: React.FC<ConstellationProps> = ({
     positions,
     technologies,
-    hoveredTech,
     techAnimations,
 }) => {
     return (
@@ -312,7 +311,6 @@ const Constellation: React.FC<ConstellationProps> = ({
 const TechBubble: React.FC<TechBubbleProps> = ({
     tech,
     position,
-    isHovered,
     onHover,
     onLeave,
     onAnimationUpdate,

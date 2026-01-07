@@ -11,7 +11,7 @@ const { nbrDuplicate = 2 } = Astro.props;
     aria-hidden="true"
 >
     {
-        Array.from({ length: nbrDuplicate }).map((_, i) => (
+        Array.from({ length: nbrDuplicate }).map(() => (
             <ul class="flex animate-marquee items-center gap-12 text-nowrap">
                 <li>
                     <slot />

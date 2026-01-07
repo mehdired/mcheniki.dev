@@ -101,7 +101,7 @@ const techs2: TechType[] = [
 			</div>
 			<div class="flex lg:flex-col gap-24 flex-1 max-lg:hidden">
 				{
-					Array.from({ length: 2 }).map((_, i) => (
+					Array.from({ length: 2 }).map(() => (
 						<StackList techList={techs2.reverse()} ariaHidden={true} />
 					))
 				}

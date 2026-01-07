@@ -1,12 +1,12 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Particles, { initParticlesEngine } from '@tsparticles/react';
-import { type Container, type ISourceOptions, MoveDirection, OutMode } from '@tsparticles/engine';
+import { type ISourceOptions, MoveDirection, OutMode } from '@tsparticles/engine';
 import { loadSlim } from '@tsparticles/slim';
 
 export function ParticulesSecond() {
-	const [init, setInit] = useState(false);
+	const [, setInit] = useState(false);
 
 	// this should be run only once per application lifetime
 	useEffect(() => {

@@ -1,11 +1,11 @@
 ---
-type EmailTemplateProps = {
+type Props = {
     name: string
     email: string
     message: string
 }
 
-const { name,email, message } = Astro.props
+const { name, email, message }: Props = Astro.props
 ---
 
 <div>

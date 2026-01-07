@@ -1,5 +1,3 @@
-import { Input } from './Input'
-
 type FormGroupProps = {
     name: string
     withLabel?: boolean
