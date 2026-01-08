@@ -63,13 +63,7 @@ export function CtaReact({ url, indent = 'primary', ...rest }: CtaProps) {
         event.preventDefault();
 
         const idTarget = target.href.split('#')[1];
-        const top = document.getElementById(idTarget)?.getBoundingClientRect().top;
-
-        window.scroll({
-            top: top,
-            left: 0,
-            behavior: 'smooth',
-        });
+        document.getElementById(idTarget)?.scrollIntoView();
     };
 
     return (

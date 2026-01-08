@@ -4,31 +4,11 @@ import * as Stars from './Stars';
 import * as Stack from './Stack';
 import { normalize } from './utils';
 
-//import './styles/index.scss';
-
 export function Portal() {
 	const [active, setActive] = useState(false);
 	const [rotate, setRotate] = useState({ x: 0, y: -5 });
-	const container = useRef();
-
-	const onMouseMove = (e) => {
-		const normalizedY = normalize({
-			value: e.pageX,
-			from: [0, window.innerWidth],
-			to: [-20, 0],
-		});
-
-		const normalizedX = normalize({
-			value: e.pageY,
-			from: [0, window.innerHeight],
-			to: [-10, 10],
-		});
-
-		setRotate({
-			x: -1 * normalizedX,
-			y: normalizedY,
-		});
-	};
+	const container = useRef<HTMLDivElement>(null);
+	const lastCall = useRef(0);
 
 	useEffect(() => {
 		if (!window.matchMedia('(hover: none), (pointer: coarse)')) {
@@ -36,7 +16,30 @@ export function Portal() {
 		}
 		setTimeout(() => setActive(true), 400);
 
-		window.addEventListener('mousemove', onMouseMove);
+		const onMouseMove = (e: MouseEvent) => {
+			const now = performance.now();
+			if (now - lastCall.current < 16) return;
+			lastCall.current = now;
+
+			const normalizedY = normalize({
+				value: e.pageX,
+				from: [0, window.innerWidth],
+				to: [-20, 0],
+			});
+
+			const normalizedX = normalize({
+				value: e.pageY,
+				from: [0, window.innerHeight],
+				to: [-10, 10],
+			});
+
+			setRotate({
+				x: -1 * normalizedX,
+				y: normalizedY,
+			});
+		};
+
+		window.addEventListener('mousemove', onMouseMove, { passive: true });
 
 		return () => {
 			window.removeEventListener('mousemove', onMouseMove);
@@ -62,7 +65,7 @@ export function Portal() {
 							color="primary"
 							animated={true}
 							version="portal"
-							{...active}
+							active={active}
 						/>
 					</div>
 					<div className="absolute right-0 top-0 h-1/2 w-1/2">
@@ -70,7 +73,7 @@ export function Portal() {
 							color="secondary"
 							animated={true}
 							version="portal"
-							{...active}
+							active={active}
 						/>
 					</div>
 				</div>

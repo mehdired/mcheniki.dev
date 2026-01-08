@@ -1,9 +1,3 @@
-/* type CirclePlanetProps = {
-    color?: 'primary' | 'secondary' | 'tertiary'
-    animated?: boolean
-    active?: boolean
-} */
-
 const styles = {
     primary: {
         main: 'primary bg-primary-500',

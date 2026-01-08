@@ -317,14 +317,18 @@ const TechBubble: React.FC<TechBubbleProps> = ({
     techAnimations,
 }) => {
     useEffect(() => {
-        let yPos = 0;
-        const interval = setInterval(() => {
-            const time = (Date.now() + tech.animation.y.delay * 1000) / 1000;
-            yPos = Math.sin((time * Math.PI) / tech.animation.y.duration) * tech.animation.y.amount;
-            onAnimationUpdate(yPos);
-        }, 16);
+        let rafId: number;
 
-        return () => clearInterval(interval);
+        const animate = () => {
+            const time = (Date.now() + tech.animation.y.delay * 1000) / 1000;
+            const yPos =
+                Math.sin((time * Math.PI) / tech.animation.y.duration) * tech.animation.y.amount;
+            onAnimationUpdate(yPos);
+            rafId = requestAnimationFrame(animate);
+        };
+
+        rafId = requestAnimationFrame(animate);
+        return () => cancelAnimationFrame(rafId);
     }, [tech.animation.y, onAnimationUpdate]);
 
     return (

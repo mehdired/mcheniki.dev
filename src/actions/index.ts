@@ -13,9 +13,9 @@ export const server = {
 	sendForm: defineAction({
 		accept: 'form',
 		input: z.object({
-			name: z.string(),
+			name: z.string().min(1),
 			email: z.string().email(),
-			message: z.string(),
+			message: z.string().min(10).max(1000),
 			turnstileToken: z.string(),
 		}),
 		handler: async ({ name, email, message, turnstileToken }) => {

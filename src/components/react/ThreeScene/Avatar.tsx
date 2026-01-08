@@ -6,18 +6,24 @@ import { useEffect, useRef } from 'react';
 import { clamp } from './utils';
 import { Group as TweenGroup, Tween, Easing } from '@tweenjs/tween.js';
 
-export function Avatar({ mode = 'DESKTOP', state = 'DEFAULT' }) {
-	const { scene, animations } = useLoader(GLTFLoader, './avatar/mehdinaut.gltf');
+type AvatarProps = {
+	mode?: 'DESKTOP' | 'MOBILE';
+	state?: string;
+};
 
-	const mixerRef = useRef(null);
+export function Avatar({ mode = 'DESKTOP', state = 'DEFAULT' }: AvatarProps) {
+	const { scene, animations } = useLoader(GLTFLoader as any, './avatar/mehdinaut.gltf');
+
+	const mixerRef = useRef<THREE.AnimationMixer | null>(null);
 	const tweenGroupRef = useRef(new TweenGroup());
 	const { viewport } = useThree();
 
 	useEffect(() => {
 		mixerRef.current = new THREE.AnimationMixer(scene);
-		void mixerRef.current
-			.clipAction(animations.find((item) => item.name === 'Baked-floating'))
-			.play();
+		const floatingAnim = animations.find((item: THREE.AnimationClip) => item.name === 'Baked-floating');
+		if (floatingAnim) {
+			mixerRef.current.clipAction(floatingAnim).play();
+		}
 
 		return () => {
 			if (mixerRef.current) {
@@ -34,8 +40,8 @@ export function Avatar({ mode = 'DESKTOP', state = 'DEFAULT' }) {
 	});
 
 	useEffect(() => {
-		let head;
-		const onMouseMove = ({ clientX, clientY }) => {
+		let head: THREE.Bone | undefined;
+		const onMouseMove = ({ clientX, clientY }: MouseEvent) => {
 			const { innerWidth, innerHeight } = window;
 			//put epicenter to 1/4 of screen width to be centered with canvas
 			let xPos =
@@ -65,10 +71,11 @@ export function Avatar({ mode = 'DESKTOP', state = 'DEFAULT' }) {
 		};
 
 		const startAnimation = () => {
-			//get head armature Bone
-			scene.traverse(
-				(item) => item.name === 'head' && item.type === 'Bone' && void (head = item),
-			);
+			scene.traverse((item: THREE.Object3D) => {
+				if (item.name === 'head' && item.type === 'Bone') {
+					head = item as THREE.Bone;
+				}
+			});
 
 			if (head) {
 				window.addEventListener('mousemove', onMouseMove);
@@ -77,6 +84,8 @@ export function Avatar({ mode = 'DESKTOP', state = 'DEFAULT' }) {
 
 		startAnimation();
 
+		scene.scale.set(0, 0, 0);
+		scene.rotation.y = Math.PI;
 		const scaleTween = new Tween(scene.scale)
 			.to({ x: 1, y: 1, z: 1 }, 1500)
 			.easing(Easing.Quintic.Out)

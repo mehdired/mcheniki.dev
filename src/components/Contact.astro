@@ -1,5 +1,6 @@
 ---
 import Container from '@components/Container.astro';
+import { ErrorBoundary } from '@components/react/error-boundary';
 import { Form } from '@components/react/Form';
 
 import IconMail from '@svgs/mail.svg';
@@ -35,7 +36,9 @@ import ShapeH2 from '@svgs/shape-h2.svg';
 			</a>
 		</address>
 		<div class="basis-full md:basis-2/3">
-			<Form client:only />
+			<ErrorBoundary client:only>
+				<Form client:only />
+			</ErrorBoundary>
 		</div>
 	</div>
 </Container>

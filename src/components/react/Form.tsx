@@ -18,6 +18,7 @@ export function Form({ ...rest }) {
 	const [sending, setSending] = useState(false);
 	const [errorEmail, setErrorEmail] = useState<FormattedErrors>();
 	const [success, setSuccess] = useState(false);
+	const [error, setError] = useState<string | null>(null);
 	const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
 	const onVerify = (token: string) => setTurnstileToken(token);
@@ -36,6 +37,7 @@ export function Form({ ...rest }) {
 
 	const send = async (target: HTMLFormElement) => {
 		setSending(true);
+		setError(null);
 
 		const formData = new FormData(target);
 		formData.append('turnstileToken', turnstileToken!);
@@ -54,12 +56,17 @@ export function Form({ ...rest }) {
 				if (!sendResponse.error) {
 					const sendData = await sendResponse.data;
 
-					setSuccess(JSON.parse(sendData).success);
+					try {
+						const response = JSON.parse(sendData);
+						setSuccess(response.success);
+					} catch {
+						setError('Une erreur est survenue, veuillez réessayer.');
+					}
 				} else {
-					console.error("Erreur lors de l'envoi du formulaire", sendResponse.error);
+					setError('Une erreur est survenue, veuillez réessayer.');
 				}
-			} catch (error) {
-				console.error('ERROR : ', error);
+			} catch {
+				setError('Une erreur est survenue, veuillez réessayer.');
 			}
 		} else {
 			setErrorEmail(validate.error.format());
@@ -118,6 +125,10 @@ export function Form({ ...rest }) {
 						theme="dark"
 						className="mt-24"
 					/>
+
+					{error && (
+						<p className="mt-24 text-14 font-bold text-error-500">{error}</p>
+					)}
 
 					<div className="mt-24 flex">
 						<CtaReact disabled={sending || turnstileToken === null}>
