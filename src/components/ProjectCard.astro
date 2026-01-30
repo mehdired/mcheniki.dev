@@ -1,0 +1,49 @@
+---
+import { getIcon } from '@utils/icons';
+
+type Props = {
+	id: string;
+	title: string;
+	imageUrl: string;
+	stack: string[];
+	role?: string;
+};
+
+const { id, title, imageUrl, stack } = Astro.props;
+---
+
+<div
+	data-project-id={id}
+	data-project-title={title}
+	class="project-card group relative h-full w-full aspect-square overflow-hidden rounded-24 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-base-900"
+	aria-label={`Voir les détails du projet ${title}`}
+>
+	<img
+		src={imageUrl}
+		alt={`Capture du projet ${title}`}
+		width="600"
+		height="600"
+		loading="lazy"
+		class="absolute inset-0 h-full w-full object-cover object-left transition-transform duration-300 group-hover:scale-105"
+	/>
+	<div class="absolute inset-0 bg-base-900/70 transition-colors group-hover:bg-base-900/60"></div>
+
+	<div class="absolute inset-0 flex flex-col justify-between p-12">
+		<h3
+			class="font-jetbrains text-25 font-medium text-base-0 absolute left-1/2 top-1/2 -translate-1/2 w-fit text-center"
+		>
+			{title}
+		</h3>
+
+		<ul class="flex flex-wrap gap-4 self-end">
+			{
+				stack.map((tech) => {
+					const icon = getIcon(tech);
+
+					return <li class="w-5 h-5 [&>svg]:fill-white" set:html={icon!.svg} />;
+				})
+			}
+		</ul>
+	</div>
+	<button class="absolute inset-0 cursor-pointer"></button>
+</div>

@@ -1,0 +1,11 @@
+---
+type Props = {
+	customClass?: string;
+};
+
+const { customClass } = Astro.props;
+---
+
+<div class={`container mx-auto px-24 ${customClass}`}>
+	<slot />
+</div>

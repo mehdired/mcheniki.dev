@@ -1,0 +1,72 @@
+---
+import '../styles/fonts.css';
+import '../styles/global.css';
+
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+
+type Props = {
+	title: string;
+	description: string;
+	image?: string;
+};
+
+const { title, description, image = '/images/og.webp' } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(image, Astro.site);
+---
+
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/ico" href="/favicon.ico" />
+		<title>{title}</title>
+		<link rel="canonical" href={canonicalURL} />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+
+		<!-- Open Graph -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImageURL} />
+		<meta property="og:locale" content="fr_FR" />
+
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImageURL} />
+
+		<!-- JSON-LD -->
+		<script
+			is:inline
+			type="application/ld+json"
+			set:html={JSON.stringify({
+				'@context': 'https://schema.org',
+				'@type': 'Person',
+				name: 'Mehdi Cheniki',
+				url: Astro.site,
+				jobTitle: 'Développeur web freelance',
+				knowsAbout: ['WordPress', 'React', 'TypeScript', 'PHP', 'JavaScript'],
+				email: 'hello@mcheniki.dev',
+				sameAs: ['https://github.com/mehdired'],
+			})}
+		/>
+
+		<link rel="preconnect" href="https://analytics.mcheniki.dev" />
+		<script
+			is:inline
+			defer
+			src="https://analytics.mcheniki.dev/script.js"
+			data-website-id="2a60ab3c-52f7-40a1-b146-3fd9f55f9d90"></script>
+	</head>
+</html>
+<body class="bg-base-800 font-roundo text-base-50">
+	<Header />
+	<slot />
+	<Footer />
+</body>

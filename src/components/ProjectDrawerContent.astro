@@ -1,0 +1,54 @@
+---
+import { getIcon, getIconTitle } from '@utils/icons';
+import Cta from './Cta.astro';
+
+type Props = {
+	stack: string[];
+	mission?: string;
+	url?: string;
+};
+
+const { stack, mission, url } = Astro.props;
+---
+
+<div class="flex flex-col gap-32">
+	{mission && <h4 class="text-primary-500 uppercase text-16">{mission}</h4>}
+	{
+		stack.length > 0 && (
+			<section>
+				<h3 class="mb-4 text-14 font-medium uppercase tracking-wider text-base-0">Stack</h3>
+				<ul class="flex flex-wrap gap-12">
+					{stack.map((tech) => {
+						const icon = getIcon(tech);
+						return (
+							<li class="flex items-center gap-4 rounded-full bg-base-700 px-12 py-6">
+								{icon && (
+									<span class="w-5 h-5 [&>svg]:fill-white" set:html={icon.svg} />
+								)}
+								<span class="text-14 text-base-100">{getIconTitle(tech)}</span>
+							</li>
+						);
+					})}
+				</ul>
+			</section>
+		)
+	}
+
+	<section>
+		<h3 class="mb-4 text-14 font-medium uppercase tracking-wider text-base-0">Description</h3>
+		<div class="prose-project text-16 leading-relaxed text-base-100">
+			<slot />
+		</div>
+	</section>
+
+	{
+		url && (
+			<Cta url={url} target="_blank" rel="noopener noreferrer">
+				Voir le projet
+				<svg viewBox="0 0 24 24" class="h-4 w-4 -rotate-45" fill="currentColor">
+					<path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z" />
+				</svg>
+			</Cta>
+		)
+	}
+</div>

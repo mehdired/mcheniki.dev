@@ -1,0 +1,69 @@
+---
+import { getCollection, render } from 'astro:content';
+import Container from '@components/Container.astro';
+import ProjectCard from '@components/ProjectCard.astro';
+import ProjectDrawer from '@components/ProjectDrawer.astro';
+import ProjectDrawerContent from '@components/ProjectDrawerContent.astro';
+import ShapeH2 from '@svgs/shape-h2.svg';
+
+const projects = await getCollection('projects');
+
+const sortedProjects = projects.sort((a, b) => {
+	const orderA = a.data.order ?? Infinity;
+	const orderB = b.data.order ?? Infinity;
+	if (orderA !== orderB) return orderA - orderB;
+	return a.data.title.localeCompare(b.data.title);
+});
+
+const renderedProjects = await Promise.all(
+	sortedProjects.map(async (project) => {
+		const { Content } = await render(project);
+		return { project, Content };
+	}),
+);
+---
+
+<Container>
+	<header class="mb-48 text-center">
+		<h2
+			class="mb-12 flex items-center justify-center gap-6 text-14 font-medium uppercase tracking-[0.15em] text-primary-600"
+		>
+			<ShapeH2 fill="currentColor" width="14" height="14" />
+			Réalisations
+		</h2>
+		<h3 class="text-64 font-extralight leading-[1.3em] tracking-tighter text-base-50">
+			Projets
+		</h3>
+	</header>
+
+	<div class="grid gap-24 md:grid-cols-2 lg:grid-cols-3">
+		{
+			sortedProjects.map((project) => (
+				<ProjectCard
+					id={project.id}
+					title={project.data.title}
+					imageUrl={project.data.image.src}
+					stack={project.data.stack}
+					role={project.data.role}
+				/>
+			))
+		}
+	</div>
+
+	{/* Pre-rendered templates for each project's drawer content */}
+	{
+		renderedProjects.map(({ project, Content }) => (
+			<template data-project-id={project.id}>
+				<ProjectDrawerContent
+					stack={project.data.stack}
+					mission={project.data.mission}
+					url={project.data.url}
+				>
+					<Content />
+				</ProjectDrawerContent>
+			</template>
+		))
+	}
+
+	<ProjectDrawer />
+</Container>

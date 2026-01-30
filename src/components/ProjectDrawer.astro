@@ -1,0 +1,152 @@
+---
+/**
+ * Native <dialog>-based drawer.
+ * Expects project <template data-project-id="..."> elements and
+ * card <button data-project-id="..."> triggers to be present on the page.
+ */
+---
+
+<dialog id="project-drawer" aria-labelledby="drawer-title" class="project-drawer">
+	<div class="drawer-panel">
+		<header
+			class="sticky top-0 z-10 flex items-center justify-between border-b border-base-600 bg-base-800 px-24 py-8"
+		>
+			<h2 id="drawer-title" class="font-jetbrains text-36 font-medium text-base-0"></h2>
+			<button
+				type="button"
+				class="close-btn cursor-pointer flex h-32 w-32 items-center justify-center rounded-full text-base-300 transition-colors hover:bg-base-700 hover:text-base-0"
+				aria-label="Fermer"
+			>
+				<svg
+					viewBox="0 0 24 24"
+					class="h-20 w-20"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+				>
+					<path d="M18 6L6 18M6 6l12 12"></path>
+				</svg>
+			</button>
+		</header>
+
+		<div class="drawer-content p-24"></div>
+	</div>
+</dialog>
+
+<style>
+	/* Base dialog reset */
+	.project-drawer {
+		padding: 0;
+		border: none;
+		background: transparent;
+		max-width: none;
+		max-height: none;
+		width: 100%;
+		height: 100%;
+		overflow: visible;
+	}
+
+	.project-drawer::backdrop {
+		background: rgb(0 0 0 / 0);
+		transition: background 300ms ease-out;
+	}
+
+	.project-drawer.open::backdrop {
+		background: rgb(0 0 0 / 0.8);
+	}
+
+	/* Drawer panel — slide from right on desktop */
+	.drawer-panel {
+		position: fixed;
+		top: 0;
+		right: 0;
+		height: 100%;
+		width: 100%;
+		max-width: 480px;
+		overflow-y: auto;
+		border-left: 1px solid var(--color-base-600);
+		background-color: var(--color-base-800);
+		transform: translateX(100%);
+		transition: transform 300ms ease-out;
+	}
+
+	.project-drawer.open .drawer-panel {
+		transform: translateX(0);
+	}
+
+	/* Mobile — slide from bottom */
+	@media (max-width: 767px) {
+		.drawer-panel {
+			top: auto;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			max-width: none;
+			border-left: none;
+			border-top: 1px solid;
+			border-radius: 24px 24px 0 0;
+			transform: translateY(100%);
+		}
+
+		.project-drawer.open .drawer-panel {
+			transform: translateY(0);
+		}
+	}
+</style>
+
+<script>
+	const dialog = document.getElementById('project-drawer') as HTMLDialogElement;
+	const panel = dialog.querySelector('.drawer-panel') as HTMLElement;
+	const content = dialog.querySelector('.drawer-content') as HTMLElement;
+	const titleEl = dialog.querySelector('#drawer-title') as HTMLElement;
+
+	function openDrawer(projectId: string, projectTitle: string) {
+		const template = document.querySelector(
+			`template[data-project-id="${projectId}"]`,
+		) as HTMLTemplateElement | null;
+		if (!template) return;
+
+		content.replaceChildren(template.content.cloneNode(true));
+		titleEl.textContent = projectTitle;
+		document.body.style.overflow = 'hidden';
+		dialog.showModal();
+		requestAnimationFrame(() => dialog.classList.add('open'));
+	}
+
+	function closeDrawer() {
+		dialog.classList.remove('open');
+		panel.addEventListener(
+			'transitionend',
+			() => {
+				dialog.close();
+
+				document.body.style.overflow = 'visible';
+			},
+			{ once: true },
+		);
+	}
+
+	// Card click listeners
+	document
+		.querySelectorAll<HTMLButtonElement>('.project-card[data-project-id] button')
+		.forEach((button) => {
+			const card = button.closest('.project-card') as HTMLElement;
+			card?.addEventListener('click', () => {
+				openDrawer(card.dataset.projectId!, card.dataset.projectTitle!);
+			});
+		});
+
+	// Close button
+	dialog.querySelector('.close-btn')!.addEventListener('click', closeDrawer);
+
+	// Backdrop click (click on dialog itself, not the panel)
+	dialog.addEventListener('click', (e) => {
+		if (e.target === dialog) closeDrawer();
+	});
+
+	// Escape key — intercept native cancel to animate out first
+	dialog.addEventListener('cancel', (e) => {
+		e.preventDefault();
+		closeDrawer();
+	});
+</script>

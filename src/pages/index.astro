@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '@components/Hero.astro';
+import About from '@components/About.astro';
+import StackSection from '@components/StackSection.astro';
+import ProjectsSection from '@components/ProjectsSection.astro';
+import Contact from '@components/Contact.astro';
+---
+
+<Layout
+	title="Mehdi Cheniki | Développeur web freelance | WordPress & React"
+	description="Mehdi Cheniki, développeur web freelance avec 10 ans d'expérience. Sites WordPress sur mesure et applications React pour des solutions web performantes."
+>
+	<main class="min-h-screen pt-128 lg:pt-48">
+		<section class="mb-96 flex min-h-screen items-center">
+			<Hero />
+		</section>
+		<section class="mb-96 flex items-center">
+			<About />
+		</section>
+		<section class="mb-96">
+			<StackSection />
+		</section>
+		<section class="mb-96">
+			<ProjectsSection />
+		</section>
+		<section class="mt-96 overflow-hidden" id="contact">
+			<Contact />
+		</section>
+	</main>
+</Layout>

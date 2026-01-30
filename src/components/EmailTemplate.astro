@@ -1,0 +1,19 @@
+---
+type Props = {
+	name: string;
+	email: string;
+	message: string;
+};
+
+const { name, email, message }: Props = Astro.props;
+---
+
+<div>
+	<h1>Formulaire contact</h1>
+	<p>Name: {name}</p>
+	<p>Email: {email}</p>
+	<p>
+		message: <br />
+		{message}
+	</p>
+</div>
